@@ -50,7 +50,6 @@ export class App {
                 console.error(error);
             });
         }
-        //
     }
 
     /*
@@ -71,7 +70,11 @@ export class App {
     speak() {
         microphone.setupMicrophone().then(function(){
             // Get URL Stream as String
-            console.log(microphone.getDataURL());
+            const stream = microphone.getDataURL();
+            const socket = io();
+
+            console.log(stream);
+            socket.emit('message', stream);
             // Submit this string to Dialogflow SDK
         }).catch(microphone.handleErrors);
     }

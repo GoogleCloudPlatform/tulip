@@ -13,7 +13,7 @@ var App = (function () {
     }
     App.prototype.createApp = function () {
         this.app = express();
-        var dist = path.join(__dirname, '..');
+        var dist = path.join(__dirname, '../../../dist');
         this.app.get('/', function (req, res) {
             res.sendFile(path.join(dist, 'index.html'));
         });
