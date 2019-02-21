@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "target": "es6",
+    "outDir": "./dist/server",
+    "pretty": true
+  },
+  "include": [
+    "src/js/server"
+  ],
+  "exclude": [
+    "node_modules/",
+    "dist/"
+  ]
+}

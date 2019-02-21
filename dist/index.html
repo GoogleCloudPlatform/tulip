@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--<meta name="google-site-verification" content="lD484N--aDigkknKdhFozMC6Iyhydvzv5reMGNpgleI" />-->
+    <!--<link rel="canonical" href="">-->
+    <title>Project Shunkaen</title>
+    <meta name="description" content="Use your phone’s camera to identify flowers in the real world, and start talking to them." />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Roboto:300,400|Changa+One">
+    <link rel="stylesheet" href="css/main.min.css">
+  </head>
+  <body>
+
+    <div class="view__camera view__camera--js">
+      <div class="view__camera__prediction-results view__camera__prediction-results--js"></div>
+      <div class="view__camera__fps view__camera__fps--js"></div>
+      <p class="view__camera__desktop-msg view__camera__desktop-msg--js">This game is best experienced on phones</p>
+      <div class="camera__capture-wrapper camera__capture-wrapper--js">
+        <div class="camera__capture-flash camera__capture-flash--js"></div>
+        <video class="camera__element camera__element--js" autoplay playsinline></video>
+      </div>
+    </div>
+
+    <div class="view__microphone">
+      <audio class="microphone__element--js" controls autoplay></audio>
+      
+      <a href="#" class="microphone__record_button">RECORD</a>
+      <a href="#" class="microphone__stop_button">STOP</a>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        socket.emit('chat message', 'Hello from front-end');
+      });
+    </script>
+    <script>
+      if (!window.MediaRecorder) {
+        document.write(
+          decodeURI('%3Cscript defer src="js/audio-recorder-polyfill/index.js">%3C/script>')
+        )
+      }
+    </script>
+    <script src="js/client.js"></script>
+  </body>
+</html>

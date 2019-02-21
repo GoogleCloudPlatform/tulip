@@ -1,0 +1,65 @@
+{
+  "name": "projectshunkaen",
+  "version": "0.1.0",
+  "description": "Project Shunkaen",
+  "license": "Apache Version 2.0",
+  "author": "Google Inc.",
+  "engines": {
+    "node": ">=8"
+  },
+  "private": true,
+  "scripts": {
+    "deploy": "yarn build && gcloud app deploy",
+    "start": "node dist/server/server.js",
+    "lint": "tslint -p . -t verbose",
+    "server-build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/js/server/server.ts",
+    "sass-watch": "node-sass -w src/sass/main.scss dist/css/main.min.css",
+    "sass-build": "node-sass src/sass/main.scss dist/css/main.min.css --output-style compressed",
+    "prep": "yarn && yarn prep:files && yarn build",
+    "prep:files": "mkdirp dist && mkdirp dist/js && touch dist/js/client.js",
+    "js-watch": "watchify src/js/client/client.ts -p [tsify] -o dist/js/client.js -v --debug",
+    "js-build": "browserify src/js/client/client.ts -p [tsify] -o dist/js/client.js",
+    "js-compress": "uglifyjs --compress dist/js/client.js",
+    "build": "concurrently \"yarn sass-build\" \"yarn js-build\" \"yarn server-build\"",
+    "dev": "concurrently \"yarn sass-watch\" \"yarn js-watch\" \"yarn build:live\""
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "3.2.0",
+    "@types/express": "^4.16.1",
+    "@types/lodash": "^4.14.104",
+    "@types/node": "^11.9.4",
+    "@types/socket.io": "^2.1.2",
+    "@types/socket.io-client": "^1.4.32",
+    "@types/stats.js": "^0.17.0",
+    "browserify": "^16.0.0",
+    "browserify-shim": "^3.8.14",
+    "concurrently": "^3.5.1",
+    "lodash": "^4.17.11",
+    "mkdirp": "^0.5.1",
+    "nodemon": "^1.18.10",
+    "node-sass": "^4.11.0",
+    "puppeteer": "^1.11.0",
+    "stats.js": "^0.17.0",
+    "ts-node": "^8.0.2",
+    "tsify": "^3.0.4",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.1",
+    "uglify-js": "^3.3.10",
+    "watchify": "^3.11.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  },
+  "cloud-repo-tools": {
+    "test": {
+      "app": {
+        "msg": "messages"
+      }
+    },
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  }
+}
