@@ -1,68 +1,57 @@
-/**
- * @license
- * Copyright 2018 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * =============================================================================
- */
-import { createServer } from 'http';
-import * as express from 'express';
-import * as socketIo from 'socket.io';
-import * as path from 'path';
-export class App {
-    constructor() {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = require("http");
+var express = require("express");
+var socketIo = require("socket.io");
+var path = require("path");
+var App = (function () {
+    function App() {
         this.createApp();
         this.createServer();
         this.sockets();
         this.listen();
     }
-    createApp() {
+    App.prototype.createApp = function () {
         this.app = express();
-        const dist = path.join(__dirname, '../../../dist');
+        var dist = path.join(__dirname, '..');
         this.app.get('/', function (req, res) {
             res.sendFile(path.join(dist, 'index.html'));
         });
         this.app.use('/', express.static(dist));
-    }
-    createServer() {
-        this.server = createServer(this.app);
-    }
-    sockets() {
+    };
+    App.prototype.createServer = function () {
+        this.server = http_1.createServer(this.app);
+    };
+    App.prototype.sockets = function () {
         this.io = socketIo(this.server);
-    }
-    listen() {
-        this.server.listen(App.PORT, () => {
+    };
+    App.prototype.listen = function () {
+        var _this = this;
+        this.server.listen(App.PORT, function () {
             console.log('Running server on port %s', App.PORT);
         });
-        this.io.on('connect', (socket) => {
+        this.io.on('connect', function (socket) {
             console.log('Connected client on port %s.', App.PORT);
-            socket.on('message', (m) => {
+            socket.on('message', function (m) {
                 console.log('[server](message): %s', JSON.stringify(m));
-                this.io.emit('message', m);
+                _this.io.emit('message', m);
             });
-            socket.on('disconnect', () => {
+            socket.on('disconnect', function () {
                 console.log('Client disconnected');
             });
         });
-    }
-    getApp() {
+    };
+    App.prototype.getApp = function () {
         return this.app;
-    }
-    defaultRoute(req, res) {
+    };
+    App.prototype.defaultRoute = function (req, res) {
         res.sendFile('index.html', {
             root: path.join(__dirname, 'dist')
         });
-    }
-}
-App.PORT = 8080;
-export let app = new App();
+    };
+    App.PORT = 8080;
+    return App;
+}());
+exports.App = App;
+exports.app = new App();
+//# sourceMappingURL=server.js.map
