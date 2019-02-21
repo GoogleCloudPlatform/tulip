@@ -38,7 +38,7 @@ export class App {
     private createApp(): void {
         this.app = express();
 
-        const dist = path.join(__dirname, '../dist');
+        let dist = path.join(__dirname, '../');
         this.app.get('/',
             function(req: express.Request, res: express.Response) {
                 res.sendFile(path.join(dist, 'index.html'));
@@ -74,12 +74,6 @@ export class App {
 
     public getApp(): express.Application {
         return this.app;
-    }
-
-    defaultRoute(req: express.Request, res: express.Response){
-        res.sendFile('index.html', {
-            root: path.join(__dirname, 'dist')
-        });
     }
 
 }

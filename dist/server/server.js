@@ -13,7 +13,7 @@ var App = (function () {
     }
     App.prototype.createApp = function () {
         this.app = express();
-        var dist = path.join(__dirname, '../../../dist');
+        var dist = path.join(__dirname, '../');
         this.app.get('/', function (req, res) {
             res.sendFile(path.join(dist, 'index.html'));
         });
@@ -43,11 +43,6 @@ var App = (function () {
     };
     App.prototype.getApp = function () {
         return this.app;
-    };
-    App.prototype.defaultRoute = function (req, res) {
-        res.sendFile('index.html', {
-            root: path.join(__dirname, 'dist')
-        });
     };
     App.PORT = 8080;
     return App;

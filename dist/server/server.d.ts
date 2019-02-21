@@ -11,6 +11,5 @@ export declare class App {
     private sockets();
     private listen();
     getApp(): express.Application;
-    defaultRoute(req: express.Request, res: express.Response): void;
 }
 export declare let app: App;
