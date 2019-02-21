@@ -38,7 +38,7 @@ export class App {
     private createApp(): void {
         this.app = express();
 
-        const dist = path.join(__dirname, '../../../dist');
+        const dist = path.join(__dirname, '../dist');
         this.app.get('/',
             function(req: express.Request, res: express.Response) {
                 res.sendFile(path.join(dist, 'index.html'));
