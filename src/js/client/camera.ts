@@ -52,12 +52,14 @@ export class Camera {
    * of the video element used as the camera.
    */
   async setupCamera() {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const stream = await navigator.mediaDevices.getUserMedia({
         'audio': false,
         'video': {facingMode: 'environment'}
       });
       (<any>window).stream = stream;
+      this.videoElement.style.width = 400 + 'px';
+      this.videoElement.style.height = 400 + 'px';
       this.videoElement.srcObject = stream;
       return new Promise(resolve => {
         this.videoElement.onloadedmetadata = () => {
@@ -65,9 +67,9 @@ export class Camera {
               this.videoElement.videoHeight]);
         };
       });
-    }
+    // }
 
-    return null;
+    // return null;
   }
 
   /**

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Project Shunkaen</title>
     <meta name="description" content="Use your phone’s camera to identify flowers in the real world, and start talking to them." />
-
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Roboto:300,400|Changa+One">
     <link rel="stylesheet" href="css/main.min.css">
@@ -26,7 +26,7 @@
       
       <a href="#" class="microphone__record_button">RECORD</a>
       <a href="#" class="microphone__stop_button">STOP</a>
-      <div id="mode">Polyfill is enabled</div>
+      <div id="mode"></div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -40,11 +40,24 @@
     <script>
       //https://ai.github.io/audio-recorder-polyfill/
       //https://github.com/ai/audio-recorder-polyfill
-      if (!window.MediaRecorder) {
+      //if (!window.MediaRecorder) {
+        alert(!window.MediaRecorder);
         document.write(
           decodeURI('%3Cscript defer src="js/polyfill.js">%3C/script>')
         )
-      }
+      //}
+
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        recorder = new MediaRecorder(stream)
+
+        // Set record to <audio> when recording will be finished
+        recorder.addEventListener('dataavailable', e => {
+          audio.src = URL.createObjectURL(e.data)
+        })
+
+        // Start recording
+        recorder.start()
+      });
     </script>
     <script src="js/client.js"></script>
   </body>

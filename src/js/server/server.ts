@@ -38,7 +38,7 @@ export class App {
     private createApp(): void {
         this.app = express();
 
-        let dist = path.join(__dirname, '../');
+        let dist = path.join(__dirname, '../'); //this won't work in yarn dev mode, because of ts path
         this.app.get('/',
             function(req: express.Request, res: express.Response) {
                 res.sendFile(path.join(dist, 'index.html'));

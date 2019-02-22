@@ -52,38 +52,46 @@ export class Microphone {
   async setupMicrophone() {
 
     this.recordButton.addEventListener('click', () => {
+      // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+       /* alert(navigator.mediaDevices.getUserMedia);
+        const stream = await navigator.mediaDevices.getUserMedia({
+          'audio': true,
+          'video': true
+        });
+        (<any>window).stream = stream;
+        this.mediaRecorder = new MediaRecorder(stream);
+        this.mediaRecorder.ondataavailable = function(blob: any) {
+            microphone.audioElement.src = URL.createObjectURL(blob.data);
+        };
+        return new Promise(resolve => {
+          this.audioElement.onloadedmetadata = () => {
+            resolve(this.audioElement);
+          };
+        });*/
+      // }
+      // return null;
+
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        this.mediaRecorder = new MediaRecorder(stream);
+        // Set record to <audio> when recording will be finished
+        this.mediaRecorder.addEventListener('dataavailable', (e:any) => {
+          microphone.audioElement.src = URL.createObjectURL(e.data);
+        });
+        // Start recording
+        this.mediaRecorder.start();
+      });
+
         microphone.startRecording();
     });
     this.stopButton.addEventListener('click', () => {
         microphone.stopRecording();
     });
-
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        'audio': true,
-        'video': false
-      });
-      (<any>window).stream = stream;
-      this.mediaRecorder = new MediaRecorder(stream);
-      this.mediaRecorder.ondataavailable = function(blob: any) {
-          microphone.audioElement.src = URL.createObjectURL(blob.data);
-      };
-      return new Promise(resolve => {
-        this.audioElement.onloadedmetadata = () => {
-          resolve(this.audioElement);
-        };
-      });
-    }
-
-    return null;
   }
 
   startRecording(){
-    // console.log('start recording');
     this.mediaRecorder.start();
   }
   stopRecording(){
-    // console.log('stop recording');
     this.mediaRecorder.stop();
   }
 
