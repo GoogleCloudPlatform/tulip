@@ -18,20 +18,30 @@
 
 import {camera} from './camera';
 import {microphone} from './microphone';
+import * as io from 'socket.io-client';
+
+let ss = require('socket.io-stream');
+
 interface CameraDimentions {
     [index: number]: number;
 }
 
 export class App {
     firstRun = true;
+    ss = false;
     flowers:  Array<HTMLImageElement>;
     cameraPaused: boolean;
     microphonePaused: boolean;
+    stream: any;
+    socket: any;
 
     constructor() {
         this.flowers = [];
         this.cameraPaused = false;
         this.microphonePaused = false;
+
+        this.socket = io();
+        this.socket.binaryType = 'arraybuffer';
     }
 
     /*
@@ -49,6 +59,21 @@ export class App {
             }).catch(error => {
                 console.error(error);
             });
+
+            if(!this.ss) {
+                console.log('socket binary');
+                // socket.io binary
+                this.socket.on('audio', function(audioObj:any) {
+                    console.log('Client connected over WebSockets');
+                });
+            } else {
+                console.log('socket io-stream');
+                // socket.io-stream
+                this.stream = ss.createStream();
+                ss(this.socket).on('audio', function(stream:any){
+                    console.log('websockets connected as stream');
+                });
+            }
         }
     }
 
@@ -68,17 +93,60 @@ export class App {
      * Start conversation with Dialogflow SDK
      */
     speak() {
-        microphone.setupMicrophone().then(function(){
-            // Get URL Stream as String
-            const stream = microphone.getDataURL();
-            const socket = io();
+        console.log('start speaking');
+        let me = this;
+        microphone.setupMicrophone(this.stream)
+        .then(function(audioEl:HTMLElement){
+            console.log(me.stream);
+            console.log(me);
 
-            console.log(stream);
-            socket.emit('message', stream);
-            // Submit this string to Dialogflow SDK
+            window.addEventListener('stop', function(e:CustomEvent) {
+                if(!me.ss) {
+                    me.socket.emit('stop');
+                } else {
+                    ss(me.socket).emit('stop');
+                }
+            });
+
+            window.addEventListener('processFile', function(e:CustomEvent) {
+                let audioData = e.detail.audioData;
+                let params = e.detail.params;
+
+                if(!me.ss) {
+                    me.socket.emit('recognise', audioData, params);
+                } else {
+                    ss(me.socket).emit('recognise', audioData, params);
+                }
+            });
+
+            window.addEventListener('audio', function(e:CustomEvent) {
+                let audio = e.detail; // AudioBuffer
+                if(!me.ss) {
+                    console.log('socket binary');
+                    // socket.io binary
+                    me.socket.on('returnaudio', function(audioObj:any) {
+                        console.log('Client connected over WebSockets');
+                    });
+
+                    // send mic audio to server
+                    me.socket.emit('message', audio);
+
+                } else {
+                    console.log('socket io-stream');
+                    // socket.io-stream
+                    me.stream = ss.createStream();
+                    ss(me.socket).on('returnaudio', function(stream:any){
+                        console.log('websockets connected as stream');
+                    });
+
+                    // send mic audio to server via streams
+                    ss(me.socket).emit('message', audio);
+                }
+            });
+
+
         }).catch(microphone.handleErrors);
     }
-
 }
 
 export let app = new App();

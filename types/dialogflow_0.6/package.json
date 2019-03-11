@@ -1,0 +1,23 @@
+{
+    "name": "@types/dialogflow",
+    "version": "0.6.6",
+    "description": "TypeScript definitions for dialogflow",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Daniel Dyla",
+            "url": "https://github.com/dyladan",
+            "githubUsername": "dyladan"
+        }
+    ],
+    "main": "",
+    "types": "index",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "981a2aea0b4de4da0dc95d89d9b3f9dc7936f52d0483e00d9d1b61d52229870d",
+    "typeScriptVersion": "2.4"
+}

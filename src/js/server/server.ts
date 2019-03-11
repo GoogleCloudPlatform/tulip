@@ -17,9 +17,17 @@
  */
 
 import { createServer } from 'http';
+import { dialogflow } from './dialogflow';
+// const arrayBufferToAudioBuffer = require('arraybuffer-to-audiobuffer');
+
 import * as express from 'express';
+
 import * as socketIo from 'socket.io';
 import * as path from 'path';
+
+const cors = require('cors');
+const ss = require('socket.io-stream');
+// const fs = require('fs');
 
 export class App {
 
@@ -27,21 +35,36 @@ export class App {
     private app: express.Application;
     private server: any;
     private io: SocketIO.Server;
+    private recording: Boolean;
 
     constructor() {
+        dialogflow.setupDialogflow();
         this.createApp();
         this.createServer();
         this.sockets();
         this.listen();
+        this.recording = true;
     }
 
     private createApp(): void {
         this.app = express();
+        this.app.use(cors());
 
-        let dist = path.join(__dirname, '../'); //this won't work in yarn dev mode, because of ts path
+        let dist = path.join(__dirname, '../');
+        // TODO this won't work in yarn dev mode, because of ts path
         this.app.get('/',
             function(req: express.Request, res: express.Response) {
                 res.sendFile(path.join(dist, 'index.html'));
+        });
+        this.app.use(function(req: express.Request, res: express.Response,
+            next: express.NextFunction){
+            if(req.headers['x-forwarded-proto'] &&
+            req.headers['x-forwarded-proto'] === 'http'){
+                return res.redirect(
+                    ['https://', req.get('Host'), req.url].join('')
+                );
+            }
+            next();
         });
         this.app.use('/', express.static(dist));
     }
@@ -59,14 +82,26 @@ export class App {
             console.log('Running server on port %s', App.PORT);
         });
 
-        this.io.on('connect', (socket: any) => {
+        this.io.on('connect', (client: any) => {
+
             console.log('Connected client on port %s.', App.PORT);
-            socket.on('message', (m: any) => {
-                console.log('[server](message): %s', JSON.stringify(m));
-                this.io.emit('message', m);
+            client.on('message', (stream: any) => {
+                if(this.recording) {
+                    console.log('start recording');
+                    dialogflow.detectStream(stream);
+                }
             });
 
-            socket.on('disconnect', () => {
+            client.on('stop', () => {
+                dialogflow.stopStream();
+                this.recording = false;
+            });
+
+            ss(client).on('message', function(stream:any) {
+                dialogflow.detectStream(stream);
+            });
+
+            client.on('disconnect', () => {
                 console.log('Client disconnected');
             });
         });

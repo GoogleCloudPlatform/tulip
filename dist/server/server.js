@@ -1,21 +1,34 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("http");
+var dialogflow_1 = require("./dialogflow");
 var express = require("express");
 var socketIo = require("socket.io");
 var path = require("path");
+var cors = require('cors');
+var ss = require('socket.io-stream');
 var App = (function () {
     function App() {
+        dialogflow_1.dialogflow.setupDialogflow();
         this.createApp();
         this.createServer();
         this.sockets();
         this.listen();
+        this.recording = true;
     }
     App.prototype.createApp = function () {
         this.app = express();
+        this.app.use(cors());
         var dist = path.join(__dirname, '../');
         this.app.get('/', function (req, res) {
             res.sendFile(path.join(dist, 'index.html'));
+        });
+        this.app.use(function (req, res, next) {
+            if (req.headers['x-forwarded-proto'] &&
+                req.headers['x-forwarded-proto'] === 'http') {
+                return res.redirect(['https://', req.get('Host'), req.url].join(''));
+            }
+            next();
         });
         this.app.use('/', express.static(dist));
     };
@@ -30,13 +43,22 @@ var App = (function () {
         this.server.listen(App.PORT, function () {
             console.log('Running server on port %s', App.PORT);
         });
-        this.io.on('connect', function (socket) {
+        this.io.on('connect', function (client) {
             console.log('Connected client on port %s.', App.PORT);
-            socket.on('message', function (m) {
-                console.log('[server](message): %s', JSON.stringify(m));
-                _this.io.emit('message', m);
+            client.on('message', function (stream) {
+                if (_this.recording) {
+                    console.log('start recording');
+                    dialogflow_1.dialogflow.detectStream(stream);
+                }
             });
-            socket.on('disconnect', function () {
+            client.on('stop', function () {
+                dialogflow_1.dialogflow.stopStream();
+                _this.recording = false;
+            });
+            ss(client).on('message', function (stream) {
+                dialogflow_1.dialogflow.detectStream(stream);
+            });
+            client.on('disconnect', function () {
                 console.log('Client disconnected');
             });
         });

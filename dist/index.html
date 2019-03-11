@@ -26,28 +26,23 @@
       
       <a href="#" class="microphone__record_button">RECORD</a>
       <a href="#" class="microphone__stop_button">STOP</a>
+
+      <h2>File input</h2>
+      <input type="file" class="microphone__file" disabled>
       <div id="mode"></div>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      $(function () {
-        var socket = io();
-        socket.emit('message', 'Hello from front-end');
-      });
-    </script>
+
     <script>
       //https://ai.github.io/audio-recorder-polyfill/
       //https://github.com/ai/audio-recorder-polyfill
-      //if (!window.MediaRecorder) {
-        alert(!window.MediaRecorder);
+      if (!window.MediaRecorder) {
         document.write(
           decodeURI('%3Cscript defer src="js/polyfill.js">%3C/script>')
         )
-      //}
+      };
 
-      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      /*navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
         recorder = new MediaRecorder(stream)
 
         // Set record to <audio> when recording will be finished
@@ -57,7 +52,7 @@
 
         // Start recording
         recorder.start()
-      });
+      });*/
     </script>
     <script src="js/client.js"></script>
   </body>
