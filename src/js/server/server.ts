@@ -83,7 +83,6 @@ export class App {
                 dialogflow.setupDialogflow(meta);
             });
 
-
             client.on('message', (stream: any, herz: number) => {
                 if(this.recording) {
                     dialogflow.detectStream(stream, function(audioBuffer: any){

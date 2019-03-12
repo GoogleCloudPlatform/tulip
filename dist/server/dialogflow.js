@@ -12,13 +12,13 @@ var Dialogflow = (function () {
     function Dialogflow() {
         this.languageCode = 'en-US';
         this.projectId = process.env.PROJECT_ID;
-        this.sessionId = uuid.v4();
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
         this.isResult = false;
     }
     Dialogflow.prototype.setupDialogflow = function (meta) {
+        this.sessionId = uuid.v4();
         this.sessionClient = new df.v2beta1.SessionsClient();
         this.sessionPath = this.sessionClient.sessionPath(this.projectId, this.sessionId);
         this.sampleRateHertz = meta.sampleHerz;
@@ -50,13 +50,13 @@ var Dialogflow = (function () {
                     voice: {
                         ssmlGender: 'SSML_VOICE_GENDER_FEMALE'
                     },
-                    speakingRate: 1.8,
-                    pitch: 8
+                    speakingRate: 1.5,
+                    pitch: 7
                 }
             }
         };
         var me = this;
-        var detectStream = this.sessionClient
+        this.detectStreamCall = this.sessionClient
             .streamingDetectIntent()
             .on('error', function (e) {
             console.log(e);
@@ -73,14 +73,14 @@ var Dialogflow = (function () {
             }
         });
         if (this.isInitialRequest) {
-            detectStream.write(initialStreamRequest);
+            this.detectStreamCall.write(initialStreamRequest);
         }
         this.fileWriter.write(audio);
-        pump(fs.createReadStream('temp/' + this.sessionId + '.wav'), through2.obj(function (obj, _, next) {
-            next(null, { inputAudio: obj });
-        }), detectStream);
     };
     Dialogflow.prototype.stopStream = function () {
+        pump(fs.createReadStream('temp/' + this.sessionId + '.wav'), through2.obj(function (obj, _, next) {
+            next(null, { inputAudio: obj });
+        }), this.detectStreamCall);
         fs.unlink('temp/' + this.sessionId + '.wav', function (err) {
             if (err)
                 throw console.log(err);

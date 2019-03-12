@@ -71,11 +71,16 @@ export class Microphone {
     navigator.mediaDevices.getUserMedia({ audio: true })
         .then(function(s: MediaStream) {
           me.mediaRecorder = new MediaRecorder(s);
-          
+          me.getMicStream(s);
 
           me.mediaRecorder.addEventListener('start', (e:any) => {
             me.audioChunks = [];
             me.outputChunks = [];
+
+            let event = new CustomEvent('start', {
+              detail: 'start'
+            });
+            window.dispatchEvent(event);
 
             me.source.connect(me.scriptProcessor);
             me.scriptProcessor.connect(me.audioContext.destination);
@@ -86,8 +91,6 @@ export class Microphone {
           });
 
           me.mediaRecorder.addEventListener('stop', (e:any) => {
-            me.getMicStream(s);
-            
             // stop the script processors
             me.source.disconnect();
             me.scriptProcessor.disconnect();
@@ -150,6 +153,7 @@ export class Microphone {
         sourceNode.start();
     });
   }
+
 
   handleErrors(errors: any){
       console.log(errors);

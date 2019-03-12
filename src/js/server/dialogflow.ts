@@ -39,11 +39,11 @@ export class Dialogflow {
     private singleUtterance: Boolean;
     private isInitialRequest: Boolean;
     private isResult: Boolean;
+    private detectStreamCall: any;
 
     constructor() {
         this.languageCode = 'en-US';
         this.projectId = process.env.PROJECT_ID;
-        this.sessionId = uuid.v4();
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
@@ -54,6 +54,7 @@ export class Dialogflow {
      * Setup the Dialogflow Agent
      */
     public setupDialogflow(meta: any) {
+        this.sessionId = uuid.v4();
         this.sessionClient = new df.v2beta1.SessionsClient();
         this.sessionPath = this.sessionClient.sessionPath(
             this.projectId, this.sessionId);
@@ -96,15 +97,15 @@ export class Dialogflow {
             voice: {
               ssmlGender: 'SSML_VOICE_GENDER_FEMALE'
             },
-            speakingRate: 1.8,
-            pitch: 8
+            speakingRate: 1.5,
+            pitch: 7
           }
         }
       };
 
       let me = this;
       // Create a stream for the streaming request.
-      const detectStream = this.sessionClient
+      this.detectStreamCall = this.sessionClient
       .streamingDetectIntent()
         .on('error', (e: any) => {
           console.log(e);
@@ -128,12 +129,17 @@ export class Dialogflow {
 
         // Write the initial stream request to config for audio input.
         if(this.isInitialRequest) {
-          detectStream.write(initialStreamRequest);
+          this.detectStreamCall.write(initialStreamRequest);
         }
 
         // create a wav file
         this.fileWriter.write(audio);
+    }
 
+    /*
+     * When Streaming stops, remove the temp wav file.
+     */
+    public stopStream() {
         // start streaming the contents of the wav file
         // to the Dialogflow Streaming API
         pump(
@@ -142,14 +148,11 @@ export class Dialogflow {
           through2.obj((obj:any, _:any, next:any) => {
             next(null, {inputAudio: obj});
           }),
-          detectStream
+          this.detectStreamCall
         );
-    }
+      
 
-    /*
-     * When Streaming stops, remove the temp wav file.
-     */
-    public stopStream() {
+      // TODO PROBLEM WITH THE NEXT QUESTION
       fs.unlink('temp/' + this.sessionId + '.wav', (err) => {
         if (err) throw console.log(err);
         console.log('Audio file was deleted');

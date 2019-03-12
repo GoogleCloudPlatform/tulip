@@ -87,7 +87,9 @@ export class App {
         microphone.setupMicrophone()
         .then(function(meta: any){
 
-            me.socket.emit('meta', meta);
+            window.addEventListener('start', function(e:CustomEvent) {
+                me.socket.emit('meta', meta);
+            });
 
             window.addEventListener('stop', function(e:CustomEvent) {
                 me.socket.emit('stop');
