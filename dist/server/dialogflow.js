@@ -1,17 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var df = require('dialogflow').v2beta1;
+var df = require("dialogflow");
 var dotenv = require("dotenv");
 var uuid = require("uuid");
-var fs = require('fs');
+var fs = require("fs");
+var pump = require("pump");
+var through2 = require("through2");
 var wav = require('wav');
-var pump = require('pump');
-var through2 = require('through2');
-var fileWriter = new wav.FileWriter('output.wav', {
-    channels: 1,
-    sampleRate: 48000,
-    bitDepth: 16
-});
 dotenv.config();
 var Dialogflow = (function () {
     function Dialogflow() {
@@ -22,18 +17,16 @@ var Dialogflow = (function () {
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
+        this.fileWriter = new wav.FileWriter('output.wav', {
+            channels: 1,
+            sampleRate: this.sampleRateHertz,
+            bitDepth: 16
+        });
         this.setupDialogflow();
-        console.log(this.encoding);
     }
     Dialogflow.prototype.setupDialogflow = function () {
         this.sessionClient = new df.SessionsClient();
         this.sessionPath = this.sessionClient.sessionPath(this.projectId, this.sessionId);
-        console.log(this.projectId, this.sessionId);
-        console.log(this.sessionClient);
-    };
-    Dialogflow.prototype.convertDataURIToBinary = function (dataURI) {
-        var buf = Buffer.from(dataURI, 'base64');
-        return buf;
     };
     Dialogflow.prototype.detectStream = function (audio) {
         var initialStreamRequest = {
@@ -70,13 +63,13 @@ var Dialogflow = (function () {
             console.log('only once');
             console.log(initialStreamRequest);
         }
-        fileWriter.write(audio);
+        this.fileWriter.write(audio);
         pump(fs.createReadStream('output.wav'), through2.obj(function (obj, _, next) {
             next(null, { inputAudio: obj });
         }), detectStream);
     };
     Dialogflow.prototype.stopStream = function () {
-        fileWriter.end();
+        this.fileWriter.end();
         console.log('stop');
     };
     Dialogflow.prototype.detectIntent = function (audio) {

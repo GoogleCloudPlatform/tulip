@@ -7,3 +7,4 @@ cors-settings.json
 *.swp
 *.map
 app_old.yaml
+*.wav

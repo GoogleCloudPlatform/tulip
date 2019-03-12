@@ -16,28 +16,21 @@
  * =============================================================================
  */
 
-// import * as df from 'dialogflow';
-const df = require('dialogflow').v2beta1;
-import * as dotenv from "dotenv";
-import * as uuid from "uuid";
+import * as df from 'dialogflow';
+import * as dotenv from 'dotenv';
+import * as uuid from 'uuid';
+import * as fs from 'fs';
+import * as pump from 'pump';
+import * as through2 from 'through2';
 
-const fs = require('fs');
 const wav = require('wav');
-const pump = require('pump');
-const through2 = require('through2');
-
-const fileWriter = new wav.FileWriter('output.wav', {
-  channels: 1,
-  sampleRate: 48000,
-  bitDepth: 16
-});
 
 dotenv.config();
-
 
 export class Dialogflow {
     private sessionClient: any;
     private sessionPath: any;
+    private fileWriter: any;
     private projectId: string;
     private sessionId: string;
     private languageCode: string;
@@ -45,7 +38,6 @@ export class Dialogflow {
     private sampleRateHertz: Number;
     private singleUtterance: Boolean;
     private isInitialRequest: Boolean;
-    // private audio: any;
 
     constructor() {
         this.languageCode = 'en-US';
@@ -56,45 +48,22 @@ export class Dialogflow {
         this.singleUtterance = true;
         this.isInitialRequest = true;
 
+        this.fileWriter = new wav.FileWriter('output.wav', {
+          channels: 1,
+          sampleRate: this.sampleRateHertz,
+          bitDepth: 16
+        });
+
         this.setupDialogflow();
-        console.log(this.encoding);
     }
 
     public setupDialogflow() {
         this.sessionClient = new df.SessionsClient();
         this.sessionPath = this.sessionClient.sessionPath(
             this.projectId, this.sessionId);
-
-        console.log(this.projectId, this.sessionId);
-        console.log(this.sessionClient);
-    }
-
-
-    public convertDataURIToBinary(dataURI: any) {
-      let buf = Buffer.from(dataURI, 'base64');
-      return buf;
     }
 
     public detectStream(audio: any){
-      
-      // this.audio = audio;
-      // console.log(this.audio);
-
-
-      /*
-      // stream
-      const readableInstanceStream = new Readable({
-        read() {
-          this.push(audio);
-          this.push(null);
-        }
-      });*/
-      // console.log(readableInstanceStream);
-      // console.log(this.projectId, this.sessionId);
-      // console.log(this.sessionPath);
-
-      // audioStream.write(readableInstanceStream);
-
       const initialStreamRequest = {
         session: this.sessionPath,
         queryParams: {
@@ -140,7 +109,7 @@ export class Dialogflow {
           //detectStream.write(initialStreamRequest);
         }
 
-        fileWriter.write(audio);
+        this.fileWriter.write(audio);
 
         pump(
           fs.createReadStream('output.wav'),
@@ -153,7 +122,7 @@ export class Dialogflow {
     }
 
     public stopStream() {
-      fileWriter.end();
+      this.fileWriter.end();
       console.log('stop');
     }
 
@@ -177,7 +146,6 @@ export class Dialogflow {
           console.log(e);
         });
       }
-      
 }
 
 export let dialogflow = new Dialogflow();

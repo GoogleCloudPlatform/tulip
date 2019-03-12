@@ -1,6 +1,7 @@
 export declare class Dialogflow {
     private sessionClient;
     private sessionPath;
+    private fileWriter;
     private projectId;
     private sessionId;
     private languageCode;
@@ -10,7 +11,6 @@ export declare class Dialogflow {
     private isInitialRequest;
     constructor();
     setupDialogflow(): void;
-    convertDataURIToBinary(dataURI: any): Buffer;
     detectStream(audio: any): void;
     stopStream(): void;
     detectIntent(audio: any): void;
