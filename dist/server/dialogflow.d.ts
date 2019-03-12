@@ -10,8 +10,8 @@ export declare class Dialogflow {
     private singleUtterance;
     private isInitialRequest;
     constructor();
-    setupDialogflow(): void;
-    detectStream(audio: any): void;
+    setupDialogflow(meta: any): void;
+    detectStream(audio: any, cb: Function): void;
     stopStream(): void;
     detectIntent(audio: any): void;
 }

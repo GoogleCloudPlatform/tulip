@@ -26,12 +26,7 @@
       
       <a href="#" class="microphone__record_button">RECORD</a>
       <a href="#" class="microphone__stop_button">STOP</a>
-
-      <h2>File input</h2>
-      <input type="file" class="microphone__file" disabled>
-      <div id="mode"></div>
     </div>
-
 
     <script>
       //https://ai.github.io/audio-recorder-polyfill/
@@ -41,18 +36,6 @@
           decodeURI('%3Cscript defer src="js/polyfill.js">%3C/script>')
         )
       };
-
-      /*navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-        recorder = new MediaRecorder(stream)
-
-        // Set record to <audio> when recording will be finished
-        recorder.addEventListener('dataavailable', e => {
-          audio.src = URL.createObjectURL(e.data)
-        })
-
-        // Start recording
-        recorder.start()
-      });*/
     </script>
     <script src="js/client.js"></script>
   </body>

@@ -36,6 +36,7 @@ export class Microphone {
     mediaRecorder: any;
     fileReader: any;
     audioContext: AudioContext;
+    meta: any;
     source: MediaStreamAudioSourceNode;
     scriptProcessor: ScriptProcessorNode;
 
@@ -52,6 +53,7 @@ export class Microphone {
 
         this.fileReader = new FileReader();
         this.audioChunks = [];
+        this.meta = {};
         this.audioElement =
         <HTMLAudioElement>document.querySelector(SELECTORS.MIC_ELEMENT);
         this.recordButton =
@@ -68,13 +70,14 @@ export class Microphone {
    * @async
    * @returns {Promise<>}
    */
-   async setupMicrophone(stream: any) {
+  async setupMicrophone() {
     let me = this;
-    console.log(me);
+    me.audioContext = new AudioContext();
+    me.meta.sampleHerz = me.audioContext.sampleRate;
+    me.meta.channels = me.audioContext.destination.numberOfInputs;
 
     navigator.mediaDevices.getUserMedia({ audio: true })
         .then(function(s: MediaStream) {
-          me.audioContext = new AudioContext();
           me.mediaRecorder = new MediaRecorder(s);
           me.getMicStream(s);
 
@@ -91,20 +94,16 @@ export class Microphone {
 
           me.mediaRecorder.addEventListener('stop', (e:any) => {
             // create a blob from the audio chunks
+            // so we can play the recorded voice in the player
             let blobData = new Blob(me.audioChunks, {
               'type': 'audio/ogg;codecs=opus'
-              // 'type': 'audio/wav'
-              // 'type': 'audio/x-l16'
             });
-
             // attach the audio to the player
             me.audioElement.src = window.URL.createObjectURL(blobData);
-            console.log(me.audioElement.src);
 
+            // stop the script processors
             me.source.disconnect();
             me.scriptProcessor.disconnect();
-            // send audio to server
-            //me.sendToServer(blobData);
           });
     });
 
@@ -121,18 +120,15 @@ export class Microphone {
     });
 
     return new Promise(resolve => {
-      resolve(this.audioElement);
+      resolve(me.meta);
     });
   }
 
   getMicStream(s: any){
-    console.log('get mic stream');
-    console.log(this.audioContext.sampleRate);
     const bufferLength = 4096;
     this.source = this.audioContext.createMediaStreamSource(s);
     this.scriptProcessor =
       this.audioContext.createScriptProcessor(bufferLength,1,1);
-
       this.scriptProcessor.onaudioprocess = (e)=> {
         let stream = e.inputBuffer.getChannelData(0) ||
         new Float32Array(bufferLength);
@@ -144,54 +140,11 @@ export class Microphone {
 
   }
 
-/*
-  sendToServer(blobData: Blob) {
-    let me = this;
-    console.log('fire event, so app.js can send this to server');
-    let reader = new FileReader();
-    reader.addEventListener('load', () => {
-      me.audioContext.decodeAudioData(reader.result, (b: AudioBuffer) => {
-        console.log(b);
-        me.reSample(b, 16000, function(newBuffer: AudioBuffer){
-          let arrayBuffer =
-            me.convertFloat32ToInt16(newBuffer.getChannelData(0));
-
-          let event = new CustomEvent('audio', {
-            detail: window.URL.createObjectURL(blobData)
-          });
-          console.log(blobData);
-          console.log(arrayBuffer);
-          window.dispatchEvent(event);
-        });
-      });
-    });
-    reader.readAsArrayBuffer(blobData);
-  }*/
-
-  /*
-  reSample(buffer: AudioBuffer, targetSampleRate: number, cb: Function){
-      let channel = buffer.numberOfChannels;
-      let samples = buffer.length * targetSampleRate / buffer.sampleRate;
-
-      let offlineContext = new OfflineAudioContext(
-        channel, samples, targetSampleRate);
-      let bufferSource = offlineContext.createBufferSource();
-      bufferSource.buffer = buffer;
-
-      bufferSource.connect(offlineContext.destination);
-      bufferSource.start(0);
-
-      offlineContext.startRendering().then(function(renderedBuffer){
-          cb(renderedBuffer);
-      });
-  }*/
-
   handleErrors(errors: any){
       console.log(errors);
   }
 
   convertFloat32ToInt16(buffer:any) {
-      console.log('convert32 to 16');
       let l = buffer.length;
       let buf = new Int16Array(l);
       while (l--) {

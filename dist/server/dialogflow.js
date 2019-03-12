@@ -13,22 +13,21 @@ var Dialogflow = (function () {
         this.languageCode = 'en-US';
         this.projectId = process.env.PROJECT_ID;
         this.sessionId = uuid.v4();
-        this.sampleRateHertz = 48000;
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
-        this.fileWriter = new wav.FileWriter('output.wav', {
-            channels: 1,
+    }
+    Dialogflow.prototype.setupDialogflow = function (meta) {
+        this.sessionClient = new df.SessionsClient();
+        this.sessionPath = this.sessionClient.sessionPath(this.projectId, this.sessionId);
+        this.sampleRateHertz = meta.sampleHerz;
+        this.fileWriter = new wav.FileWriter('temp/' + this.sessionId + '.wav', {
+            channels: meta.channels,
             sampleRate: this.sampleRateHertz,
             bitDepth: 16
         });
-        this.setupDialogflow();
-    }
-    Dialogflow.prototype.setupDialogflow = function () {
-        this.sessionClient = new df.SessionsClient();
-        this.sessionPath = this.sessionClient.sessionPath(this.projectId, this.sessionId);
     };
-    Dialogflow.prototype.detectStream = function (audio) {
+    Dialogflow.prototype.detectStream = function (audio, cb) {
         var initialStreamRequest = {
             session: this.sessionPath,
             queryParams: {
@@ -48,29 +47,28 @@ var Dialogflow = (function () {
             .on('error', function (e) {
             console.log(e);
         }).on('data', function (data) {
-            console.log(data);
             if (data.recognitionResult) {
-                console.log("Intermediate transcript:\n              " + data.recognitionResult.transcript);
             }
             else {
                 console.log("Detected intent:");
-                console.log(data.queryResult);
+                cb(data);
             }
         });
-        detectStream.write(initialStreamRequest);
         if (this.isInitialRequest) {
             console.log(this.isInitialRequest);
-            console.log('only once');
-            console.log(initialStreamRequest);
+            detectStream.write(initialStreamRequest);
         }
         this.fileWriter.write(audio);
-        pump(fs.createReadStream('output.wav'), through2.obj(function (obj, _, next) {
+        pump(fs.createReadStream('temp/' + this.sessionId + '.wav'), through2.obj(function (obj, _, next) {
             next(null, { inputAudio: obj });
         }), detectStream);
     };
     Dialogflow.prototype.stopStream = function () {
-        this.fileWriter.end();
-        console.log('stop');
+        fs.unlink('temp/' + this.sessionId + '.wav', function (err) {
+            if (err)
+                throw console.log(err);
+            console.log('Audio file was deleted');
+        });
     };
     Dialogflow.prototype.detectIntent = function (audio) {
         var request = {

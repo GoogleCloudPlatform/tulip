@@ -43,27 +43,37 @@ export class Dialogflow {
         this.languageCode = 'en-US';
         this.projectId = process.env.PROJECT_ID;
         this.sessionId = uuid.v4();
-        this.sampleRateHertz = 48000;
+        // this.sampleRateHertz = 48000; //TODO retriev ethis from front-end
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
-
-        this.fileWriter = new wav.FileWriter('output.wav', {
-          channels: 1,
-          sampleRate: this.sampleRateHertz,
-          bitDepth: 16
-        });
-
-        this.setupDialogflow();
     }
 
-    public setupDialogflow() {
+    /*
+     * Setup the Dialogflow Agent
+     */
+    public setupDialogflow(meta: any) {
         this.sessionClient = new df.SessionsClient();
         this.sessionPath = this.sessionClient.sessionPath(
             this.projectId, this.sessionId);
+
+        this.sampleRateHertz = meta.sampleHerz;
+
+        this.fileWriter = new wav.FileWriter(
+          'temp/' + this.sessionId + '.wav', {
+            channels: meta.channels,
+            sampleRate: this.sampleRateHertz,
+            bitDepth: 16
+        });
+
     }
 
-    public detectStream(audio: any){
+    /*
+     * Detect Intent based on Audio Stream
+     * @param audio
+     * @param cb Callback function to send results
+     */
+    public detectStream(audio: any, cb:Function){
       const initialStreamRequest = {
         session: this.sessionPath,
         queryParams: {
@@ -86,33 +96,30 @@ export class Dialogflow {
         .on('error', (e: any) => {
           console.log(e);
         }).on('data', (data: any) => {
-          console.log(data);
-
           if (data.recognitionResult) {
-            console.log(
+            /*console.log(
               `Intermediate transcript:
               ${data.recognitionResult.transcript}`
-            );
+            );*/
           } else {
             console.log(`Detected intent:`);
-            console.log(data.queryResult);
+            cb(data);
           }
         });
-
-        detectStream.write(initialStreamRequest);
 
         // Write the initial stream request to config for audio input.
         if(this.isInitialRequest) {
           console.log(this.isInitialRequest);
-          console.log('only once');
-          console.log(initialStreamRequest);
-          //detectStream.write(initialStreamRequest);
+          detectStream.write(initialStreamRequest);
         }
 
+        // create a wav file
         this.fileWriter.write(audio);
 
+        // start streaming the contents of the wav file
+        // to the Dialogflow Streaming API
         pump(
-          fs.createReadStream('output.wav'),
+          fs.createReadStream('temp/' + this.sessionId + '.wav'),
           // Format the audio stream into the request format.
           through2.obj((obj:any, _:any, next:any) => {
             next(null, {inputAudio: obj});
@@ -121,13 +128,21 @@ export class Dialogflow {
         );
     }
 
+    /*
+     * When Streaming stops, remove the temp wav file.
+     */
     public stopStream() {
-      this.fileWriter.end();
-      console.log('stop');
+      fs.unlink('temp/' + this.sessionId + '.wav', (err) => {
+        if (err) throw console.log(err);
+        console.log('Audio file was deleted');
+      });
     }
 
+    /*
+     * Detect Intent Based on Audio File
+     */
     public detectIntent(audio: any) {
-
+        //TODO
         const request = {
           session: this.sessionPath,
           queryInput: {

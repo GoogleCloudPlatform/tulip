@@ -6,10 +6,8 @@ var express = require("express");
 var socketIo = require("socket.io");
 var path = require("path");
 var cors = require('cors');
-var ss = require('socket.io-stream');
 var App = (function () {
     function App() {
-        dialogflow_1.dialogflow.setupDialogflow();
         this.createApp();
         this.createServer();
         this.sockets();
@@ -44,19 +42,21 @@ var App = (function () {
             console.log('Running server on port %s', App.PORT);
         });
         this.io.on('connect', function (client) {
-            console.log('Connected client on port %s.', App.PORT);
-            client.on('message', function (stream) {
+            client.on('meta', function (meta) {
+                console.log('Connected client on port %s.', App.PORT);
+                console.log(meta);
+                dialogflow_1.dialogflow.setupDialogflow(meta);
+            });
+            client.on('message', function (stream, herz) {
                 if (_this.recording) {
-                    console.log('start recording');
-                    dialogflow_1.dialogflow.detectStream(stream);
+                    dialogflow_1.dialogflow.detectStream(stream, function (results) {
+                        console.log(results.queryResult);
+                    });
                 }
             });
             client.on('stop', function () {
                 dialogflow_1.dialogflow.stopStream();
                 _this.recording = false;
-            });
-            ss(client).on('message', function (stream) {
-                dialogflow_1.dialogflow.detectStream(stream);
             });
             client.on('disconnect', function () {
                 console.log('Client disconnected');

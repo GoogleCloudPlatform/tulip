@@ -20,15 +20,12 @@ import {camera} from './camera';
 import {microphone} from './microphone';
 import * as io from 'socket.io-client';
 
-let ss = require('socket.io-stream');
-
 interface CameraDimentions {
     [index: number]: number;
 }
 
 export class App {
     firstRun = true;
-    ss = false;
     flowers:  Array<HTMLImageElement>;
     cameraPaused: boolean;
     microphonePaused: boolean;
@@ -60,20 +57,11 @@ export class App {
                 console.error(error);
             });
 
-            if(!this.ss) {
-                console.log('socket binary');
-                // socket.io binary
-                this.socket.on('audio', function(audioObj:any) {
-                    console.log('Client connected over WebSockets');
-                });
-            } else {
-                console.log('socket io-stream');
-                // socket.io-stream
-                this.stream = ss.createStream();
-                ss(this.socket).on('audio', function(stream:any){
-                    console.log('websockets connected as stream');
-                });
-            }
+
+            // socket.io binary
+            this.socket.on('audio', function(audioObj:any) {
+                console.log('Client connected over WebSockets');
+            });
         }
     }
 
@@ -93,55 +81,25 @@ export class App {
      * Start conversation with Dialogflow SDK
      */
     speak() {
-        console.log('start speaking');
         let me = this;
-        microphone.setupMicrophone(this.stream)
-        .then(function(audioEl:HTMLElement){
-            console.log(me.stream);
-            console.log(me);
+        microphone.setupMicrophone()
+        .then(function(meta: any){
+
+            me.socket.emit('meta', meta);
 
             window.addEventListener('stop', function(e:CustomEvent) {
-                if(!me.ss) {
-                    me.socket.emit('stop');
-                } else {
-                    ss(me.socket).emit('stop');
-                }
-            });
-
-            window.addEventListener('processFile', function(e:CustomEvent) {
-                let audioData = e.detail.audioData;
-                let params = e.detail.params;
-
-                if(!me.ss) {
-                    me.socket.emit('recognise', audioData, params);
-                } else {
-                    ss(me.socket).emit('recognise', audioData, params);
-                }
+                me.socket.emit('stop');
             });
 
             window.addEventListener('audio', function(e:CustomEvent) {
-                let audio = e.detail; // AudioBuffer
-                if(!me.ss) {
-                    console.log('socket binary');
-                    // socket.io binary
-                    me.socket.on('returnaudio', function(audioObj:any) {
-                        console.log('Client connected over WebSockets');
-                    });
+                let audio = e.detail; // ArrayBuffer
+                // socket.io binary
+                me.socket.on('returnaudio', function(audioObj:any) {
+                    console.log('Client connected over WebSockets');
+                });
 
-                    // send mic audio to server
-                    me.socket.emit('message', audio);
-
-                } else {
-                    console.log('socket io-stream');
-                    // socket.io-stream
-                    me.stream = ss.createStream();
-                    ss(me.socket).on('returnaudio', function(stream:any){
-                        console.log('websockets connected as stream');
-                    });
-
-                    // send mic audio to server via streams
-                    ss(me.socket).emit('message', audio);
-                }
+                // send mic audio to server
+                me.socket.emit('message', audio);
             });
 
 

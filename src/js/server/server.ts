@@ -18,16 +18,11 @@
 
 import { createServer } from 'http';
 import { dialogflow } from './dialogflow';
-// const arrayBufferToAudioBuffer = require('arraybuffer-to-audiobuffer');
-
 import * as express from 'express';
-
 import * as socketIo from 'socket.io';
 import * as path from 'path';
 
 const cors = require('cors');
-const ss = require('socket.io-stream');
-// const fs = require('fs');
 
 export class App {
 
@@ -38,7 +33,6 @@ export class App {
     private recording: Boolean;
 
     constructor() {
-        dialogflow.setupDialogflow();
         this.createApp();
         this.createServer();
         this.sockets();
@@ -51,7 +45,6 @@ export class App {
         this.app.use(cors());
 
         let dist = path.join(__dirname, '../');
-        // TODO this won't work in yarn dev mode, because of ts path
         this.app.get('/',
             function(req: express.Request, res: express.Response) {
                 res.sendFile(path.join(dist, 'index.html'));
@@ -84,21 +77,24 @@ export class App {
 
         this.io.on('connect', (client: any) => {
 
-            console.log('Connected client on port %s.', App.PORT);
-            client.on('message', (stream: any) => {
+            client.on('meta', (meta: any) => {
+                console.log('Connected client on port %s.', App.PORT);
+                console.log(meta);
+                dialogflow.setupDialogflow(meta);
+            });
+
+
+            client.on('message', (stream: any, herz: number) => {
                 if(this.recording) {
-                    console.log('start recording');
-                    dialogflow.detectStream(stream);
+                    dialogflow.detectStream(stream, function(results: any){
+                        console.log(results.queryResult);
+                    });
                 }
             });
 
             client.on('stop', () => {
                 dialogflow.stopStream();
                 this.recording = false;
-            });
-
-            ss(client).on('message', function(stream:any) {
-                dialogflow.detectStream(stream);
             });
 
             client.on('disconnect', () => {
@@ -110,7 +106,6 @@ export class App {
     public getApp(): express.Application {
         return this.app;
     }
-
 }
 
 export let app = new App();
