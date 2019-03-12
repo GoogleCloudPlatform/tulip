@@ -45,10 +45,12 @@ export class App {
     * Initializes the app and setup the camera.
     */
     init() {
+        let me = this;
         if(this.firstRun){
             Promise.all([
                 camera.setupCamera().then((value: CameraDimentions) => {
                 camera.setupVideoDimensions(value[0], value[1]);
+                me.speak();
                 }),
             ]).then(values => {
                 this.firstRun = false;
@@ -57,10 +59,11 @@ export class App {
                 console.error(error);
             });
 
-
             // socket.io binary
-            this.socket.on('audio', function(audioObj:any) {
+            this.socket.on('broadcast', function(audioBuffer:any) {
                 console.log('Client connected over WebSockets');
+                console.log(audioBuffer);
+                microphone.playOutput(audioBuffer);
             });
         }
     }
@@ -74,7 +77,6 @@ export class App {
         console.log(this.flowers[0].src);
         // TODO VISION API
             // AFTER DETECTION OPEN MICROPHONE
-        this.speak();
     }
 
     /*

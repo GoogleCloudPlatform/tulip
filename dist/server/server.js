@@ -41,6 +41,7 @@ var App = (function () {
         this.server.listen(App.PORT, function () {
             console.log('Running server on port %s', App.PORT);
         });
+        var me = this;
         this.io.on('connect', function (client) {
             client.on('meta', function (meta) {
                 console.log('Connected client on port %s.', App.PORT);
@@ -49,8 +50,9 @@ var App = (function () {
             });
             client.on('message', function (stream, herz) {
                 if (_this.recording) {
-                    dialogflow_1.dialogflow.detectStream(stream, function (results) {
-                        console.log(results.queryResult);
+                    dialogflow_1.dialogflow.detectStream(stream, function (audioBuffer) {
+                        console.log(audioBuffer);
+                        me.io.emit('broadcast', audioBuffer);
                     });
                 }
             });

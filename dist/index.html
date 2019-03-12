@@ -36,6 +36,11 @@
           decodeURI('%3Cscript defer src="js/polyfill.js">%3C/script>')
         )
       };
+      
+      navigator.getUserMedia = navigator.getUserMedia ||
+            navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia;
+      window.AudioContext = window.AudioContext|| window.webkitAudioContext||window.mozAudioContext;
     </script>
     <script src="js/client.js"></script>
   </body>

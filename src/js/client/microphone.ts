@@ -33,6 +33,7 @@ export class Microphone {
     stopButton: HTMLElement;
     fileElement: HTMLElement;
     audioChunks: Array<any>;
+    outputChunks: Array<any>;
     mediaRecorder: any;
     fileReader: any;
     audioContext: AudioContext;
@@ -41,18 +42,9 @@ export class Microphone {
     scriptProcessor: ScriptProcessorNode;
 
     constructor() {
-      /*  
-      // Cross browser support for getUserMedia
-        navigator.getUserMedia = navigator.getUserMedia ||
-            navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia;
-
-        // Cross browser support for AudioContext
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-      */
-
         this.fileReader = new FileReader();
         this.audioChunks = [];
+        this.outputChunks = [];
         this.meta = {};
         this.audioElement =
         <HTMLAudioElement>document.querySelector(SELECTORS.MIC_ELEMENT);
@@ -79,10 +71,11 @@ export class Microphone {
     navigator.mediaDevices.getUserMedia({ audio: true })
         .then(function(s: MediaStream) {
           me.mediaRecorder = new MediaRecorder(s);
-          me.getMicStream(s);
+          
 
           me.mediaRecorder.addEventListener('start', (e:any) => {
             me.audioChunks = [];
+            me.outputChunks = [];
 
             me.source.connect(me.scriptProcessor);
             me.scriptProcessor.connect(me.audioContext.destination);
@@ -93,17 +86,21 @@ export class Microphone {
           });
 
           me.mediaRecorder.addEventListener('stop', (e:any) => {
-            // create a blob from the audio chunks
-            // so we can play the recorded voice in the player
-            let blobData = new Blob(me.audioChunks, {
-              'type': 'audio/ogg;codecs=opus'
-            });
-            // attach the audio to the player
-            me.audioElement.src = window.URL.createObjectURL(blobData);
-
+            me.getMicStream(s);
+            
             // stop the script processors
             me.source.disconnect();
             me.scriptProcessor.disconnect();
+
+            // create a blob from the audio chunks
+            // so we can play the recorded voice in the player
+            /*let blobData = new Blob(me.audioChunks, {
+              'type': 'audio/ogg;codecs=opus'
+            });
+            console.log('!');
+            console.log(window.URL.createObjectURL(blobData));
+            // attach the audio to the player
+            me.audioElement.src = window.URL.createObjectURL(blobData);*/
           });
     });
 
@@ -137,20 +134,46 @@ export class Microphone {
         });
         window.dispatchEvent(event);
       };
+  }
 
+  /*
+   * When working with Dialogflow and Dialogflow matched an intent,
+   * and returned an audio buffer. Play this output.
+   */
+  playOutput(arrayBuffer:any){
+    let me = this;
+    this.audioContext.decodeAudioData(arrayBuffer).then(
+      function(audioBuffer: AudioBuffer){
+        const sourceNode = me.audioContext.createBufferSource();
+        sourceNode.buffer = audioBuffer;
+        sourceNode.connect(me.audioContext.destination);
+        sourceNode.start();
+    });
   }
 
   handleErrors(errors: any){
       console.log(errors);
   }
 
-  convertFloat32ToInt16(buffer:any) {
+  convertFloat32ToInt16(buffer:any){
       let l = buffer.length;
       let buf = new Int16Array(l);
       while (l--) {
           buf[l] = Math.min(1, buffer[l]) * 0x7FFF;
       }
       return buf.buffer;
+  }
+  convertInt16ToFloat32(buffer: any) {
+    let l = buffer.length;
+    let output = new Float32Array(buffer.length-0);
+    for (let i = 0; i < l; i++) {
+        let int = buffer[i];
+        // If the high bit is on, then it is a negative number,
+        // and actually counts backwards.
+        let float = (int >= 0x8000) ? -(0x10000 - int) / 0x8000 : int / 0x7FFF;
+        output[i] = float;
+    }
+    return output;
   }
 }
 

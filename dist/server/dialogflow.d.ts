@@ -9,10 +9,12 @@ export declare class Dialogflow {
     private sampleRateHertz;
     private singleUtterance;
     private isInitialRequest;
+    private isResult;
     constructor();
     setupDialogflow(meta: any): void;
     detectStream(audio: any, cb: Function): void;
     stopStream(): void;
+    createAudio(audioBuffer: Buffer): void;
     detectIntent(audio: any): void;
 }
 export declare let dialogflow: Dialogflow;

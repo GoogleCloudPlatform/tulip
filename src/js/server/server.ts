@@ -74,7 +74,7 @@ export class App {
         this.server.listen(App.PORT, () => {
             console.log('Running server on port %s', App.PORT);
         });
-
+        let me = this;
         this.io.on('connect', (client: any) => {
 
             client.on('meta', (meta: any) => {
@@ -86,12 +86,13 @@ export class App {
 
             client.on('message', (stream: any, herz: number) => {
                 if(this.recording) {
-                    dialogflow.detectStream(stream, function(results: any){
-                        console.log(results.queryResult);
+                    dialogflow.detectStream(stream, function(audioBuffer: any){
+                        console.log(audioBuffer);
+                        // me.io.emit('broadcast', audioBuffer);
+                        me.io.emit('broadcast', audioBuffer);
                     });
                 }
             });
-
             client.on('stop', () => {
                 dialogflow.stopStream();
                 this.recording = false;

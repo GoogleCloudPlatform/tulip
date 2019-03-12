@@ -38,22 +38,23 @@ export class Dialogflow {
     private sampleRateHertz: Number;
     private singleUtterance: Boolean;
     private isInitialRequest: Boolean;
+    private isResult: Boolean;
 
     constructor() {
         this.languageCode = 'en-US';
         this.projectId = process.env.PROJECT_ID;
         this.sessionId = uuid.v4();
-        // this.sampleRateHertz = 48000; //TODO retriev ethis from front-end
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
+        this.isResult = false;
     }
 
     /*
      * Setup the Dialogflow Agent
      */
     public setupDialogflow(meta: any) {
-        this.sessionClient = new df.SessionsClient();
+        this.sessionClient = new df.v2beta1.SessionsClient();
         this.sessionPath = this.sessionClient.sessionPath(
             this.projectId, this.sessionId);
 
@@ -87,9 +88,21 @@ export class Dialogflow {
             languageCode: this.languageCode,
           },
           singleUtterance: this.singleUtterance
+        },
+        outputAudioConfig: {
+          audioEncoding: 'OUTPUT_AUDIO_ENCODING_LINEAR_16',
+          sampleRateHertz: 48000,
+          synthesizeSpeechConfig: {
+            voice: {
+              ssmlGender: 'SSML_VOICE_GENDER_FEMALE'
+            },
+            speakingRate: 1.8,
+            pitch: 8
+          }
         }
       };
 
+      let me = this;
       // Create a stream for the streaming request.
       const detectStream = this.sessionClient
       .streamingDetectIntent()
@@ -102,14 +115,19 @@ export class Dialogflow {
               ${data.recognitionResult.transcript}`
             );*/
           } else {
-            console.log(`Detected intent:`);
-            cb(data);
+            console.log(me.isResult);
+            //if(!me.isResult && data.outputAudioConfig) {
+              console.log(`Detected intent:`);
+              console.log(data);
+              this.createAudio(data.outputAudio);
+              cb(data.outputAudio);
+              me.isResult = true;
+            //}
           }
         });
 
         // Write the initial stream request to config for audio input.
         if(this.isInitialRequest) {
-          console.log(this.isInitialRequest);
           detectStream.write(initialStreamRequest);
         }
 
@@ -135,6 +153,12 @@ export class Dialogflow {
       fs.unlink('temp/' + this.sessionId + '.wav', (err) => {
         if (err) throw console.log(err);
         console.log('Audio file was deleted');
+      });
+    }
+
+    public createAudio(audioBuffer: Buffer){
+      fs.writeFile('temp/results.wav', audioBuffer, function(){
+        console.log('done');
       });
     }
 
