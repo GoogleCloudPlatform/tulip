@@ -30,14 +30,12 @@ export class App {
     private app: express.Application;
     private server: any;
     private io: SocketIO.Server;
-    private recording: Boolean;
 
     constructor() {
         this.createApp();
         this.createServer();
         this.sockets();
         this.listen();
-        this.recording = true;
     }
 
     private createApp(): void {
@@ -84,17 +82,14 @@ export class App {
             });
 
             client.on('message', (stream: any, herz: number) => {
-                if(this.recording) {
-                    dialogflow.detectStream(stream, function(audioBuffer: any){
-                        console.log(audioBuffer);
-                        // me.io.emit('broadcast', audioBuffer);
-                        me.io.emit('broadcast', audioBuffer);
-                    });
-                }
+                dialogflow.detectStream(stream, function(audioBuffer: any){
+                    console.log(audioBuffer);
+                    // me.io.emit('broadcast', audioBuffer);
+                    me.io.emit('broadcast', audioBuffer);
+                });
             });
             client.on('stop', () => {
                 dialogflow.stopStream();
-                this.recording = false;
             });
 
             client.on('disconnect', () => {

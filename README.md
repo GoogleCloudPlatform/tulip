@@ -19,7 +19,7 @@ authentication:
    the file, set the ``GOOGLE_APPLICATION_CREDENTIALS`` environment variable to
    the path to the key file, for example:
 
-        export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service_account.json
+        export GOOGLE_APPLICATION_CREDENTIALS=~/Documents/keys/project-shunkaen.json
 
 * [Application Default Credentials]( https://cloud.google.com/docs/authentication#getting_credentials_for_server-centric_flow)
 * [Additional scopes](https://cloud.google.com/compute/docs/authentication#using)

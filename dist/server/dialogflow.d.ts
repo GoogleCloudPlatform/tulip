@@ -9,8 +9,8 @@ export declare class Dialogflow {
     private sampleRateHertz;
     private singleUtterance;
     private isInitialRequest;
-    private isResult;
     private detectStreamCall;
+    private isBusy;
     constructor();
     setupDialogflow(meta: any): void;
     detectStream(audio: any, cb: Function): void;

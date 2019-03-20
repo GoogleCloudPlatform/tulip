@@ -15,7 +15,7 @@ var Dialogflow = (function () {
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
-        this.isResult = false;
+        this.isBusy = false;
     }
     Dialogflow.prototype.setupDialogflow = function (meta) {
         this.sessionId = uuid.v4();
@@ -55,21 +55,21 @@ var Dialogflow = (function () {
                 }
             }
         };
-        var me = this;
         this.detectStreamCall = this.sessionClient
             .streamingDetectIntent()
             .on('error', function (e) {
             console.log(e);
         }).on('data', function (data) {
             if (data.recognitionResult) {
+                console.log("Intermediate transcript:\n              " + data.recognitionResult.transcript);
+                _this.isBusy = false;
             }
             else {
-                console.log(me.isResult);
                 console.log("Detected intent:");
                 console.log(data);
-                _this.createAudio(data.outputAudio);
+                _this.createAudio(data.outputAudio.length);
                 cb(data.outputAudio);
-                me.isResult = true;
+                console.log(_this.isBusy);
             }
         });
         if (this.isInitialRequest) {
@@ -91,6 +91,7 @@ var Dialogflow = (function () {
         fs.writeFile('temp/results.wav', audioBuffer, function () {
             console.log('done');
         });
+        this.isBusy = true;
     };
     Dialogflow.prototype.detectIntent = function (audio) {
         var request = {

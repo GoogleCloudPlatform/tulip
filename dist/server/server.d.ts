@@ -5,7 +5,6 @@ export declare class App {
     private app;
     private server;
     private io;
-    private recording;
     constructor();
     private createApp();
     private createServer();

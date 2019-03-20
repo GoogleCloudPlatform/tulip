@@ -38,8 +38,8 @@ export class Dialogflow {
     private sampleRateHertz: Number;
     private singleUtterance: Boolean;
     private isInitialRequest: Boolean;
-    private isResult: Boolean;
     private detectStreamCall: any;
+    private isBusy: Boolean;
 
     constructor() {
         this.languageCode = 'en-US';
@@ -47,7 +47,7 @@ export class Dialogflow {
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
-        this.isResult = false;
+        this.isBusy = false;
     }
 
     /*
@@ -103,7 +103,6 @@ export class Dialogflow {
         }
       };
 
-      let me = this;
       // Create a stream for the streaming request.
       this.detectStreamCall = this.sessionClient
       .streamingDetectIntent()
@@ -111,19 +110,20 @@ export class Dialogflow {
           console.log(e);
         }).on('data', (data: any) => {
           if (data.recognitionResult) {
-            /*console.log(
+            console.log(
               `Intermediate transcript:
               ${data.recognitionResult.transcript}`
-            );*/
+            );
+
+            // a new stream comes in,unlock.
+            this.isBusy = false;
+
           } else {
-            console.log(me.isResult);
-            //if(!me.isResult && data.outputAudioConfig) {
               console.log(`Detected intent:`);
               console.log(data);
-              this.createAudio(data.outputAudio);
+              this.createAudio(data.outputAudio.length);
               cb(data.outputAudio);
-              me.isResult = true;
-            //}
+              console.log(this.isBusy);
           }
         });
 
@@ -160,9 +160,12 @@ export class Dialogflow {
     }
 
     public createAudio(audioBuffer: Buffer){
-      fs.writeFile('temp/results.wav', audioBuffer, function(){
-        console.log('done');
-      });
+      //if(!this.isBusy) {
+        fs.writeFile('temp/results.wav', audioBuffer, function(){
+          console.log('done');
+        });
+        this.isBusy = true;
+      //}
     }
 
     /*

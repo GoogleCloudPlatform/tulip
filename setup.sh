@@ -2,12 +2,16 @@
 source ./.env
 
 SERVICE_ACCOUNT_NAME="shunkaen-app-$(date +"%s")"
+BUCKET="project-shunkaen-vcm"
 
 SA_EMAIL=$(gcloud iam service-accounts list \
   --filter="displayName:$SERVICE_ACCOUNT_NAME" \
   --format='value(email)')
 
 gcloud services enable dialogflow.googleapis.com
+gcloud services enable storage-component.googleapis.com
+gcloud services enable automl.googleapis.com
+gcloud services enable storage-api.googleapis.com&
 
 gcloud iam service-accounts create \
   $SERVICE_ACCOUNT_NAME \
@@ -32,5 +36,25 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$SA_EMAIL \
   --role roles/logging.logWriter
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+   --member serviceAccount:$SA_EMAIL \
+   --role roles/automl.admin
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+   --member serviceAccount:$SA_EMAIL \
+   --role roles/automl.editor
 
+cloud projects add-iam-policy-binding $PROJECT_ID \
+  --member="serviceAccount:custom-vision@appspot.gserviceaccount.com" \
+  --role="roles/ml.admin"
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member="serviceAccount:custom-vision@appspot.gserviceaccount.com" \
+  --role="roles/storage.admin"
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member="serviceAccount:custom-vision@appspot.gserviceaccount.com" \
+  --role="roles/serviceusage.serviceUsageAdmin"
 
+gsutil mb -p $PROJECT_ID -c regional -l us-central1 gs://${BUCKET}/
+
+gsutil -m cp -R gs://cloud-ml-data/img/flower_photos/ gs://${BUCKET}/img/
+gsutil cat gs://${BUCKET}/img/flower_photos/all_data.csv | sed "s:cloud-ml-data:${BUCKET}:" > all_data.csv
+gsutil cp all_data.csv gs://${BUCKET}/csv/

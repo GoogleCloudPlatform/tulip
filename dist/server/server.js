@@ -12,7 +12,6 @@ var App = (function () {
         this.createServer();
         this.sockets();
         this.listen();
-        this.recording = true;
     }
     App.prototype.createApp = function () {
         this.app = express();
@@ -37,7 +36,6 @@ var App = (function () {
         this.io = socketIo(this.server);
     };
     App.prototype.listen = function () {
-        var _this = this;
         this.server.listen(App.PORT, function () {
             console.log('Running server on port %s', App.PORT);
         });
@@ -49,16 +47,13 @@ var App = (function () {
                 dialogflow_1.dialogflow.setupDialogflow(meta);
             });
             client.on('message', function (stream, herz) {
-                if (_this.recording) {
-                    dialogflow_1.dialogflow.detectStream(stream, function (audioBuffer) {
-                        console.log(audioBuffer);
-                        me.io.emit('broadcast', audioBuffer);
-                    });
-                }
+                dialogflow_1.dialogflow.detectStream(stream, function (audioBuffer) {
+                    console.log(audioBuffer);
+                    me.io.emit('broadcast', audioBuffer);
+                });
             });
             client.on('stop', function () {
                 dialogflow_1.dialogflow.stopStream();
-                _this.recording = false;
             });
             client.on('disconnect', function () {
                 console.log('Client disconnected');
