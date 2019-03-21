@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("http");
 var dialogflow_1 = require("./dialogflow");
+var automl_1 = require("./automl");
 var express = require("express");
 var socketIo = require("socket.io");
 var path = require("path");
@@ -41,15 +42,18 @@ var App = (function () {
         });
         var me = this;
         this.io.on('connect', function (client) {
+            console.log("Client connected [id=" + client.id + "]");
+            me.io.emit('setup', "Client connected [id=" + client.id + "]");
+            client.on('snapshot', function (base64Img) {
+                automl_1.automl.detect(base64Img);
+            });
             client.on('meta', function (meta) {
                 console.log('Connected client on port %s.', App.PORT);
-                console.log(meta);
                 dialogflow_1.dialogflow.setupDialogflow(meta);
             });
             client.on('message', function (stream, herz) {
                 dialogflow_1.dialogflow.detectStream(stream, function (audioBuffer) {
-                    console.log(audioBuffer);
-                    me.io.emit('broadcast', audioBuffer);
+                    client.emit('broadcast', audioBuffer);
                 });
             });
             client.on('stop', function () {

@@ -325,6 +325,15 @@
   dependencies:
     arrify "^1.0.1"
 
+"@google-cloud/automl@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@google-cloud/automl/-/automl-0.1.4.tgz#ce7a53893281eba32425bb2fd380a423b1f5dc8d"
+  integrity sha512-iFNhZ0gdcgxhEYKwJSkeU5qze975X4lMgRD8UTH/GjBC+xS7B2xvUKBwlFhtcMonm2fFm7L+dh8oTW9RsxpjQQ==
+  dependencies:
+    google-gax "^0.25.0"
+    lodash.merge "^4.6.0"
+    protobufjs "^6.8.0"
+
 "@google-cloud/nodejs-repo-tools@3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@google-cloud/nodejs-repo-tools/-/nodejs-repo-tools-3.2.0.tgz#e0be9528fe952ccad4af1b4ff0c549edd1138db7"
@@ -344,6 +353,11 @@
     supertest "^3.4.2"
     yargs "^13.1.0"
     yargs-parser "^13.0.0"
+
+"@google-cloud/promisify@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/promisify/-/promisify-0.4.0.tgz#4fbfcf4d85bb6a2e4ccf05aa63d2b10d6c9aad9b"
+  integrity sha512-4yAHDC52TEMCNcMzVC8WlqnKKKq+Ssi2lXoUg9zWWkZ6U6tq9ZBRYLHHCRdfU+EU9YJsVmivwGcKYCjRGjnf4Q==
 
 "@grpc/grpc-js@^0.3.0":
   version "0.3.5"
@@ -476,10 +490,22 @@
   dependencies:
     "@types/node" "*"
 
+"@types/dialogflow@^0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@types/dialogflow/-/dialogflow-0.6.6.tgz#9a2e036abf07e1cdf518fac8b8628900b0cef23f"
+  integrity sha512-ar37BiSQQ1ZBcd+NZtkIDY0V0YbR+YMvkdgJ0/BtR8Av/3JJ5L+Je7czjjxiJ5IbTjuGhCSuuDL5ecafuta04w==
+
 "@types/dotenv@^6.1.0":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@types/dotenv/-/dotenv-6.1.0.tgz#fba2bfd1f28a46eadaa049f3313ebb89bdedfc53"
   integrity sha512-gmbNb7V1LbJQA4MmH0hVFgqY1cyKsa6RvKC1Xrq0WBnZ0JuuvXKciXx/s8dN0LVXCJd8xO6wIaSFSyUIoGph9g==
+  dependencies:
+    "@types/node" "*"
+
+"@types/duplexify@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@types/duplexify/-/duplexify-3.6.0.tgz#dfc82b64bd3a2168f5bd26444af165bf0237dcd8"
+  integrity sha512-5zOA53RUlzN74bvrSGwjudssD9F3a797sDZQkiYpUOxW+WHaXTCPz4/d5Dgi6FKnOqZ2CpaTo0DhgIfsXAOE/A==
   dependencies:
     "@types/node" "*"
 
@@ -514,7 +540,7 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.1.tgz#dc488842312a7f075149312905b5e3c0b054c79d"
   integrity sha512-FwI9gX75FgVBJ7ywgnq/P7tw+/o1GUbtP0KzbtusLigAOgIgNISRK0ZPl4qertvXSIE8YbsVJueQ90cDt9YYyw==
 
-"@types/node@*", "@types/node@^11.9.4":
+"@types/node@*":
   version "11.9.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.9.4.tgz#ceb0048a546db453f6248f2d1d95e937a6f00a14"
   integrity sha512-Zl8dGvAcEmadgs1tmSPcvwzO1YRsz38bVJQvH1RvRqSR9/5n61Q1ktcDL0ht3FXWR+ZpVmXVwN1LuH4Ax23NsA==
@@ -523,6 +549,11 @@
   version "10.12.26"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.26.tgz#2dec19f1f7981c95cb54bab8f618ecb5dc983d0e"
   integrity sha512-nMRqS+mL1TOnIJrL6LKJcNZPB8V3eTfRo9FQA2b5gDvrHurC8XbSA86KNe0dShlEL7ReWJv/OU9NL7Z0dnqWTg==
+
+"@types/node@^11.11.4":
+  version "11.11.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.4.tgz#8808bd5a82bbf6f5d412eff1c228d178e7c24bb3"
+  integrity sha512-02tIL+QIi/RW4E5xILdoAMjeJ9kYq5t5S2vciUdFPXv/ikFTb0zK8q9vXkg4+WAJuYXGiVT1H28AkD2C+IkXVw==
 
 "@types/pump@^1.0.1":
   version "1.0.1"
@@ -543,6 +574,11 @@
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
+
+"@types/socket.io-client@^1.4.32":
+  version "1.4.32"
+  resolved "https://registry.yarnpkg.com/@types/socket.io-client/-/socket.io-client-1.4.32.tgz#988a65a0386c274b1c22a55377fab6a30789ac14"
+  integrity sha512-Vs55Kq8F+OWvy1RLA31rT+cAyemzgm0EWNeax6BWF8H7QiiOYMJIdcwSDdm5LVgfEkoepsWkS+40+WNb7BUMbg==
 
 "@types/socket.io@^2.1.2":
   version "2.1.2"
@@ -2992,6 +3028,27 @@ google-gax@^0.24.0:
     semver "^5.5.1"
     walkdir "0.0.12"
 
+google-gax@^0.25.0:
+  version "0.25.5"
+  resolved "https://registry.yarnpkg.com/google-gax/-/google-gax-0.25.5.tgz#90b1f63929f92f8d75a6c284356e2ff5c62e4511"
+  integrity sha512-+x6Ys6v5agnX5+xqNw3IRCLjJL/wk50sT81x8InWo2cpnWmJwHMsBsjSYThHO23FDaBv3GkV8PpIMQhO18khAw==
+  dependencies:
+    "@grpc/grpc-js" "^0.3.0"
+    "@grpc/proto-loader" "^0.4.0"
+    "@types/duplexify" "^3.6.0"
+    duplexify "^3.6.0"
+    google-auth-library "^3.0.0"
+    google-proto-files "^0.20.0"
+    grpc "^1.16.0"
+    grpc-gcp "^0.1.1"
+    is-stream-ended "^0.1.4"
+    lodash.at "^4.6.0"
+    lodash.has "^4.5.2"
+    protobufjs "^6.8.8"
+    retry-request "^4.0.0"
+    semver "^5.5.1"
+    walkdir "^0.3.2"
+
 google-p12-pem@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/google-p12-pem/-/google-p12-pem-1.0.3.tgz#3d8acc140573339a5bca7b2f6a4b206bbea6d8d7"
@@ -3007,6 +3064,15 @@ google-proto-files@^0.18.0:
   dependencies:
     protobufjs "^6.8.0"
     walkdir "0.0.12"
+
+google-proto-files@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/google-proto-files/-/google-proto-files-0.20.0.tgz#dfcd1635a0c3f00f49ca057462cf369108ff4b5e"
+  integrity sha512-ORU+XhOeDv/UPtnCYLkO1ItmfhRCRPR3ZoeVQ7GfVzEs7PVitPIhsYlY5ZzG8XXnsdmtK27ENurfQ1jhAWpZHg==
+  dependencies:
+    "@google-cloud/promisify" "^0.4.0"
+    protobufjs "^6.8.0"
+    walkdir "^0.3.0"
 
 got@^6.7.1:
   version "6.7.1"
@@ -3050,6 +3116,14 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.6:
 graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
+
+grpc-gcp@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/grpc-gcp/-/grpc-gcp-0.1.1.tgz#a11be8a7e7a6edf5f636b44a6a24fb4cc028f71f"
+  integrity sha512-MAt0Ae9QuL2Lbbt2d+kDta5AxqRD1JVXtBcJuQKp9GeFL5TxPw/hxIyDNyivPjKEXjbG3cBGwSE3CXq6a3KHEQ==
+  dependencies:
+    grpc "^1.16.0"
+    protobufjs "^6.8.8"
 
 grpc@^1.16.0:
   version "1.18.0"
@@ -6842,6 +6916,11 @@ walkdir@0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/walkdir/-/walkdir-0.0.12.tgz#2f24f1ade64aab1e458591d4442c8868356e9281"
   integrity sha512-HFhaD4mMWPzFSqhpyDG48KDdrjfn409YQuVW7ckZYhW4sE87mYtWifdB/+73RA7+p4s4K18n5Jfx1kHthE1gBw==
+
+walkdir@^0.3.0, walkdir@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/walkdir/-/walkdir-0.3.2.tgz#ac8437a288c295656848ebc19981ebc677a5f590"
+  integrity sha512-0Twghia4Z5wDGDYWURlhZmI47GvERMCsXIu0QZWVVZyW9ZjpbbZvD9Zy9M6cWiQQRRbAcYajIyKNavaZZDt1Uw==
 
 watchify@^3.11.1:
   version "3.11.1"

@@ -15,7 +15,6 @@ var Dialogflow = (function () {
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
-        this.isBusy = false;
     }
     Dialogflow.prototype.setupDialogflow = function (meta) {
         this.sessionId = uuid.v4();
@@ -62,15 +61,15 @@ var Dialogflow = (function () {
         }).on('data', function (data) {
             if (data.recognitionResult) {
                 console.log("Intermediate transcript:\n              " + data.recognitionResult.transcript);
-                _this.isBusy = false;
             }
             else {
                 console.log("Detected intent:");
-                console.log(data);
-                _this.createAudio(data.outputAudio.length);
+                console.log(data.outputAudio);
                 cb(data.outputAudio);
-                console.log(_this.isBusy);
             }
+        }).on('end', function () {
+            console.log('on end');
+            _this.detectStreamCall.end();
         });
         if (this.isInitialRequest) {
             this.detectStreamCall.write(initialStreamRequest);
@@ -85,30 +84,6 @@ var Dialogflow = (function () {
             if (err)
                 throw console.log(err);
             console.log('Audio file was deleted');
-        });
-    };
-    Dialogflow.prototype.createAudio = function (audioBuffer) {
-        fs.writeFile('temp/results.wav', audioBuffer, function () {
-            console.log('done');
-        });
-        this.isBusy = true;
-    };
-    Dialogflow.prototype.detectIntent = function (audio) {
-        var request = {
-            session: this.sessionPath,
-            queryInput: {
-                audioConfig: {
-                    audioEncoding: 'AUDIO_ENCODING_LINEAR_16',
-                    sampleRateHertz: 16000,
-                    languageCode: this.languageCode,
-                },
-            },
-            inputAudio: audio
-        };
-        this.sessionClient.detectIntent(request).then(function (result) {
-            console.log(result);
-        }).catch(function (e) {
-            console.log(e);
         });
     };
     return Dialogflow;

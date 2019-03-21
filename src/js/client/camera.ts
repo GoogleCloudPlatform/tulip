@@ -55,11 +55,9 @@ export class Camera {
     // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const stream = await navigator.mediaDevices.getUserMedia({
         'audio': false,
-        'video': {facingMode: 'environment'}
+        'video': {deviceId: 'cam', facingMode: 'environment'}
       });
       (<any>window).stream = stream;
-      this.videoElement.style.width = 400 + 'px';
-      this.videoElement.style.height = 400 + 'px';
       this.videoElement.srcObject = stream;
       return new Promise(resolve => {
         this.videoElement.onloadedmetadata = () => {
@@ -120,8 +118,7 @@ export class Camera {
     ctx.drawImage(this.videoElement, 0, 0, this.snapShotCanvas.width,
         this.snapShotCanvas.height);
     let img = new Image();
-    img.src = this.snapShotCanvas.toDataURL('image/png').replace('image/png',
-        'image/octet-stream');
+    img.src = this.snapShotCanvas.toDataURL('image/png');
     return img;
   }
 }

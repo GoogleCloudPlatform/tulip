@@ -39,7 +39,6 @@ export class Dialogflow {
     private singleUtterance: Boolean;
     private isInitialRequest: Boolean;
     private detectStreamCall: any;
-    private isBusy: Boolean;
 
     constructor() {
         this.languageCode = 'en-US';
@@ -47,7 +46,6 @@ export class Dialogflow {
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
-        this.isBusy = false;
     }
 
     /*
@@ -114,17 +112,14 @@ export class Dialogflow {
               `Intermediate transcript:
               ${data.recognitionResult.transcript}`
             );
-
-            // a new stream comes in,unlock.
-            this.isBusy = false;
-
           } else {
               console.log(`Detected intent:`);
-              console.log(data);
-              this.createAudio(data.outputAudio.length);
+              console.log(data.outputAudio);
               cb(data.outputAudio);
-              console.log(this.isBusy);
           }
+        }).on('end', () => {
+          console.log('on end');
+          this.detectStreamCall.end();
         });
 
         // Write the initial stream request to config for audio input.
@@ -150,47 +145,12 @@ export class Dialogflow {
           }),
           this.detectStreamCall
         );
-      
 
-      // TODO PROBLEM WITH THE NEXT QUESTION
       fs.unlink('temp/' + this.sessionId + '.wav', (err) => {
         if (err) throw console.log(err);
         console.log('Audio file was deleted');
       });
     }
-
-    public createAudio(audioBuffer: Buffer){
-      //if(!this.isBusy) {
-        fs.writeFile('temp/results.wav', audioBuffer, function(){
-          console.log('done');
-        });
-        this.isBusy = true;
-      //}
-    }
-
-    /*
-     * Detect Intent Based on Audio File
-     */
-    public detectIntent(audio: any) {
-        //TODO
-        const request = {
-          session: this.sessionPath,
-          queryInput: {
-            audioConfig: {
-              audioEncoding: 'AUDIO_ENCODING_LINEAR_16',
-              sampleRateHertz: 16000,
-              languageCode: this.languageCode,
-            },
-          },
-          inputAudio: audio
-        };
-
-        this.sessionClient.detectIntent(request).then(function(result:any){
-          console.log(result);
-        }).catch(function(e:any) {
-          console.log(e);
-        });
-      }
 }
 
 export let dialogflow = new Dialogflow();

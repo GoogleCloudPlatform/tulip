@@ -18,8 +18,11 @@
 
 declare var MediaRecorder: any;
 
+let wai = require('web-audio-ios');
+
+
 const SELECTORS = {
-    MIC_ELEMENT: '.microphone__element--js',
+    AUDIO_ELEMENT: '.audio_element',
     MIC_RECORD_BUTTON: '.microphone__record_button',
     MIC_STOP_BUTTON: '.microphone__stop_button',
     AUDIO_FILE: '.microphone__file'
@@ -36,9 +39,10 @@ export class Microphone {
     outputChunks: Array<any>;
     mediaRecorder: any;
     fileReader: any;
-    audioContext: AudioContext;
+    audioContext: any;
     meta: any;
     source: MediaStreamAudioSourceNode;
+    outputSource: any;
     scriptProcessor: ScriptProcessorNode;
 
     constructor() {
@@ -46,14 +50,10 @@ export class Microphone {
         this.audioChunks = [];
         this.outputChunks = [];
         this.meta = {};
-        this.audioElement =
-        <HTMLAudioElement>document.querySelector(SELECTORS.MIC_ELEMENT);
         this.recordButton =
         <HTMLElement>document.querySelector(SELECTORS.MIC_RECORD_BUTTON);
         this.stopButton =
         <HTMLElement>document.querySelector(SELECTORS.MIC_STOP_BUTTON);
-        this.fileElement =
-        <HTMLElement>document.querySelector(SELECTORS.AUDIO_FILE);
     }
 
   /**
@@ -65,10 +65,58 @@ export class Microphone {
   async setupMicrophone() {
     let me = this;
     me.audioContext = new AudioContext();
+
+    this.audioElement =
+    <HTMLAudioElement>document.querySelector(SELECTORS.AUDIO_ELEMENT);
+
+    // iOS unlock fix
+    wai(document.body, this.audioContext, function (unlocked: any) {});
+
+    // iOS locks the audioContext so let's unlock it
+    /*if(me.audioContext.state === 'suspended' && 'ontouchstart' in window) {
+      let unlock = function(){
+        // me.audioContext.resume().then(function(){
+        //    document.body.removeEventListener('touchend', unlock);
+        // });
+
+        alert("unlock");
+        // Create empty buffer
+        let buffer = me.audioContext.createBuffer(1, 1, 22050);
+        me.outputSource = me.audioContext.createBufferSource();
+        me.outputSource.audioContext = buffer;
+        // Connect to output (speakers)
+        me.outputSource.connect(me.audioContext.destination);
+        // Play sound
+        // play the file
+        me.outputSource.noteOn(0);
+
+
+        // by checking the play state after some time, we know if we're really unlocked
+        setTimeout(function() {
+          if((source.playbackState === source.PLAYING_STATE || source.playbackState === source.FINISHED_STATE)) {
+            isUnlocked = true;
+          }
+        }, 0);
+
+
+      };
+      document.body.addEventListener('touchend', unlock, false);
+    }*/
+
     me.meta.sampleHerz = me.audioContext.sampleRate;
     me.meta.channels = me.audioContext.destination.numberOfInputs;
 
-    navigator.mediaDevices.getUserMedia({ audio: true })
+      /*
+      mandatory: {
+        'googEchoCancellation': 'false',
+        'googAutoGainControl': 'false',
+        'googNoiseSuppression': 'false',
+        'googHighpassFilter': 'false'
+      }*/
+
+    navigator.mediaDevices.getUserMedia({ audio: {
+      deviceId: 'mic',
+    } })
         .then(function(s: MediaStream) {
           me.mediaRecorder = new MediaRecorder(s);
           me.getMicStream(s);
@@ -95,15 +143,17 @@ export class Microphone {
             me.source.disconnect();
             me.scriptProcessor.disconnect();
 
+            /*
             // create a blob from the audio chunks
             // so we can play the recorded voice in the player
-            /*let blobData = new Blob(me.audioChunks, {
+            let blobData = new Blob(me.audioChunks, {
               'type': 'audio/ogg;codecs=opus'
             });
-            console.log('!');
+
             console.log(window.URL.createObjectURL(blobData));
             // attach the audio to the player
-            me.audioElement.src = window.URL.createObjectURL(blobData);*/
+            me.audioElement.src = window.URL.createObjectURL(blobData);
+            */
           });
     });
 
@@ -127,8 +177,10 @@ export class Microphone {
   getMicStream(s: any){
     const bufferLength = 4096;
     this.source = this.audioContext.createMediaStreamSource(s);
+
     this.scriptProcessor =
       this.audioContext.createScriptProcessor(bufferLength,1,1);
+
       this.scriptProcessor.onaudioprocess = (e)=> {
         let stream = e.inputBuffer.getChannelData(0) ||
         new Float32Array(bufferLength);
@@ -145,15 +197,16 @@ export class Microphone {
    */
   playOutput(arrayBuffer:any){
     let me = this;
-    this.audioContext.decodeAudioData(arrayBuffer).then(
-      function(audioBuffer: AudioBuffer){
-        const sourceNode = me.audioContext.createBufferSource();
-        sourceNode.buffer = audioBuffer;
-        sourceNode.connect(me.audioContext.destination);
-        sourceNode.start();
-    });
-  }
 
+    this.audioContext.decodeAudioData(arrayBuffer, (buffer: any) => { 
+      me.audioContext.resume();
+      me.outputSource = me.audioContext.createBufferSource();
+      me.outputSource.buffer = buffer;
+      me.outputSource.connect(me.audioContext.destination);
+      me.outputSource.start();
+      me.outputSource.noteOn(0);
+    }, (e: any) => { console.log(e); });
+  }
 
   handleErrors(errors: any){
       console.log(errors);

@@ -24,6 +24,12 @@ interface CameraDimentions {
     [index: number]: number;
 }
 
+const SELECTORS = {
+    START_ELEMENT: '.start_button',
+    PAGE_INTRO: '.page_intro',
+    PAGE_CONTROLLER: '.page_controller'
+};
+
 export class App {
     firstRun = true;
     flowers:  Array<HTMLImageElement>;
@@ -31,14 +37,21 @@ export class App {
     microphonePaused: boolean;
     stream: any;
     socket: any;
+    startButton: HTMLElement;
+    pageController: HTMLElement;
+    pageIntro: HTMLElement;
 
     constructor() {
         this.flowers = [];
         this.cameraPaused = false;
         this.microphonePaused = false;
 
-        this.socket = io();
-        this.socket.binaryType = 'arraybuffer';
+        this.startButton =
+        <HTMLElement>document.querySelector(SELECTORS.START_ELEMENT);
+        this.pageController =
+        <HTMLElement>document.querySelector(SELECTORS.PAGE_CONTROLLER);
+        this.pageIntro =
+        <HTMLElement>document.querySelector(SELECTORS.PAGE_INTRO);
     }
 
     /*
@@ -46,26 +59,40 @@ export class App {
     */
     init() {
         let me = this;
-        if(this.firstRun){
-            Promise.all([
-                camera.setupCamera().then((value: CameraDimentions) => {
-                camera.setupVideoDimensions(value[0], value[1]);
-                me.speak();
-                }),
-            ]).then(values => {
-                this.firstRun = false;
-                this.detectImage();
-            }).catch(error => {
-                console.error(error);
-            });
+        this.startButton.addEventListener('click', () => {
+            me.pageIntro.style.display = 'none';
+            me.pageController.style.display = 'block';
 
-            // socket.io binary
-            this.socket.on('broadcast', function(audioBuffer:any) {
-                console.log('Client connected over WebSockets');
-                console.log(audioBuffer);
-                microphone.playOutput(audioBuffer);
-            });
-        }
+            if(this.firstRun){
+                Promise.all([
+                    camera.setupCamera().then((value: CameraDimentions) => {
+                        camera.setupVideoDimensions(value[0], value[1]);
+                        me.speak();
+                    }),
+                ]).then(values => {
+                    this.firstRun = false;
+                    this.detectImage();
+                }).catch(error => {
+                    console.error(error);
+                });
+            }
+        });
+
+
+    // only in localhost
+    let url = location.protocol+'//'+location.hostname;
+    if(location.hostname === 'localhost' && location.port === '8080'){
+      url = location.protocol+'//'+location.hostname+ ':8080';
+    }
+
+    me.socket = io(url);
+    me.socket.binaryType = 'arraybuffer';
+
+    // socket.io binary
+    me.socket.on('broadcast', function(audioBuffer:any) {
+        microphone.playOutput(audioBuffer);
+    });
+
     }
 
     /*
@@ -74,9 +101,7 @@ export class App {
     detectImage() {
         // Make snapshot
         this.flowers.push(camera.snapshot());
-        console.log(this.flowers[0].src);
-        // TODO VISION API
-            // AFTER DETECTION OPEN MICROPHONE
+        this.socket.emit('snapshot', this.flowers[0].src);
     }
 
     /*
@@ -86,7 +111,9 @@ export class App {
         let me = this;
         microphone.setupMicrophone()
         .then(function(meta: any){
-
+            console.log('...');
+            // event fired every time a new client connects:
+            meta.socket = me.socket.id;
             window.addEventListener('start', function(e:CustomEvent) {
                 me.socket.emit('meta', meta);
             });
@@ -105,7 +132,6 @@ export class App {
                 // send mic audio to server
                 me.socket.emit('message', audio);
             });
-
 
         }).catch(microphone.handleErrors);
     }

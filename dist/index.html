@@ -11,6 +11,15 @@
   </head>
   <body>
 
+    <div class="page_intro">
+      <img src="img/tulip_icon.png" class="logo">
+      <h1>Google Tulip</h1>
+      <p>
+        Talking to your tulips from April 1st.
+      </p>
+      <a href="#" class="btn start_button">START</a>
+    </div>
+
     <div class="view__camera view__camera--js">
       <div class="view__camera__prediction-results view__camera__prediction-results--js"></div>
       <div class="view__camera__fps view__camera__fps--js"></div>
@@ -22,26 +31,16 @@
     </div>
 
     <div class="view__microphone">
-      <audio class="microphone__element--js" controls autoplay></audio>
-      
-      <a href="#" class="microphone__record_button">RECORD</a>
-      <a href="#" class="microphone__stop_button">STOP</a>
+      <div class="page_controller" style="display: none;">
+        <a href="#" class="btn microphone__record_button">RECORD</a>
+        <a href="#" class="btn microphone__stop_button">STOP</a>
+      </div>
     </div>
-
     <script>
-      //https://ai.github.io/audio-recorder-polyfill/
-      //https://github.com/ai/audio-recorder-polyfill
-      if (!window.MediaRecorder) {
-        document.write(
-          decodeURI('%3Cscript defer src="js/polyfill.js">%3C/script>')
-        )
-      };
-      
-      navigator.getUserMedia = navigator.getUserMedia ||
-            navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia;
-      window.AudioContext = window.AudioContext|| window.webkitAudioContext||window.mozAudioContext;
+
     </script>
+    <script src="js/browsersupport.js"></script>
     <script src="js/client.js"></script>
-  </body>
+
+   </body>
 </html>

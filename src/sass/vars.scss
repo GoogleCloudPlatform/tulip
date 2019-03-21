@@ -16,6 +16,13 @@
  * =============================================================================
  */
 
+ $title-color: #5c4037;
+ $text-color: #85391e;
+ $background-color: #fdd835;
+ $button-color: #FF5622;
+ 
+ $font: "Google Sans", sans-serif;
+
 /*
  * Media Breakpoints
  */
@@ -53,7 +60,7 @@ $c-white: #fff;
  */
 
 $display-font: 'Changa One', sans-serif;
-$body-font: 'Roboto', arial, sans-serif;
+$body-font: "Google Sans", sans-serif;
 
 /*
  * Transition curves

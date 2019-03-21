@@ -18,6 +18,7 @@
 
 import { createServer } from 'http';
 import { dialogflow } from './dialogflow';
+import { automl } from './automl';
 import * as express from 'express';
 import * as socketIo from 'socket.io';
 import * as path from 'path';
@@ -73,19 +74,24 @@ export class App {
             console.log('Running server on port %s', App.PORT);
         });
         let me = this;
+
         this.io.on('connect', (client: any) => {
+            console.log(`Client connected [id=${client.id}]`);
+            me.io.emit('setup', `Client connected [id=${client.id}]`);
+
+            client.on('snapshot', (base64Img: string) => {
+                automl.detect(base64Img);
+            });
 
             client.on('meta', (meta: any) => {
                 console.log('Connected client on port %s.', App.PORT);
-                console.log(meta);
                 dialogflow.setupDialogflow(meta);
             });
 
             client.on('message', (stream: any, herz: number) => {
                 dialogflow.detectStream(stream, function(audioBuffer: any){
-                    console.log(audioBuffer);
-                    // me.io.emit('broadcast', audioBuffer);
-                    me.io.emit('broadcast', audioBuffer);
+                    // sending to individual socketid (private message)
+                    client.emit('broadcast', audioBuffer);
                 });
             });
             client.on('stop', () => {
