@@ -89,9 +89,11 @@ export class Microphone {
           });
 
           me.mediaRecorder.addEventListener('stop', (e:any) => {
-            //TODO can't stop start this on ios
-            //me.source.disconnect(me.scriptProcessor);
-            //me.scriptProcessor.disconnect(me.audioContext.destination);
+            // TODO problem in IOS
+            // after you disconnect the audionode and script processor
+            // the buffer will be nulled out.
+            me.source.disconnect(me.scriptProcessor);
+            me.scriptProcessor.disconnect(me.audioContext.destination);
           });
     }).catch(function(e){
       console.log(e);
@@ -123,7 +125,7 @@ export class Microphone {
     this.recordButton.addEventListener('touchend', (e) => {
       e.preventDefault();
       removeClass(me.recordButton, 'active');
-      
+
       this.mediaRecorder.stop();
       let event = new CustomEvent('stop', {
         detail: 'stop'
@@ -140,21 +142,21 @@ export class Microphone {
       me.audioContext.createScriptProcessor(bufferLength,1,1);
 
     this.scriptProcessor.onaudioprocess = (e)=> {
-      console.log(this.audioContext.state);
-      
+
       console.log(e.inputBuffer.getChannelData(0));
       let stream = e.inputBuffer.getChannelData(0) ||
       new Float32Array(bufferLength);
 
-      // TODO this is the problem, the 2nd time, 
-      // this audio is empty
+      // TODO this is the problem, the 2nd time,
+      // after starting the recording processor
+      // the buffer is empty.
+      // this happens after this connecting
 
       let event = new CustomEvent('audio', {
         detail: this.convertFloat32ToInt16(stream)
       });
       window.dispatchEvent(event);
     };
-      
   }
 
   /*
@@ -168,7 +170,7 @@ export class Microphone {
       if(arrayBuffer.byteLength > 0){
         this.audioContext.decodeAudioData(arrayBuffer,
         function(buffer:any){
-          me.audioContext.resume(); //iOS?
+          me.audioContext.resume();
           me.outputSource = me.audioContext.createBufferSource();
           me.outputSource.connect(me.audioContext.destination);
           me.outputSource.buffer = buffer;

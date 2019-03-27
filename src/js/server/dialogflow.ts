@@ -163,7 +163,6 @@ export class Dialogflow {
           console.log('on end');
         });
         
-
         // Write the initial stream request to config for audio input.
         if(this.isInitialRequest) {
           this.detectStreamCall.write(initialStreamRequest);
@@ -177,7 +176,6 @@ export class Dialogflow {
      * When Streaming stops, remove the temp wav file.
      */
     public finalizeStream() {
-      console.log('test');
 
       // start streaming the contents of the wav file
       // to the Dialogflow Streaming API
