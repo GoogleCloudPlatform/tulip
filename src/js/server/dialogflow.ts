@@ -69,6 +69,47 @@ export class Dialogflow {
 
     }
 
+    public createAudioFile(audio: any) {
+        // create a wav file
+        this.fileWriter.write(audio);
+    }
+
+    public async detectIntent(cb:Function) {
+      // Read the content of the audio file and send it
+      // as part of the request.
+      const inputAudio = fs.createReadStream('temp/' + this.sessionId + '.wav');
+      console.log(inputAudio);
+      const request = {
+        session: this.sessionPath,
+        queryInput: {
+          audioConfig: {
+            sampleRateHertz: this.sampleRateHertz,
+            audioEncoding: this.encoding,
+            languageCode: this.languageCode,
+          },
+        },
+        inputAudio: inputAudio,
+        outputAudioConfig: {
+          audioEncoding: 'OUTPUT_AUDIO_ENCODING_LINEAR_16',
+          sampleRateHertz: 48000,
+          synthesizeSpeechConfig: {
+            voice: {
+              ssmlGender: 'SSML_VOICE_GENDER_FEMALE'
+            },
+            speakingRate: 1.5,
+            pitch: 7
+          }
+        }
+      };
+
+      // Recognizes the speech in the audio and detects its intent.
+      const [response] = await this.sessionClient.detectIntent(request);
+
+      console.log(response);
+
+      cb(response);
+    }
+
     /*
      * Detect Intent based on Audio Stream
      * @param audio
@@ -120,8 +161,8 @@ export class Dialogflow {
           }
         }).on('end', () => {
           console.log('on end');
-          this.detectStreamCall = null;
-        })
+        });
+        
 
         // Write the initial stream request to config for audio input.
         if(this.isInitialRequest) {
@@ -136,6 +177,8 @@ export class Dialogflow {
      * When Streaming stops, remove the temp wav file.
      */
     public finalizeStream() {
+      console.log('test');
+
       // start streaming the contents of the wav file
       // to the Dialogflow Streaming API
       pump(

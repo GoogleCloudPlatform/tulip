@@ -141,16 +141,24 @@ export class App {
             });
 
             client.on('message', (stream: any, herz: number) => {
+                console.log(herz);
+                console.log(stream);
                 // start streaming from client app to dialogflow
                 dialogflow.prepareStream(stream, function(audioBuffer: any){
                     // sending to individual socketid (private message)
                     client.emit('broadcast', audioBuffer);
                     dialogflow.detectStreamCall.end();
                 });
+                // dialogflow.createAudioFile(stream);
             });
             client.on('stop', () => {
+                console.log('finalize stream');
                 // stop the client stream, and start detecting
                 dialogflow.finalizeStream();
+                /*dialogflow.detectIntent(function(audioBuffer: any){
+                    // sending to individual socketid (private message)
+                    client.emit('broadcast', audioBuffer);
+                });*/
             });
 
             client.on('disconnect', () => {

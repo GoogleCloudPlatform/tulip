@@ -1,3 +1,5 @@
+import { addClass, removeClass } from "./helpers";
+
 /**
  * @license
  * Copyright 2018 Google LLC
@@ -18,9 +20,6 @@
 
 declare var MediaRecorder: any;
 
-let wai = require('web-audio-ios');
-
-
 const SELECTORS = {
     AUDIO_ELEMENT: '.audio_element',
     MIC_RECORD_BUTTON: '.microphone__record_button',
@@ -34,6 +33,7 @@ export class Microphone {
     recordButton: HTMLElement;
     fileElement: HTMLElement;
     outputChunks: Array<any>;
+    mediaStream: any;
     mediaRecorder: any;
     fileReader: any;
     audioContext: any;
@@ -43,6 +43,7 @@ export class Microphone {
     scriptProcessor: ScriptProcessorNode;
 
     constructor() {
+        this.mediaStream = null;
         this.fileReader = new FileReader();
         this.outputChunks = [];
         this.meta = {};
@@ -64,40 +65,6 @@ export class Microphone {
     this.audioElement =
     <HTMLAudioElement>document.querySelector(SELECTORS.AUDIO_ELEMENT);
 
-    // iOS unlock fix
-    wai(document.body, this.audioContext, function (unlocked: any) {});
-
-    // iOS locks the audioContext so let's unlock it
-    /*if(me.audioContext.state === 'suspended' && 'ontouchstart' in window) {
-      let unlock = function(){
-        // me.audioContext.resume().then(function(){
-        //    document.body.removeEventListener('touchend', unlock);
-        // });
-
-        alert("unlock");
-        // Create empty buffer
-        let buffer = me.audioContext.createBuffer(1, 1, 22050);
-        me.outputSource = me.audioContext.createBufferSource();
-        me.outputSource.audioContext = buffer;
-        // Connect to output (speakers)
-        me.outputSource.connect(me.audioContext.destination);
-        // Play sound
-        // play the file
-        me.outputSource.noteOn(0);
-
-
-        // by checking the play state after some time, we know if we're really unlocked
-        setTimeout(function() {
-          if((source.playbackState === source.PLAYING_STATE || source.playbackState === source.FINISHED_STATE)) {
-            isUnlocked = true;
-          }
-        }, 0);
-
-
-      };
-      document.body.addEventListener('touchend', unlock, false);
-    }*/
-
     me.meta.sampleHerz = me.audioContext.sampleRate;
     me.meta.channels = me.audioContext.destination.numberOfInputs;
 
@@ -105,24 +72,26 @@ export class Microphone {
       deviceId: 'mic',
     } })
         .then(function(s: MediaStream) {
-          me.mediaRecorder = new MediaRecorder(s);
-          me.getMicStream(s);
+          me.mediaStream = s;
+          me.mediaRecorder = new MediaRecorder(me.mediaStream);
+          me.getMicStream();
 
           me.mediaRecorder.addEventListener('start', (e:any) => {
             me.outputChunks = [];
-
             let event = new CustomEvent('start', {
               detail: 'start'
             });
             window.dispatchEvent(event);
 
+            me.source = me.audioContext.createMediaStreamSource(me.mediaStream);
             me.source.connect(me.scriptProcessor);
             me.scriptProcessor.connect(me.audioContext.destination);
           });
 
           me.mediaRecorder.addEventListener('stop', (e:any) => {
-            me.source.disconnect();
-            me.scriptProcessor.disconnect();
+            //TODO can't stop start this on ios
+            //me.source.disconnect(me.scriptProcessor);
+            //me.scriptProcessor.disconnect(me.audioContext.destination);
           });
     }).catch(function(e){
       console.log(e);
@@ -140,12 +109,21 @@ export class Microphone {
 
     this.recordButton.addEventListener('touchstart', (e) => {
       e.preventDefault();
-      me.recordButton.className = 'btn microphone__record_button active';
+      addClass(me.recordButton, 'active');
       this.mediaRecorder.start();
     });
 
-    this.recordButton.addEventListener('touchend', () => {
-      me.recordButton.className = 'btn microphone__record_button';
+    this.recordButton.addEventListener('touchcancel', function(e){
+      e.preventDefault();
+    });
+    this.recordButton.addEventListener('touchmove', function(e){
+      e.preventDefault();
+    });
+
+    this.recordButton.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      removeClass(me.recordButton, 'active');
+      
       this.mediaRecorder.stop();
       let event = new CustomEvent('stop', {
         detail: 'stop'
@@ -154,21 +132,29 @@ export class Microphone {
     });
   }
 
-  getMicStream(s: any){
+  getMicStream(){
+    const me = this;
     const bufferLength = 4096;
-    this.source = this.audioContext.createMediaStreamSource(s);
+    me.source = me.audioContext.createMediaStreamSource(me.mediaStream);
+    me.scriptProcessor =
+      me.audioContext.createScriptProcessor(bufferLength,1,1);
 
-    this.scriptProcessor =
-      this.audioContext.createScriptProcessor(bufferLength,1,1);
+    this.scriptProcessor.onaudioprocess = (e)=> {
+      console.log(this.audioContext.state);
+      
+      console.log(e.inputBuffer.getChannelData(0));
+      let stream = e.inputBuffer.getChannelData(0) ||
+      new Float32Array(bufferLength);
 
-      this.scriptProcessor.onaudioprocess = (e)=> {
-        let stream = e.inputBuffer.getChannelData(0) ||
-        new Float32Array(bufferLength);
-        let event = new CustomEvent('audio', {
-          detail: this.convertFloat32ToInt16(stream)
-        });
-        window.dispatchEvent(event);
-      };
+      // TODO this is the problem, the 2nd time, 
+      // this audio is empty
+
+      let event = new CustomEvent('audio', {
+        detail: this.convertFloat32ToInt16(stream)
+      });
+      window.dispatchEvent(event);
+    };
+      
   }
 
   /*
@@ -177,7 +163,6 @@ export class Microphone {
    */
   playOutput(arrayBuffer:any){
     let me = this;
-
     try {
       // TODO why do I call this twice?
       if(arrayBuffer.byteLength > 0){
@@ -188,7 +173,6 @@ export class Microphone {
           me.outputSource.connect(me.audioContext.destination);
           me.outputSource.buffer = buffer;
           me.outputSource.start(0);
-          //me.outputSource.noteOn(0); //iOS?
         },
         function(){
           console.log(arguments);

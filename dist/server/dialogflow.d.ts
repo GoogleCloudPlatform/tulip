@@ -12,6 +12,8 @@ export declare class Dialogflow {
     detectStreamCall: any;
     constructor();
     setupDialogflow(meta: any): void;
+    createAudioFile(audio: any): void;
+    detectIntent(cb: Function): Promise<void>;
     prepareStream(audio: any, cb: Function): void;
     finalizeStream(): void;
 }

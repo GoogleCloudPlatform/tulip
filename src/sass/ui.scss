@@ -86,8 +86,7 @@ body {
   -webkit-font-smoothing: antialiased;
   display: inline-block;
 
-  &.active,
-  &:hover {
+  &.active {
     background: $c-grey;
   }
 }

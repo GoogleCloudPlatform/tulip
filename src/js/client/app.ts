@@ -121,6 +121,7 @@ export class App {
         });
         window.addEventListener('audio', function(e:CustomEvent) {
             let audio = e.detail; // ArrayBuffer
+            console.log(audio);
             // socket.io binary
             me.socket.on('returnaudio', function(audioObj:any) {
                 console.log('Client connected over WebSockets');
