@@ -15,6 +15,7 @@ var Dialogflow = (function () {
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
+        this.detectStreamCall = null;
     }
     Dialogflow.prototype.setupDialogflow = function (meta) {
         this.sessionId = uuid.v4();
@@ -27,7 +28,7 @@ var Dialogflow = (function () {
             bitDepth: 16
         });
     };
-    Dialogflow.prototype.detectStream = function (audio, cb) {
+    Dialogflow.prototype.prepareStream = function (audio, cb) {
         var _this = this;
         var initialStreamRequest = {
             session: this.sessionPath,
@@ -69,14 +70,14 @@ var Dialogflow = (function () {
             }
         }).on('end', function () {
             console.log('on end');
-            _this.detectStreamCall.end();
+            _this.detectStreamCall = null;
         });
         if (this.isInitialRequest) {
             this.detectStreamCall.write(initialStreamRequest);
         }
         this.fileWriter.write(audio);
     };
-    Dialogflow.prototype.stopStream = function () {
+    Dialogflow.prototype.finalizeStream = function () {
         pump(fs.createReadStream('temp/' + this.sessionId + '.wav'), through2.obj(function (obj, _, next) {
             next(null, { inputAudio: obj });
         }), this.detectStreamCall);

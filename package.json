@@ -23,8 +23,7 @@
     "poly-build": "browserify src/js/polyfill.js -o dist/js/polyfill.js",
     "browsersupport-build": "browserify src/js/browsersupport.js -o dist/js/browsersupport.js",
     "js-compress": "uglifyjs dist/js/client.js -c -m -o dist/js/client.js",
-    "build": "concurrently \"yarn sass-build\" \"yarn js-build\" \"yarn server-build\"",
-    "dev": "concurrently \"yarn sass-watch\" \"yarn js-watch\" \"yarn build:live\""
+    "build": "concurrently \"yarn sass-build\" \"yarn js-build\" \"yarn server-build\""
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "3.2.0",

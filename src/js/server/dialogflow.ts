@@ -38,7 +38,7 @@ export class Dialogflow {
     private sampleRateHertz: Number;
     private singleUtterance: Boolean;
     private isInitialRequest: Boolean;
-    private detectStreamCall: any;
+    public detectStreamCall: any;
 
     constructor() {
         this.languageCode = 'en-US';
@@ -46,6 +46,7 @@ export class Dialogflow {
         this.encoding = 'AUDIO_ENCODING_LINEAR_16';
         this.singleUtterance = true;
         this.isInitialRequest = true;
+        this.detectStreamCall = null;
     }
 
     /*
@@ -73,7 +74,7 @@ export class Dialogflow {
      * @param audio
      * @param cb Callback function to send results
      */
-    public detectStream(audio: any, cb:Function){
+    public prepareStream(audio: any, cb:Function){
       const initialStreamRequest = {
         session: this.sessionPath,
         queryParams: {
@@ -119,8 +120,8 @@ export class Dialogflow {
           }
         }).on('end', () => {
           console.log('on end');
-          this.detectStreamCall.end();
-        });
+          this.detectStreamCall = null;
+        })
 
         // Write the initial stream request to config for audio input.
         if(this.isInitialRequest) {
@@ -134,17 +135,17 @@ export class Dialogflow {
     /*
      * When Streaming stops, remove the temp wav file.
      */
-    public stopStream() {
-        // start streaming the contents of the wav file
-        // to the Dialogflow Streaming API
-        pump(
-          fs.createReadStream('temp/' + this.sessionId + '.wav'),
-          // Format the audio stream into the request format.
-          through2.obj((obj:any, _:any, next:any) => {
-            next(null, {inputAudio: obj});
-          }),
-          this.detectStreamCall
-        );
+    public finalizeStream() {
+      // start streaming the contents of the wav file
+      // to the Dialogflow Streaming API
+      pump(
+        fs.createReadStream('temp/' + this.sessionId + '.wav'),
+        // Format the audio stream into the request format.
+        through2.obj((obj:any, _:any, next:any) => {
+          next(null, {inputAudio: obj});
+        }),
+        this.detectStreamCall
+      );
 
       fs.unlink('temp/' + this.sessionId + '.wav', (err) => {
         if (err) throw console.log(err);

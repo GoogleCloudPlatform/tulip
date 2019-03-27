@@ -101,12 +101,13 @@ var App = (function () {
                 dialogflow_1.dialogflow.setupDialogflow(meta);
             });
             client.on('message', function (stream, herz) {
-                dialogflow_1.dialogflow.detectStream(stream, function (audioBuffer) {
+                dialogflow_1.dialogflow.prepareStream(stream, function (audioBuffer) {
                     client.emit('broadcast', audioBuffer);
+                    dialogflow_1.dialogflow.detectStreamCall.end();
                 });
             });
             client.on('stop', function () {
-                dialogflow_1.dialogflow.stopStream();
+                dialogflow_1.dialogflow.finalizeStream();
             });
             client.on('disconnect', function () {
                 console.log('Client disconnected');

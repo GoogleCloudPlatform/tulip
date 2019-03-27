@@ -80,6 +80,7 @@ export class App {
             me.io.emit('setup', `Client connected [id=${client.id}]`);
 
             client.on('snapshot', (base64Img: string) => {
+   
                 automl.detect(base64Img, function(results: any){
                     let text = '';
                     if(results && results.payload[0]){
@@ -140,13 +141,16 @@ export class App {
             });
 
             client.on('message', (stream: any, herz: number) => {
-                dialogflow.detectStream(stream, function(audioBuffer: any){
+                // start streaming from client app to dialogflow
+                dialogflow.prepareStream(stream, function(audioBuffer: any){
                     // sending to individual socketid (private message)
                     client.emit('broadcast', audioBuffer);
+                    dialogflow.detectStreamCall.end();
                 });
             });
             client.on('stop', () => {
-                dialogflow.stopStream();
+                // stop the client stream, and start detecting
+                dialogflow.finalizeStream();
             });
 
             client.on('disconnect', () => {

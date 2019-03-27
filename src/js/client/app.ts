@@ -25,15 +25,14 @@ interface CameraDimentions {
 }
 
 const SELECTORS = {
-    START_ELEMENT: '.start_button',
     PAGE_INTRO: '.view__intro',
     PAGE_CONTROLLER: '.view__controller',
-    PAGE_STATUS: '.view__status'
+    PAGE_STATUS: '.view__status',
+    START_BUTTON: '.start_button'
 };
 
 export class App {
     firstRun = true;
-    flowers:  Array<HTMLImageElement>;
     cameraPaused: boolean;
     microphonePaused: boolean;
     stream: any;
@@ -44,12 +43,10 @@ export class App {
     pageStatus: HTMLElement;
 
     constructor() {
-        this.flowers = [];
         this.cameraPaused = false;
         this.microphonePaused = false;
-
         this.startButton =
-        <HTMLElement>document.querySelector(SELECTORS.START_ELEMENT);
+        <HTMLElement>document.querySelector(SELECTORS.START_BUTTON);
         this.pageController =
         <HTMLElement>document.querySelector(SELECTORS.PAGE_CONTROLLER);
         this.pageIntro =
@@ -64,64 +61,78 @@ export class App {
     init() {
         let me = this;
         this.startButton.addEventListener('click', () => {
-            me.pageIntro.className = 'view__intro hidden';
-
             if(this.firstRun){
+                me.pageIntro.className = 'view__intro hidden';
                 Promise.all([
                     camera.setupCamera().then((value: CameraDimentions) => {
                         camera.setupVideoDimensions(value[0], value[1]);
-                        me.speak();
-
-                        me.pageController.className = 'view__controller';
-                        me.pageStatus.className = 'view__status';
                     }),
                 ]).then(values => {
                     this.firstRun = false;
-                    this.detectImage();
+                    me.pageController.className = 'view__controller';
+                    me.listenForSocketEvents();
                 }).catch(error => {
                     console.error(error);
                 });
             }
         });
-
-
-    // only in localhost
-    let url = location.protocol+'//'+location.hostname;
-    if(location.hostname === 'localhost' && location.port === '8080'){
-      url = location.protocol+'//'+location.hostname+ ':8080';
     }
 
-    me.socket = io(url);
-    me.socket.binaryType = 'arraybuffer';
+    listenForSocketEvents() {
+        // only in localhost
+        const me = this;
+        let url = location.protocol+'//'+location.hostname;
+        if(location.hostname === 'localhost' && location.port === '8080'){
+        url = location.protocol+'//'+location.hostname+ ':8080';
+        }
 
-    // socket.io binary
-    me.socket.on('broadcast', function(audioBuffer:any) {
-        microphone.playOutput(audioBuffer);
-    });
-    me.socket.on('imgresult', function(text: string) {
-        me.pageStatus.innerHTML = text;
-    });
+        me.socket = io(url);
+        me.socket.binaryType = 'arraybuffer';
 
+        // socket.io binary
+        me.socket.on('broadcast', function(audioBuffer:any) {
+            if(audioBuffer) microphone.playOutput(audioBuffer);
+        });
+        me.socket.on('imgresult', function(text: string) {
+            me.pageStatus.innerHTML = text;
+        });
+
+        window.addEventListener('cameraPhoto', function(e:CustomEvent) {
+            me.socket.emit('snapshot', e.detail);
+            me.pageStatus.className = 'view__status';
+            me.speak();
+        });
     }
 
-    /*
-     * Make image and detect photo with Vision API
-     */
-    detectImage() {
-        // Make snapshot
-        this.flowers.push(camera.snapshot());
-        this.socket.emit('snapshot', this.flowers[0].src);
-        camera.pauseCamera();
-    }
 
     /*
      * Start conversation with Dialogflow SDK
      */
-    speak() {
+    async speak() {
         let me = this;
+        let meta = await microphone.setupMicrophone();
+        console.log(meta);
+        meta.socket = me.socket.id;
+        window.addEventListener('start', function(e:CustomEvent) {
+            me.socket.emit('meta', meta);
+        });
+        window.addEventListener('stop', function(e:CustomEvent) {
+            me.socket.emit('stop');
+        });
+        window.addEventListener('audio', function(e:CustomEvent) {
+            let audio = e.detail; // ArrayBuffer
+            // socket.io binary
+            me.socket.on('returnaudio', function(audioObj:any) {
+                console.log('Client connected over WebSockets');
+            });
+
+            // send mic audio to server
+            me.socket.emit('message', audio);
+        });
+        /*
         microphone.setupMicrophone()
         .then(function(meta: any){
-            console.log('...');
+
             // event fired every time a new client connects:
             meta.socket = me.socket.id;
             window.addEventListener('start', function(e:CustomEvent) {
@@ -143,7 +154,9 @@ export class App {
                 me.socket.emit('message', audio);
             });
 
-        }).catch(microphone.handleErrors);
+        }).catch(function(e: any){
+            console.log(e);
+        }); */
     }
 }
 

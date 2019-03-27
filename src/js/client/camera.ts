@@ -20,6 +20,7 @@ import {addClass} from './helpers';
 
 const SELECTORS = {
   CAMERA_ELEMENT: '.camera__element--js',
+  CAMERA_BUTTON: '.camera__record_button'
 };
 
 const CSS_CLASSES = {
@@ -36,10 +37,13 @@ export class Camera {
   snapShotCanvas: HTMLCanvasElement;
   /** The native aspect ratio of the video element once initialized */
   aspectRatio: number;
+  cameraButton: HTMLElement;
 
   constructor() {
     this.videoElement =
       <HTMLVideoElement>document.querySelector(SELECTORS.CAMERA_ELEMENT);
+    this.cameraButton =
+      <HTMLElement>document.querySelector(SELECTORS.CAMERA_BUTTON);
     this.snapShotCanvas = document.createElement('canvas');
   }
 
@@ -52,22 +56,30 @@ export class Camera {
    * of the video element used as the camera.
    */
   async setupCamera() {
-    // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      const me = this;
       const stream = await navigator.mediaDevices.getUserMedia({
         'audio': false,
         'video': {deviceId: 'cam', facingMode: 'environment'}
       });
       (<any>window).stream = stream;
       this.videoElement.srcObject = stream;
-      return new Promise(resolve => {
-        this.videoElement.onloadedmetadata = () => {
-          resolve([this.videoElement.videoWidth,
-              this.videoElement.videoHeight]);
+      return new Promise((resolve, reject) => {
+
+        me.cameraButton.addEventListener('click', function(e: any){
+          me.cameraButton.className = 'hidden';
+          let img = me.snapshot();
+          // fire event from window
+          let event = new CustomEvent('cameraPhoto', {
+            detail: img
+          });
+          window.dispatchEvent(event);
+        });
+
+        me.videoElement.onloadedmetadata = () => {
+          resolve([me.videoElement.videoWidth,
+              me.videoElement.videoHeight]);
         };
       });
-    // }
-
-    // return null;
   }
 
   /**
@@ -119,7 +131,8 @@ export class Camera {
         this.snapShotCanvas.height);
     let img = new Image();
     img.src = this.snapShotCanvas.toDataURL('image/png');
-    return img;
+    this.pauseCamera();
+    return img.src;
   }
 }
 

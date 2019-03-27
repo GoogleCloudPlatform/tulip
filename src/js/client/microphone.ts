@@ -33,7 +33,6 @@ export class Microphone {
     audioElement: HTMLAudioElement;
     recordButton: HTMLElement;
     fileElement: HTMLElement;
-    audioChunks: Array<any>;
     outputChunks: Array<any>;
     mediaRecorder: any;
     fileReader: any;
@@ -45,7 +44,6 @@ export class Microphone {
 
     constructor() {
         this.fileReader = new FileReader();
-        this.audioChunks = [];
         this.outputChunks = [];
         this.meta = {};
         this.recordButton =
@@ -53,14 +51,15 @@ export class Microphone {
     }
 
   /**
-   * Requests access to the microphone and return a Promise
+   * Requests access to the microphone
    *
    * @async
-   * @returns {Promise<>}
    */
   async setupMicrophone() {
     let me = this;
     me.audioContext = new AudioContext();
+
+    me.setupButtons();
 
     this.audioElement =
     <HTMLAudioElement>document.querySelector(SELECTORS.AUDIO_ELEMENT);
@@ -102,15 +101,7 @@ export class Microphone {
     me.meta.sampleHerz = me.audioContext.sampleRate;
     me.meta.channels = me.audioContext.destination.numberOfInputs;
 
-      /*
-      mandatory: {
-        'googEchoCancellation': 'false',
-        'googAutoGainControl': 'false',
-        'googNoiseSuppression': 'false',
-        'googHighpassFilter': 'false'
-      }*/
-
-    navigator.mediaDevices.getUserMedia({ audio: {
+    await navigator.mediaDevices.getUserMedia({ audio: {
       deviceId: 'mic',
     } })
         .then(function(s: MediaStream) {
@@ -118,7 +109,6 @@ export class Microphone {
           me.getMicStream(s);
 
           me.mediaRecorder.addEventListener('start', (e:any) => {
-            me.audioChunks = [];
             me.outputChunks = [];
 
             let event = new CustomEvent('start', {
@@ -130,50 +120,32 @@ export class Microphone {
             me.scriptProcessor.connect(me.audioContext.destination);
           });
 
-          me.mediaRecorder.addEventListener('dataavailable', (e:any) => {
-            me.audioChunks.push(e.data);
-          });
-
           me.mediaRecorder.addEventListener('stop', (e:any) => {
-            // stop the script processors
             me.source.disconnect();
             me.scriptProcessor.disconnect();
-
-            /*
-            // create a blob from the audio chunks
-            // so we can play the recorded voice in the player
-            let blobData = new Blob(me.audioChunks, {
-              'type': 'audio/ogg;codecs=opus'
-            });
-
-            console.log(window.URL.createObjectURL(blobData));
-            // attach the audio to the player
-            me.audioElement.src = window.URL.createObjectURL(blobData);
-            */
           });
+    }).catch(function(e){
+      console.log(e);
     });
 
-    this.setupButtons();
-
-    return new Promise(resolve => {
+    /*return new Promise(resolve => {
       resolve(me.meta);
-    });
+    });*/
+    return me.meta;
   }
 
   setupButtons(){
     let me = this;
+    me.recordButton.className = 'btn microphone__record_button';
+
     this.recordButton.addEventListener('touchstart', (e) => {
       e.preventDefault();
-      me.recordButton.className = 'btn active';
-      console.log('mouse down');
-
+      me.recordButton.className = 'btn microphone__record_button active';
       this.mediaRecorder.start();
     });
 
     this.recordButton.addEventListener('touchend', () => {
-      console.log('mouse up');
-      me.recordButton.className = 'btn';
-
+      me.recordButton.className = 'btn microphone__record_button';
       this.mediaRecorder.stop();
       let event = new CustomEvent('stop', {
         detail: 'stop'
@@ -206,18 +178,26 @@ export class Microphone {
   playOutput(arrayBuffer:any){
     let me = this;
 
-    this.audioContext.decodeAudioData(arrayBuffer, (buffer: any) => { 
-      me.audioContext.resume();
-      me.outputSource = me.audioContext.createBufferSource();
-      me.outputSource.buffer = buffer;
-      me.outputSource.connect(me.audioContext.destination);
-      me.outputSource.start();
-      me.outputSource.noteOn(0);
-    }, (e: any) => { console.log(e); });
-  }
+    try {
+      // TODO why do I call this twice?
+      if(arrayBuffer.byteLength > 0){
+        this.audioContext.decodeAudioData(arrayBuffer,
+        function(buffer:any){
+          me.audioContext.resume(); //iOS?
+          me.outputSource = me.audioContext.createBufferSource();
+          me.outputSource.connect(me.audioContext.destination);
+          me.outputSource.buffer = buffer;
+          me.outputSource.start(0);
+          //me.outputSource.noteOn(0); //iOS?
+        },
+        function(){
+          console.log(arguments);
+        });
+      }
+    } catch(e) {
+      console.log(e);
+    }
 
-  handleErrors(errors: any){
-      console.log(errors);
   }
 
   convertFloat32ToInt16(buffer:any){

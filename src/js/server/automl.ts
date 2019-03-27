@@ -54,7 +54,7 @@ export class AutoMl {
             this.location,
             this.model
         );
-
+        
         base64Img = base64Img.replace('data:image/png;base64,', '');
 
         let payload: Payload = {

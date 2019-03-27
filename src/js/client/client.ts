@@ -24,13 +24,6 @@ import {app} from './app';
  * @async
  */
 async function init() {
-  if ((<any>window).stream) {
-    let trackArr = (<any>window).stream.getTracks();
-    for (const track of trackArr) {
-      track.stop();
-    }
-  }
-
   app.init();
 }
 
