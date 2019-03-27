@@ -61,7 +61,7 @@ img {
 }
 
 body {
-  background: #fff;
+  background: $background-color;
   bottom: 0;
   font-family: $body-font;
   font-weight: 300;
@@ -75,39 +75,72 @@ body {
 }
 
 .btn {
-  background: $c-pink;
+  background: $c-red;
   border: 0;
   color: $c-white;
-  cursor: pointer;
   letter-spacing: 1px;
   padding: 8px 20px;
   font-size: 30px;
   font-family: $display-font;
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
+
+  &.active,
+  &:hover {
+    background: $c-about-bg-red;
+  }
 }
 
-.logo {
-  width: 100px;
-}
-
-.page_intro {
+.view__intro {
   z-index: 2000;
   position: relative;
-  width: 200px;
+  width: 300px;
   height: 150px;
   text-align: center;
   margin: 100px auto;
+
+  .logo {
+    width: 100px;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+  }
 
   p {
     margin: 0 0 50px 0;
   }
 }
 
-.page_controller {
+.view__status {
+  background: $background-color;
+  font-size: 20px;
   width: 100%;
-  height: 50px;
-  margin: 20px 14px;
+  height: 80px;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 25px;
+  padding: 30px 20px;
+}
+
+.view__controller {
+  width: 100%;
+  height: 80px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+
+   .btn {
+     display: inline-block;
+   }
+}
+
+.hidden {
+  display: none;
 }
 
 .play-btn {

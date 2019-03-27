@@ -24,7 +24,6 @@ let wai = require('web-audio-ios');
 const SELECTORS = {
     AUDIO_ELEMENT: '.audio_element',
     MIC_RECORD_BUTTON: '.microphone__record_button',
-    MIC_STOP_BUTTON: '.microphone__stop_button',
     AUDIO_FILE: '.microphone__file'
   };
 
@@ -33,7 +32,6 @@ export class Microphone {
     /** The HTMLAudioElement used to play audio from the microphone */
     audioElement: HTMLAudioElement;
     recordButton: HTMLElement;
-    stopButton: HTMLElement;
     fileElement: HTMLElement;
     audioChunks: Array<any>;
     outputChunks: Array<any>;
@@ -52,8 +50,6 @@ export class Microphone {
         this.meta = {};
         this.recordButton =
         <HTMLElement>document.querySelector(SELECTORS.MIC_RECORD_BUTTON);
-        this.stopButton =
-        <HTMLElement>document.querySelector(SELECTORS.MIC_STOP_BUTTON);
     }
 
   /**
@@ -157,20 +153,32 @@ export class Microphone {
           });
     });
 
-    this.recordButton.addEventListener('click', () => {
+    this.setupButtons();
+
+    return new Promise(resolve => {
+      resolve(me.meta);
+    });
+  }
+
+  setupButtons(){
+    let me = this;
+    this.recordButton.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      me.recordButton.className = 'btn active';
+      console.log('mouse down');
+
       this.mediaRecorder.start();
     });
 
-    this.stopButton.addEventListener('click', () => {
+    this.recordButton.addEventListener('touchend', () => {
+      console.log('mouse up');
+      me.recordButton.className = 'btn';
+
       this.mediaRecorder.stop();
       let event = new CustomEvent('stop', {
         detail: 'stop'
       });
       window.dispatchEvent(event);
-    });
-
-    return new Promise(resolve => {
-      resolve(me.meta);
     });
   }
 

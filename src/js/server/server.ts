@@ -80,7 +80,58 @@ export class App {
             me.io.emit('setup', `Client connected [id=${client.id}]`);
 
             client.on('snapshot', (base64Img: string) => {
-                automl.detect(base64Img);
+                automl.detect(base64Img, function(results: any){
+                    let text = '';
+                    if(results && results.payload[0]){
+                        let displayName = results.payload[0].displayName;
+                        let label = '';
+
+                        switch(displayName.toLowerCase()) {
+                            case 'sunflower':
+                            case 'sunflowers':
+                                label = 'a Sunflower';
+                                break;
+                            case 'tulip':
+                            case 'tulips':
+                                label = 'a Tulip';
+                                break;
+                            case 'rose':
+                            case 'roses':
+                                label = 'a Rose';
+                                break;
+                            case 'daisy':
+                                label = 'a Daisy';
+                                break;
+                            case 'cactus':
+                                label = 'a Cactus';
+                                break;
+                            case 'dandelion':
+                                label = 'a Dandelion';
+                                break;
+                            case 'violet':
+                                label = 'a Violet';
+                                break;
+                            case 'aster':
+                                label = 'an Aster';
+                                break;
+                            case 'dahlia':
+                                label = 'a Dahlia';
+                                break;
+                            case 'waterlilly':
+                                label = 'a Water Lilly';
+                                break;
+                            default:
+                                label = 'a Flower';
+                        }
+
+                        text = `Great, this looks like a ${label}`;
+                    } else {
+                        text = `Auch, I couldn't detect a flower.`;
+                    }
+                    console.log(results);
+                    // TODO change Dialogflow speech based on results
+                    client.emit('imgresult', text);
+                });
             });
 
             client.on('meta', (meta: any) => {

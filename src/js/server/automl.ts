@@ -44,7 +44,7 @@ export class AutoMl {
     /*
      * Setup AutoML
      */
-    public detect(base64Img: string) {
+    public detect(base64Img: string, callback: Function) {
         this.sessionClient = new sdk.v1beta1.PredictionServiceClient({
             projectId: this.projectId
         });
@@ -71,11 +71,11 @@ export class AutoMl {
         this.sessionClient.predict(request)
         .then(function(responses: any){
             const response = responses[0];
-            console.log(response);
-            // TODO change DIALOGFLOW SPEECH BASED ON RESPONSE
+            callback(response);
           })
           .catch(function(err: any){
             console.error(err);
+            callback(err);
           });
 
     }

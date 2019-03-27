@@ -26,8 +26,9 @@ interface CameraDimentions {
 
 const SELECTORS = {
     START_ELEMENT: '.start_button',
-    PAGE_INTRO: '.page_intro',
-    PAGE_CONTROLLER: '.page_controller'
+    PAGE_INTRO: '.view__intro',
+    PAGE_CONTROLLER: '.view__controller',
+    PAGE_STATUS: '.view__status'
 };
 
 export class App {
@@ -40,6 +41,7 @@ export class App {
     startButton: HTMLElement;
     pageController: HTMLElement;
     pageIntro: HTMLElement;
+    pageStatus: HTMLElement;
 
     constructor() {
         this.flowers = [];
@@ -52,6 +54,8 @@ export class App {
         <HTMLElement>document.querySelector(SELECTORS.PAGE_CONTROLLER);
         this.pageIntro =
         <HTMLElement>document.querySelector(SELECTORS.PAGE_INTRO);
+        this.pageStatus =
+        <HTMLElement>document.querySelector(SELECTORS.PAGE_STATUS);
     }
 
     /*
@@ -60,14 +64,16 @@ export class App {
     init() {
         let me = this;
         this.startButton.addEventListener('click', () => {
-            me.pageIntro.style.display = 'none';
-            me.pageController.style.display = 'block';
+            me.pageIntro.className = 'view__intro hidden';
 
             if(this.firstRun){
                 Promise.all([
                     camera.setupCamera().then((value: CameraDimentions) => {
                         camera.setupVideoDimensions(value[0], value[1]);
                         me.speak();
+
+                        me.pageController.className = 'view__controller';
+                        me.pageStatus.className = 'view__status';
                     }),
                 ]).then(values => {
                     this.firstRun = false;
@@ -92,6 +98,9 @@ export class App {
     me.socket.on('broadcast', function(audioBuffer:any) {
         microphone.playOutput(audioBuffer);
     });
+    me.socket.on('imgresult', function(text: string) {
+        me.pageStatus.innerHTML = text;
+    });
 
     }
 
@@ -102,6 +111,7 @@ export class App {
         // Make snapshot
         this.flowers.push(camera.snapshot());
         this.socket.emit('snapshot', this.flowers[0].src);
+        camera.pauseCamera();
     }
 
     /*

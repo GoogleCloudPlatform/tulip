@@ -9,7 +9,7 @@ var AutoMl = (function () {
         this.location = process.env.ML_MODEL_LOCATION;
         this.model = process.env.ML_MODEL_ID;
     }
-    AutoMl.prototype.detect = function (base64Img) {
+    AutoMl.prototype.detect = function (base64Img, callback) {
         this.sessionClient = new sdk.v1beta1.PredictionServiceClient({
             projectId: this.projectId
         });
@@ -27,10 +27,11 @@ var AutoMl = (function () {
         this.sessionClient.predict(request)
             .then(function (responses) {
             var response = responses[0];
-            console.log(response);
+            callback(response);
         })
             .catch(function (err) {
             console.error(err);
+            callback(err);
         });
     };
     return AutoMl;

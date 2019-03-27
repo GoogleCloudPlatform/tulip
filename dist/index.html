@@ -11,13 +11,18 @@
   </head>
   <body>
 
-    <div class="page_intro">
+    <div class="view__intro">
       <img src="img/tulip_icon.png" class="logo">
-      <h1>Google Tulip</h1>
+      <h1>Tulip Translator</h1>
       <p>
-        Talking to your tulips from April 1st.
+        With this application you can talk to your
+        flowers.
       </p>
-      <a href="#" class="btn start_button">START</a>
+      <p>
+        Point your camera and press the button, to snap
+        a picture of your flower.
+      </p>
+      <a href="#" class="btn start_button">Take a picture</a>
     </div>
 
     <div class="view__camera view__camera--js">
@@ -31,9 +36,9 @@
     </div>
 
     <div class="view__microphone">
-      <div class="page_controller" style="display: none;">
-        <a href="#" class="btn microphone__record_button">RECORD</a>
-        <a href="#" class="btn microphone__stop_button">STOP</a>
+      <div class="view__status hidden"></div>
+      <div class="view__controller hidden">
+        <a href="#" class="btn microphone__record_button">Talk</a>
       </div>
     </div>
     <script>

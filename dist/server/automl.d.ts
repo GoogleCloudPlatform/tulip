@@ -4,6 +4,6 @@ export declare class AutoMl {
     private location;
     private model;
     constructor();
-    detect(base64Img: string): void;
+    detect(base64Img: string, callback: Function): void;
 }
 export declare let automl: AutoMl;
