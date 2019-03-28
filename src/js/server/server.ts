@@ -16,14 +16,16 @@
  * =============================================================================
  */
 
+import * as sourceMapSupport from 'source-map-support';
+sourceMapSupport.install();
+
 import { createServer } from 'http';
 import { dialogflow } from './dialogflow';
 import { automl } from './automl';
 import * as express from 'express';
 import * as socketIo from 'socket.io';
 import * as path from 'path';
-
-const cors = require('cors');
+import * as cors from 'cors';
 
 export class App {
 
