@@ -65,7 +65,8 @@ export class Camera {
       this.videoElement.srcObject = stream;
       return new Promise((resolve, reject) => {
 
-        me.cameraButton.addEventListener('click', function(e: any){
+        me.cameraButton.addEventListener('click', function(e: any) {
+          e.preventDefault();
           me.cameraButton.className = 'hidden';
           let img = me.snapshot();
           // fire event from window

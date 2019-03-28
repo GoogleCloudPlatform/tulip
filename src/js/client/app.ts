@@ -60,7 +60,8 @@ export class App {
     */
     init() {
         let me = this;
-        this.startButton.addEventListener('click', () => {
+        this.startButton.addEventListener('click', (e) => {
+            e.preventDefault();
             if(this.firstRun){
                 me.pageIntro.className = 'view__intro hidden';
                 Promise.all([
