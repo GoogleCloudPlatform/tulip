@@ -23,7 +23,7 @@
     "poly-build": "browserify src/js/polyfill.js -o dist/js/polyfill.js",
     "browsersupport-build": "browserify src/js/browsersupport.js -o dist/js/browsersupport.js",
     "js-compress": "uglifyjs dist/js/client.js -c -m -o dist/js/client.js",
-    "build": "concurrently \"yarn sass-build\" \"yarn js-build\" \"yarn server-build\""
+    "build": "concurrently \"yarn sass-build\" \"yarn js-build\" \"yarn poly-build\" \"yarn browsersupport-build\" \"yarn server-build\""
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "3.2.0",
@@ -35,6 +35,7 @@
     "@types/socket.io": "^2.1.2",
     "@types/stats.js": "^0.17.0",
     "@types/uuid": "^3.4.4",
+    "audio-recorder-polyfill": "^0.1.5",
     "browserify": "^16.0.0",
     "browserify-shim": "^3.8.14",
     "concurrently": "^3.5.1",
