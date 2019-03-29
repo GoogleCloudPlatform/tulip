@@ -9,7 +9,7 @@
 
 Always been curious to learn what your plants and flowers would say if they could talk?  With Tulip Translator you can have a mock conversation with your favorite flower. But beware, it has an attitude :)
 
-1. Get your mobile and open [[https://proj](https://project-shunkaen.appspot.com)](https://project-shunkaen.appspot.com)
+1. Get your mobile and open [[https://project-shunkaen.appspot.com)](https://project-shunkaen.appspot.com)
 
 2. Point your camera at a flower, and snap a picture!
 
@@ -62,7 +62,7 @@ authentication:
 * [Application Default Credentials]( https://cloud.google.com/docs/authentication#getting_credentials_for_server-centric_flow)
 * [Additional scopes](https://cloud.google.com/compute/docs/authentication#using)
 * [Service Account key file](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatinganaccount)
-)
+
 
 ## Setup the Dialogflow Agent
 
@@ -121,11 +121,13 @@ Install dependencies:
 
 `./setup.sh`
 
-`yarn start`
-
-## Build application
+First build the TypeScript files to JS:
 
 `yarn build`
+
+Start the application, it runs on port: 8080
+
+`yarn start`
 
 
 ## Deploy to AppEngine Flex
