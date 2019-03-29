@@ -24,7 +24,7 @@ Always been curious to learn what your plants and flowers would say if they coul
 This experiment, showcases the power of Google Cloud.
 The following building blocks have been used:
 
-* AutoML Vision
+* AutoML Vision with Flower Dataset [(see tutorial)](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_automl.md)
 * Dialogflow Enterprise with STT & TTS
 * AppEngine Flex
 
