@@ -3,7 +3,7 @@
 # Tulip Translator
 
 
-**Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage.**
+**Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage, and is not an official Google product**
 
 **Copyright 2019 Google LLC. This software is provided as-is, without warranty or representation for any use or purpose. Your use of it is subject to your agreements with Google.**  
 
@@ -24,8 +24,8 @@ Always been curious to learn what your plants and flowers would say if they coul
 This experiment, showcases the power of Google Cloud.
 The following building blocks have been used:
 
-* AutoML Vision with Flower Dataset [(see tutorial)](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_automl.md)
-* Dialogflow Enterprise with STT & TTS
+* AutoML Vision with a Flower Dataset [(see tutorial)](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_automl.md)
+* Dialogflow Enterprise with Speech-to-Text & Text-to-Speech
 * AppEngine Flex
 
 ### Details
@@ -33,7 +33,10 @@ The following building blocks have been used:
 This application is written in JavaScript for Node.js and browser. The **src/client** app
 is written in TypeScript, and talks via WebSockets to the Node.js server **src/server**.
 The client application enables the Camera & Microphone throught HTML5 browser APIs (`navigator.getUserMedia`).
-The server application has the integration with the AutoML and Dialogflow SDKs.
+The server application has the integration with the AutoML and Dialogflow SDKs: 
+* checks the photo of flower against an AutoML Vision model to identify the flower
+* passes audio to Dialogflow to start the conversation
+* uses Cloud Speech-to-Text to generate the flower's speech
 
 ## Authentication
 
@@ -148,6 +151,6 @@ Then run something like `docker exec -i -t 04473eaa2bb4 /bin/bash`. Make sure to
 
 #
 
-**Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage.**
+**Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage, and is not an official Google product.**
 
 **Copyright 2019 Google LLC. This software is provided as-is, without warranty or representation for any use or purpose. Your use of it is subject to your agreements with Google.**  
