@@ -43,22 +43,11 @@ export class App {
         this.app = express();
         this.app.use(cors());
 
-        let dist = path.join(__dirname, '../');
-        this.app.get('/',
-            function(req: express.Request, res: express.Response) {
-                res.sendFile(path.join(dist, 'index.html'));
-        });
-        this.app.use(function(req: express.Request, res: express.Response,
-            next: express.NextFunction){
-            if(req.headers['x-forwarded-proto'] &&
-            req.headers['x-forwarded-proto'] === 'http'){
-                return res.redirect(
-                    ['https://', req.get('Host'), req.url].join('')
-                );
-            }
+        this.app.use(function(req, res, next) {
+            res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
             next();
         });
-        this.app.use('/', express.static(dist));
+        this.app.use('/', express.static(path.join(__dirname, '../')));
     }
 
     private createServer(): void {
