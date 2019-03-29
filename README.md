@@ -1,4 +1,39 @@
-#### Authentication
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+# Tulip Translator
+
+**Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage.**
+
+**Copyright 2019 Google LLC. This software is provided as-is, without warranty or representation for any use or purpose. Your use of it is subject to your agreements with Google.**  
+
+
+Always been curious to learn what your plants and flowers would say if they could talk?  With Tulip Translator you can have a mock conversation with your favorite flower. But beware, it has an attitude :)
+
+1. Get your mobile and open [[https://proj](https://project-shunkaen.appspot.com)](https://project-shunkaen.appspot.com)
+
+2. Point your camera at a flower, and snap a picture!
+
+3. The Google Cloud AutoML Vision model, will detect your flower, and return the results on the screen.
+
+4. Get ready! Now you can start your conversation.
+
+## Powered by Google Cloud
+
+This experiment, showcases the power of Google Cloud.
+The following building blocks have been used:
+
+* AutoML Vision
+* Dialogflow Enterprise with STT & TTS
+* AppEngine Flex
+
+### Details
+
+This application is written in JavaScript for Node.js and browser. The **src/client** app
+is written in TypeScript, and talks via WebSockets to the Node.js server **src/server**.
+The client application enables the Camera & Microphone throught HTML5 browser APIs (`navigator.getUserMedia`).
+The server application has the integration with the AutoML and Dialogflow SDKs.
+
+## Authentication
 
 Authentication is typically done through `Application Default Credentials`,
 which means you do not have to change the code to authenticate as long as
@@ -28,7 +63,8 @@ authentication:
 * [Additional scopes](https://cloud.google.com/compute/docs/authentication#using)
 * [Service Account key file](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatinganaccount)
 )
-### Setup the Dialogflow Agent
+
+## Setup the Dialogflow Agent
 
 1. (optional) In the cloud console, search for Dialogflow API
 
@@ -67,7 +103,7 @@ authentication:
 
 6. On your hard drive navigate to *dialogflow* zip this folder, and then **Import from Zip** in the Dialogflow settings screen. These are some example chatbot dialogs.
 
-# Setup Development Machine
+## Setup Development Machine
 
 . Rename *env.txt* to *.env* and change the variables.
 
@@ -87,11 +123,15 @@ Install dependencies:
 
 `yarn start`
 
-# Build application
+## Build application
 
 `yarn build`
 
 
-# Deploy to AppEngine Flex
+## Deploy to AppEngine Flex
 
 `gcloud app deploy`
+
+**Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage.**
+
+**Copyright 2019 Google LLC. This software is provided as-is, without warranty or representation for any use or purpose. Your use of it is subject to your agreements with Google.**  
