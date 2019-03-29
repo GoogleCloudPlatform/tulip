@@ -118,7 +118,6 @@ cors-settings.json
 app_old.yaml
 *.wav
 
-temp/*
 */.env
 *.env
 serviceaccount.json

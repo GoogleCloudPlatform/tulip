@@ -2,10 +2,12 @@
 
 # Tulip Translator
 
+
 **Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage.**
 
 **Copyright 2019 Google LLC. This software is provided as-is, without warranty or representation for any use or purpose. Your use of it is subject to your agreements with Google.**  
 
+#
 
 Always been curious to learn what your plants and flowers would say if they could talk?  With Tulip Translator you can have a mock conversation with your favorite flower. But beware, it has an attitude :)
 

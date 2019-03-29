@@ -116,7 +116,7 @@ export class App {
                                 label = 'a Flower';
                         }
 
-                        text = `Great, this looks like a ${label}`;
+                        text = `Great, this looks like ${label}`;
                     } else {
                         text = `Auch, I couldn't detect a flower.`;
                     }
