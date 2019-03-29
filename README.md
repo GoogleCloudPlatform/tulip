@@ -9,7 +9,7 @@
 
 Always been curious to learn what your plants and flowers would say if they could talk?  With Tulip Translator you can have a mock conversation with your favorite flower. But beware, it has an attitude :)
 
-1. Get your mobile and open [[https://project-shunkaen.appspot.com)](https://project-shunkaen.appspot.com)
+1. Build the code, and deploy it on Google App Engine Flex.
 
 2. Point your camera at a flower, and snap a picture!
 
