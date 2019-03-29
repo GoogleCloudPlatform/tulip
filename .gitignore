@@ -121,3 +121,4 @@ app_old.yaml
 temp/*
 */.env
 *.env
+serviceaccount.json
