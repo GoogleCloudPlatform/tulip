@@ -4,6 +4,8 @@ source ./.env
 SERVICE_ACCOUNT_NAME="shunkaen-app-$(date +"%s")"
 BUCKET="project-shunkaen-vcm"
 
+mkdir temp/
+
 SA_EMAIL=$(gcloud iam service-accounts list \
   --filter="displayName:$SERVICE_ACCOUNT_NAME" \
   --format='value(email)')
