@@ -1,7 +1,7 @@
 {
-  "name": "projectshunkaen",
-  "version": "0.1.0",
-  "description": "Project Shunkaen",
+  "name": "tuliptranslator",
+  "version": "1.0.0",
+  "description": "Tulip Translator",
   "license": "Apache Version 2.0",
   "author": "Google Inc.",
   "engines": {
@@ -66,8 +66,7 @@
     "socket.io-stream": "^0.9.1",
     "through2": "^3.0.1",
     "uuid": "^3.3.2",
-    "wav": "^1.0.2",
-    "web-audio-ios": "^1.0.2"
+    "wav": "^1.0.2"
   },
   "cloud-repo-tools": {
     "test": {
