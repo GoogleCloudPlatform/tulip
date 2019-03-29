@@ -8,3 +8,4 @@ cors-settings.json
 *.map
 app_old.yaml
 *.wav
+temp/*

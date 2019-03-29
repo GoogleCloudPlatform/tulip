@@ -1,0 +1,84 @@
+[
+  {
+    "id": "540a1af0-df5a-44ce-a6ee-676cf82dd6e2",
+    "data": [
+      {
+        "text": "Je bent een BB, een bekende bloem.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ca60c495-8e04-4d63-b26d-29dcb8363879",
+    "data": [
+      {
+        "text": "Je bent ",
+        "userDefined": false
+      },
+      {
+        "text": "nu",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " echt ",
+        "userDefined": false
+      },
+      {
+        "text": "een",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " beroemdheid he?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "994c6c9c-0b4b-468d-ad91-e8a787de6be6",
+    "data": [
+      {
+        "text": "Ga je op in je beroemdheid?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "e3ca2f14-4569-44da-a8f4-23168b5323d4",
+    "data": [
+      {
+        "text": "Hoe voelt het om ",
+        "userDefined": false
+      },
+      {
+        "text": "een",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " beroemde bloem te zijn?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "8c84d192-5e26-4bb8-abae-d1fb3d797753",
+    "data": [
+      {
+        "text": "Hoe is het om beroemd te zijn?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

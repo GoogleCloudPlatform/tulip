@@ -1,0 +1,32 @@
+{
+  "id": "6723b8a9-1631-482a-8239-58ae889284a0",
+  "name": "Interview 5 (childhood)",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Vroeger, toen ik nog een bloembol was, droomde ik om later een mooie bloem te worden. En kijk mij nu eens! Wil je nog een andere vraag aan mij stellen?"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Back when I was a bulb, I always dreamed of becoming a flower. And look at me now! Now, do you want to ask another question?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

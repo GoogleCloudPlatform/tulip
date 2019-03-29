@@ -1,0 +1,32 @@
+{
+  "id": "57e43c6d-c16e-406d-98b6-87224d01ce38",
+  "name": "Interview 0 (welcome)",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Het was eindelijk mogelijk om meer water te vragen. Trouwens, ik zou nu graag ook wat meer water willen. Heb je nog een andere vraag voor me?"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Thanks, happy to be here. What are you curious about?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

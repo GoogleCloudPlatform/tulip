@@ -1,0 +1,40 @@
+{
+  "id": "820f758f-31f2-4311-9281-aa9415df4172",
+  "name": "Interview 4 (red)",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "b9b3f1c9-8c72-46de-aca6-86ef7fd3f823",
+          "dataType": "@sys.color",
+          "name": "color",
+          "value": "$color",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Ik ben eigenlijk rood maar ik ga nu van mijn zonlicht genieten. Doei!"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "I\u0027m actually red. I\u0027m going to enjoy my sunlight now. Goodbye."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "id": "0087863d-06df-4a94-a545-67cdf7d30139",
+    "data": [
+      {
+        "text": "What color are you?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "99d510d2-a2fd-4b27-a484-63bc3c3968a2",
+    "data": [
+      {
+        "text": "Are you ",
+        "userDefined": false
+      },
+      {
+        "text": "pink",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "f3860824-12fd-411b-940c-caa5f66a3598",
+    "data": [
+      {
+        "text": "When did you decide to be ",
+        "userDefined": false
+      },
+      {
+        "text": "pink",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

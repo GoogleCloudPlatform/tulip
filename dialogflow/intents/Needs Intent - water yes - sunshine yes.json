@@ -1,0 +1,38 @@
+{
+  "id": "61a58611-5aef-4276-aa9d-47ca5fb1cbca",
+  "parentId": "4f948b7f-eafb-4376-9a72-3878131e60ba",
+  "rootParentId": "4d7f7fc2-bf35-409a-96b1-98618e9547ff",
+  "name": "Needs Intent - water yes - sunshine yes",
+  "auto": true,
+  "contexts": [
+    "NeedsIntent-custom-2-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "NeedsIntent.NeedsIntent-custom-2.NeedsIntent-custom-2-yes",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Oh nee. Ik heb genoeg zonlicht gehad voor vandaag. Zou je mij misschien in de schaduw willen zetten? Ik heb nu rust nodig. Ik heb al mijn energie nodig om te groeien."
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Oh no. I had about enough sunshine for today. Would you mind \nputting me back in the shadow? I need to rest now. I need all my energy to grow."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1531867231,
+  "fallbackIntent": false,
+  "events": []
+}

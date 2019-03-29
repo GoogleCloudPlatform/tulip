@@ -1,0 +1,27 @@
+{
+  "id": "0a22f4be-6a94-42d3-9c45-1709bbd9eaa0",
+  "name": "Interview 1 (humans, water)",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "I finally was able to ask for more water. By the way, could I have some water, then do you want to ask another question?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

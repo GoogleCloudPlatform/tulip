@@ -1,0 +1,44 @@
+{
+  "id": "4f948b7f-eafb-4376-9a72-3878131e60ba",
+  "parentId": "4d7f7fc2-bf35-409a-96b1-98618e9547ff",
+  "rootParentId": "4d7f7fc2-bf35-409a-96b1-98618e9547ff",
+  "name": "Needs Intent - water",
+  "auto": true,
+  "contexts": [
+    "NeedsIntent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "NeedsIntent.NeedsIntent-custom-2",
+      "affectedContexts": [
+        {
+          "name": "NeedsIntent-custom-2-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Ah. Interessant. Ik ook. Misschien zijn we familie. \nWater is de essentie van het bestaan. Heb je ook graag zonlicht?"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Ah. Interesting. Me too. We could be related.\nWater is the essence of existence. Do you like sunshine as well?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1508189124811,
+  "fallbackIntent": false,
+  "events": []
+}

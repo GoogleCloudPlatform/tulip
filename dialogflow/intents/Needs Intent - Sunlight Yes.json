@@ -1,0 +1,38 @@
+{
+  "id": "01813716-170a-4788-8f62-ef1df78bda6f",
+  "parentId": "fd328699-3f4d-404f-aac1-0e97e69bccd5",
+  "rootParentId": "4d7f7fc2-bf35-409a-96b1-98618e9547ff",
+  "name": "Needs Intent - Sunlight Yes",
+  "auto": true,
+  "contexts": [
+    "NeedsIntent-custom-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "NeedsIntent.NeedsIntent-custom.NeedsIntent-custom-yes",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Zou je mij in de schaduw willen plaatsen? Ga gerust zelf lekker in de zon staan. Ik ga nu stoppen met praten, ik heb namelijk al mijn energie nodig om te groeien."
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Great! Then you will be happy joining me in the shade.\nIf you’ll excuse me, I’ll stop talking now. I need all my energy to grow."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1531867231,
+  "fallbackIntent": false,
+  "events": []
+}

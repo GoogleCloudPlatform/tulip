@@ -1,0 +1,41 @@
+{
+  "id": "9cb7a707-d8a7-445f-8ea3-babe8095d936",
+  "name": "Default Fallback Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.unknown",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": [
+            "Ah ha. Hmm Hmm. Ja. Ja. Hey misschien wil je aan me vragen wat ik nodig heb om sneller te groeien.",
+            "Sorry. Ik luisterde even niet. Kun je me vragen wat ik nodig heb om sneller te groeien?",
+            "Kunnen we het ergens anders over hebben? Bijvoorbeeld, over hoe beroemd ik ben. Of wat ik nodig heb, om sneller te groeien."
+          ]
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "Oh. I see. Well well. Hey, maybe you would like to ask what I need to grow faster?",
+            "I\u0027m sorry, I wasn\u0027t listening. Could you ask about my childhood, or what i need to grow?",
+            "Could we talk about something else - for instance, ask me about my newfound fame or how you can help me grow faster?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": true,
+  "events": []
+}

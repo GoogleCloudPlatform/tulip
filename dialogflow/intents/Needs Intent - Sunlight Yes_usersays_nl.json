@@ -1,0 +1,135 @@
+[
+  {
+    "id": "7aa4afdb-ae1b-438c-aa9f-f8ce60c2fe05",
+    "data": [
+      {
+        "text": "Licht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "4061ac24-5857-4395-97d0-38cfc1764582",
+    "data": [
+      {
+        "text": "Zonlicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "0ab26530-378e-45e2-8ae0-becc9f2ab552",
+    "data": [
+      {
+        "text": "Ook licht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "c7000180-6f28-416a-abba-bc7eb36db375",
+    "data": [
+      {
+        "text": "Ook zon",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "cb74616f-bb44-40da-86bd-192d6ff5d6f8",
+    "data": [
+      {
+        "text": "Ja hoor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a0015cf4-defb-447f-97c2-9f0b8d92d764",
+    "data": [
+      {
+        "text": "Goed",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "5e246b93-0c9b-43bc-83c5-49a6ddf11668",
+    "data": [
+      {
+        "text": "Okay",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "787ec415-e13e-47f0-b02b-6d25afbe6219",
+    "data": [
+      {
+        "text": "Okee",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "431e0357-987c-49dc-9c55-896590fba313",
+    "data": [
+      {
+        "text": "Ok",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "b77dc111-fd84-4a0d-82ad-7a100e2dac09",
+    "data": [
+      {
+        "text": "yep",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "2988e720-2411-499c-8cbf-a581b446854a",
+    "data": [
+      {
+        "text": "Dat is goed",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "f2f42d33-4b75-4290-8647-ab77bc43bb9c",
+    "data": [
+      {
+        "text": "Ja",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

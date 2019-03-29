@@ -1,0 +1,35 @@
+[
+  {
+    "id": "182e9a24-4898-458a-8bd9-d8e9e4b88c4d",
+    "data": [
+      {
+        "text": "I like water",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a08df2f2-4e96-4ad9-9838-bface699f787",
+    "data": [
+      {
+        "text": "I prefer water",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "4eba18b9-d94c-47f7-81df-05ac9db8d2d9",
+    "data": [
+      {
+        "text": "water",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

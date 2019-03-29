@@ -1,0 +1,122 @@
+[
+  {
+    "id": "a2a808bd-fd38-49e6-beb7-fc287f7e5d94",
+    "data": [
+      {
+        "text": "hé",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "c5f84a6d-6c74-4313-8606-da10754208c9",
+    "data": [
+      {
+        "text": "hoi",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "05f89de1-b47b-44bd-989b-111cbeebb808",
+    "data": [
+      {
+        "text": "hé hoi",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "52608c6e-0e04-4d80-9c38-1bccf3043cd6",
+    "data": [
+      {
+        "text": "hé hallo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "9b529935-2390-4aae-b613-399fe64d3856",
+    "data": [
+      {
+        "text": "gegroet",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "bd590f09-61d0-4f5b-9ea0-88f8033fc87e",
+    "data": [
+      {
+        "text": "ik begroet je",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "66aa3ec2-57f9-47d0-8d8a-df82667d746e",
+    "data": [
+      {
+        "text": "lang niet gezien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "f901cf4b-b612-4447-9c51-fc23f3febfad",
+    "data": [
+      {
+        "text": "goeiedag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "4f9d04c8-7842-4ae1-83bd-b157d0073483",
+    "data": [
+      {
+        "text": "goedendag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "418a0237-e14d-4f39-b86d-84a2dd7e275c",
+    "data": [
+      {
+        "text": "hallo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

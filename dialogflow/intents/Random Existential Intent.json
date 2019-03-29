@@ -1,0 +1,43 @@
+{
+  "id": "455b649a-f0f2-4c48-b188-58a152ee9f0e",
+  "name": "Random Existential Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": [
+            "Water graag. Heb je een betere vraag?",
+            "Water. Leef ik nog?",
+            "Wat is de betekenis van mijn bestaan?",
+            "Water graag. Leef ik nog?"
+          ]
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "Water Please. Do you have a more interesting question?",
+            "Water. Am I alive?",
+            "What is the meaning of my existence?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {
+        "hangouts": false
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

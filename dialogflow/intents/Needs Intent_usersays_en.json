@@ -1,0 +1,77 @@
+[
+  {
+    "id": "ac21e942-f087-4466-b034-970fe5a69de9",
+    "data": [
+      {
+        "text": "Do you need anything?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "8a3f8146-e89e-4259-af79-b440be76f3f9",
+    "data": [
+      {
+        "text": "What would you like?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "c5d24720-e7e5-42f2-95a3-cf1502c6714f",
+    "data": [
+      {
+        "text": "Can you grow faster?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a1a5f538-d43f-4d0c-a838-6bd1d0b98196",
+    "data": [
+      {
+        "text": "How can I help you?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "89985aa3-e019-41b9-8c39-05b1d96eee26",
+    "data": [
+      {
+        "text": "How are you feeling ",
+        "userDefined": false
+      },
+      {
+        "text": "today",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "6123f358-9be3-4f7d-9274-3b1eb842dafc",
+    "data": [
+      {
+        "text": "What do you need?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

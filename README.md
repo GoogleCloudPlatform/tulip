@@ -14,7 +14,10 @@ authentication:
     
         gcloud auth login
 
-2. You can create a `Service Account key file`. This file can be used to
+2. You can create a `Service Account key file`. 
+   You need to create a Service Account key file. This file can be used to authenticate to Google Cloud Platform services.
+
+   This file can be used to
    authenticate to Google Cloud Platform services from any environment. To use
    the file, set the ``GOOGLE_APPLICATION_CREDENTIALS`` environment variable to
    the path to the key file, for example:
@@ -64,14 +67,31 @@ authentication:
 
 6. On your hard drive navigate to *dialogflow* zip this folder, and then **Import from Zip** in the Dialogflow settings screen. These are some example chatbot dialogs.
 
-# Setup
+# Setup Development Machine
 
-. setup.sh
+. Rename *env.txt* to *.env* and change the variables.
+
+Install NVM: https://github.com/creationix/nvm and use it to install Node 11:
+
+`nvm i`
+
+Install Yarn: https://yarnpkg.com/en/docs/install
+
+Install dependencies:
+
+`yarn`
+
+. Then run:
+
+`./setup.sh`
+
+`yarn start`
 
 # Build application
 
-yarn build
+`yarn build`
 
-# Start Application 
 
-npm start
+# Deploy to AppEngine Flex
+
+`gcloud app deploy`

@@ -1,0 +1,35 @@
+{
+  "id": "66682684-0120-499b-96c6-7e0624cbb788",
+  "name": "Compliment intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Dank je! Jij ook. Echt waar.  Heb je ook een vraag voor mij?"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Thank you. So do you. Really.  Wouldn\u0027t you like to ask me a question though?"
+        }
+      ],
+      "defaultResponsePlatforms": {
+        "google": true,
+        "hangouts": false
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

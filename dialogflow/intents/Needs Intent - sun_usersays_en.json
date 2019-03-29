@@ -1,0 +1,47 @@
+[
+  {
+    "id": "612e8358-c75b-45a2-a353-8cd439990dee",
+    "data": [
+      {
+        "text": "I like sun",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "f51fa1a4-31ae-48aa-90c5-03d5d81096da",
+    "data": [
+      {
+        "text": "Sun",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "b4d404d7-ba84-4724-bbb4-4edd6835e993",
+    "data": [
+      {
+        "text": "I love the sun",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "11f1b980-0bef-431c-b6c8-7ed68cfbce09",
+    "data": [
+      {
+        "text": "Sunlight",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

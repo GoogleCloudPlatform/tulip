@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1e1d5460-2a2a-452a-9dbb-521c9d013ac8",
+    "data": [
+      {
+        "text": "Geen licht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a830d7cc-c318-4b7f-a1f5-5adfe6e5d534",
+    "data": [
+      {
+        "text": "Nope",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "7d817d91-3cac-4f03-adbd-1ed474a0348e",
+    "data": [
+      {
+        "text": "Geen van beide",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "6ca21176-1c9d-40d0-962f-0172d3e50969",
+    "data": [
+      {
+        "text": "Geen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "76b69ce9-5996-429a-b07a-105fb839868a",
+    "data": [
+      {
+        "text": "Helemaal niets",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "f50d44b1-4e86-4452-8339-765b822e4651",
+    "data": [
+      {
+        "text": "Niets",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "d771e2fe-1325-4090-88b0-14722cbed8fa",
+    "data": [
+      {
+        "text": "Geen zonlicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "90c41a01-2ba4-4ac1-b283-cb05c63aa178",
+    "data": [
+      {
+        "text": "Nee",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

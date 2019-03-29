@@ -1,0 +1,35 @@
+[
+  {
+    "id": "46765ed0-61e7-48fe-9f86-4d99fe280767",
+    "data": [
+      {
+        "text": "Water is leuker",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "5a739fa6-dfae-432e-a064-2585d29ee390",
+    "data": [
+      {
+        "text": "Ik heb liever water",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "693a3a5b-e1f5-48c7-9b56-2dc53c0211c9",
+    "data": [
+      {
+        "text": "Water",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

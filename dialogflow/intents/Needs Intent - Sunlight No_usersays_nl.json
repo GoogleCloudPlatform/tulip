@@ -1,0 +1,90 @@
+[
+  {
+    "id": "00d945a0-4f4b-4a29-9177-2cb688c166ec",
+    "data": [
+      {
+        "text": "Nee liever niet",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "07e0f556-6fe1-44a4-bccd-b15f128a99a8",
+    "data": [
+      {
+        "text": "Nee hoor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "31723e14-6f2b-4c95-98c8-e6f741ccb1ca",
+    "data": [
+      {
+        "text": "Schaduw",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "6025a0a8-09a2-4374-887f-9efcc88dd190",
+    "data": [
+      {
+        "text": "Geen zon",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "462a452d-b7c5-4ba4-9c23-2a5fdcf66938",
+    "data": [
+      {
+        "text": "Nope",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "17344bec-8852-431b-8d80-05f8acd697f8",
+    "data": [
+      {
+        "text": "Geen licht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "67dd1467-ef98-4c8b-94f5-3c39f1714cd2",
+    "data": [
+      {
+        "text": "Geen zonlicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a3bbf5fd-009a-47d3-87b3-9fea16c14415",
+    "data": [
+      {
+        "text": "Nee",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

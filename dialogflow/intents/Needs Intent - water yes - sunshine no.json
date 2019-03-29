@@ -1,0 +1,38 @@
+{
+  "id": "a92f9a31-0a26-4c97-b199-f55261fa841a",
+  "parentId": "4f948b7f-eafb-4376-9a72-3878131e60ba",
+  "rootParentId": "4d7f7fc2-bf35-409a-96b1-98618e9547ff",
+  "name": "Needs Intent - water yes - sunshine no",
+  "auto": true,
+  "contexts": [
+    "NeedsIntent-custom-2-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "NeedsIntent.NeedsIntent-custom-2.NeedsIntent-custom-2-no",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Mooi zo. Dan vind je het vast niet erg, om me even in de schaduw te zetten. Ik  ga stoppen met praten nu. Ik heb al mijn energie nodig om te groeien."
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Great! Then you will be happy joining me in the shade.\nIf you’ll excuse me, I’ll stop talking now. I need all my energy to grow."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1531859391,
+  "fallbackIntent": false,
+  "events": []
+}

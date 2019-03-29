@@ -1,0 +1,55 @@
+[
+  {
+    "id": "13d532c8-5f90-4b52-8e72-9d946fd9a626",
+    "data": [
+      {
+        "text": "Waarom bestaan er bloemen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "50672b8b-89c8-4a6b-aaab-ea5a2805718d",
+    "data": [
+      {
+        "text": "Waarom zijn er bloemen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "778c64bc-64bd-45c5-957e-af0d7590a8d2",
+    "data": [
+      {
+        "text": "Waarom besta jij?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ebaa0a25-a581-4abc-96da-a638aaf2bb44",
+    "data": [
+      {
+        "text": "Wat is ",
+        "userDefined": false
+      },
+      {
+        "text": "de",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " betekenis van het leven?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

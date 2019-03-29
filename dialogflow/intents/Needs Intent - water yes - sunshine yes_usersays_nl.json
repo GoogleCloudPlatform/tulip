@@ -1,0 +1,124 @@
+[
+  {
+    "id": "7015a56a-fb69-46f1-be16-f1a00b8f4f3b",
+    "data": [
+      {
+        "text": "Ja hoor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "cccb6acc-3702-4c83-b40e-706999bc623d",
+    "data": [
+      {
+        "text": "yep",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "41356ab4-f9a1-425d-9534-302e9769d019",
+    "data": [
+      {
+        "text": "Ik heb liever zonlicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "e39fe61c-6412-473e-a88b-35ca59ef9d23",
+    "data": [
+      {
+        "text": "Ik vind zonlicht leuk",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "d282bcbe-4a95-4d45-817e-5655a0948e74",
+    "data": [
+      {
+        "text": "Dat is ook goed",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ddb8fa48-dd76-46b2-8d5a-f9ef50f8ee9f",
+    "data": [
+      {
+        "text": "Zonlicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "91c1217f-5b09-4282-a816-8a6916e26e1d",
+    "data": [
+      {
+        "text": "Licht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "b4ebde62-f63b-4e88-854b-49285dd30d75",
+    "data": [
+      {
+        "text": "Dat is goed",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "9a1fc56b-34aa-43e4-af4d-0bc726925697",
+    "data": [
+      {
+        "text": "Ok",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "7b7d1ae8-dc67-411d-8700-dff88589b388",
+    "data": [
+      {
+        "text": "Zonlicht ook",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "1e11ca80-2222-4a1f-a776-fad6b20bb484",
+    "data": [
+      {
+        "text": "Ja",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

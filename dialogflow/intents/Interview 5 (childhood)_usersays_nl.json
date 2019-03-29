@@ -1,0 +1,35 @@
+[
+  {
+    "id": "a2a2897f-1331-4057-94a4-5e802e7cfcf7",
+    "data": [
+      {
+        "text": "Hoe groeide je op?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "id": "903c5a87-9a14-4e85-8be9-9acb5f405ca9",
+    "data": [
+      {
+        "text": "Hoe ben je opgegroeid?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ef7803bd-abde-449f-b1e0-277791bf74f1",
+    "data": [
+      {
+        "text": "Vertel me iets over je jeugd?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

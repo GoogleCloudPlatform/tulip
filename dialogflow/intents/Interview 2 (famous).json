@@ -1,0 +1,32 @@
+{
+  "id": "9db234cd-731b-405c-b621-900d0e99bb9d",
+  "name": "Interview 2 (famous)",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Ondanks alles, ben ik heel gewoon gebleven. Ik heb zonlicht nodig om te schijnen. Heb je nog een andere vraag voor me?"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "I\u0027d like to believe I\u0027m still a very normal tulip. I\u0027m very down to earth. Do you have any other questions for me?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

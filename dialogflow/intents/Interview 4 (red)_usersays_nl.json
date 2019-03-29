@@ -1,0 +1,97 @@
+[
+  {
+    "id": "78585143-273b-4c0d-ae1e-84414f6e59bf",
+    "data": [
+      {
+        "text": "Ben je altijd al ",
+        "userDefined": false
+      },
+      {
+        "text": "roze",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": false
+      },
+      {
+        "text": " geweest?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "84cb8264-aabc-491a-a8fc-910e9cbf6c30",
+    "data": [
+      {
+        "text": "Wanneer heb je besloten om ",
+        "userDefined": false
+      },
+      {
+        "text": "roze",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": true
+      },
+      {
+        "text": " te zijn?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "df7e1255-54b1-4b28-a6a6-fb5e73329c43",
+    "data": [
+      {
+        "text": "Is je kleur ",
+        "userDefined": false
+      },
+      {
+        "text": "roze",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "b428d6cf-0a7c-46d0-849c-78ea1544bfab",
+    "data": [
+      {
+        "text": "Ben je ",
+        "userDefined": false
+      },
+      {
+        "text": "roze",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "f3e22644-beea-46a2-8a3a-bc55a36dee33",
+    "data": [
+      {
+        "text": "Welke kleur ben je?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "07d8cc4d-3dc1-48e2-a049-1b3282b2bc48",
+    "data": [
+      {
+        "text": "Ciao",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "30e7ff77-a1d9-4f89-baf8-b73c5fcb170f",
+    "data": [
+      {
+        "text": "I\u0027m done",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "8ecf5004-df77-4008-ba05-672d8eaf947d",
+    "data": [
+      {
+        "text": "Close app",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "0104e963-0972-4cbb-82dd-9e03c5f9a70d",
+    "data": [
+      {
+        "text": "Exit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "11709ccd-bbed-4962-afa8-b168c2536531",
+    "data": [
+      {
+        "text": "Bye",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "23f8d8c4-a5fe-4acc-8607-fe2202185ab5",
+    "data": [
+      {
+        "text": "That\u0027s it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "64dbf832-8718-4c57-8395-3160effa8862",
+    "data": [
+      {
+        "text": "That\u0027s all for now",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "bad6883c-7d74-42d9-9d0c-3c0276bfea5d",
+    "data": [
+      {
+        "text": "Goodbye",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

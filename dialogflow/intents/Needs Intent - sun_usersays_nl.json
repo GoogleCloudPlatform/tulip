@@ -1,0 +1,104 @@
+[
+  {
+    "id": "33289177-901a-43e1-8915-0aa8476e4442",
+    "data": [
+      {
+        "text": "Meer licht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "436d68ab-8b2a-4190-b469-0221a86efaa4",
+    "data": [
+      {
+        "text": "Licht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "896cb645-5cf6-466d-888e-8c4e2a3f6084",
+    "data": [
+      {
+        "text": "Zonlicht is leuker",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "823785dd-89c4-4bc5-bb6c-d628b91f5806",
+    "data": [
+      {
+        "text": "Een",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " zonnetje is fijn",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "85ab6dd3-f462-4343-8807-cb33dfad2be1",
+    "data": [
+      {
+        "text": "Zon is fijn",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "8ba4e7bd-6b89-4ccd-9632-7afb74bfbcb9",
+    "data": [
+      {
+        "text": "Ik hou ook van ",
+        "userDefined": false
+      },
+      {
+        "text": "de",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " zon",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "2b9e7f66-30af-430e-a46c-6c6ae17dd024",
+    "data": [
+      {
+        "text": "Zonlicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ae5cbf05-a4ae-4b46-894f-561417831e7f",
+    "data": [
+      {
+        "text": "Ik houd van zon",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "id": "fd328699-3f4d-404f-aac1-0e97e69bccd5",
+  "parentId": "4d7f7fc2-bf35-409a-96b1-98618e9547ff",
+  "rootParentId": "4d7f7fc2-bf35-409a-96b1-98618e9547ff",
+  "name": "Needs Intent - sun",
+  "auto": true,
+  "contexts": [
+    "NeedsIntent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "NeedsIntent.NeedsIntent-custom",
+      "affectedContexts": [
+        {
+          "name": "NeedsIntent-custom-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Oh, really, you don’t say. I had enough sun for the day. Did you?"
+        },
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Goh echt? Dat had ik niet gedacht. Ik heb geen zon gehad, deze nacht. En jij?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1508189124811,
+  "fallbackIntent": false,
+  "events": []
+}

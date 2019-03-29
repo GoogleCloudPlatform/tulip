@@ -1,0 +1,40 @@
+{
+  "id": "8d147a5b-e6a3-4bbe-9403-2d1a3dd5a970",
+  "name": "Default Welcome Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.welcome",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Hoi, ik ben een bloem. Wat wil je weten?"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Hi there, I\u0027m a flower. What would you like to know?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "WELCOME"
+    },
+    {
+      "name": "GOOGLE_ASSISTANT_WELCOME"
+    }
+  ]
+}

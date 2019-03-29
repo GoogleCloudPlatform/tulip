@@ -1,0 +1,24 @@
+[
+  {
+    "id": "19686a26-bb05-49c1-8b11-19565fbf33a8",
+    "data": [
+      {
+        "text": "welcome to the studio",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "aeba8731-53d7-40be-bd9e-6d0d60e61265",
+    "data": [
+      {
+        "text": "Welcome to vraag het google",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

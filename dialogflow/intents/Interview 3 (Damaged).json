@@ -1,0 +1,41 @@
+{
+  "id": "a4d722d8-d24a-4b83-9675-0386048d17be",
+  "name": "Interview 3 (Damaged)",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "85cf8446-92bd-45ae-9b45-73109c9d839d",
+          "required": false,
+          "dataType": "@sys.color",
+          "name": "color",
+          "value": "$color",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Ik doe al mijn stunten zelf. Ik kan meer water gebruiken! Heb je nog een andere vraag voor me?"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "I do all my own stunts. What else would you like to know?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

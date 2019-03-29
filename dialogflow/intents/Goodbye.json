@@ -1,0 +1,32 @@
+{
+  "id": "85929d1a-ff01-4331-ac33-473fe148bf82",
+  "name": "Goodbye",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Bedankt! Vergeet me niet om water te geven!"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Thanks, don\u0027t forget to water me!"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

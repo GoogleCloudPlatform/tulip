@@ -1,0 +1,38 @@
+{
+  "id": "f3755bf3-02b1-4148-ae8d-cfbabc7066e7",
+  "parentId": "fd328699-3f4d-404f-aac1-0e97e69bccd5",
+  "rootParentId": "4d7f7fc2-bf35-409a-96b1-98618e9547ff",
+  "name": "Needs Intent - Sunlight No",
+  "auto": true,
+  "contexts": [
+    "NeedsIntent-custom-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "NeedsIntent.NeedsIntent-custom.NeedsIntent-custom-no",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": "Mooi zo. Dan vind je het vast niet erg, om me even in de schaduw te zetten. Ik  ga stoppen met praten nu. Ik heb al mijn energie nodig om te groeien."
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Would you mind leaving me in the shade. Please enjoy some more sun yourself.\nI will stop talking to save all my energy to become an ever stronger flower."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1531859391,
+  "fallbackIntent": false,
+  "events": []
+}

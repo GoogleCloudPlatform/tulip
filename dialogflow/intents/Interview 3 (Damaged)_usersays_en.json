@@ -1,0 +1,77 @@
+[
+  {
+    "id": "f7c1173e-8d2c-4124-9fcb-a41d6da820f3",
+    "data": [
+      {
+        "text": "I see that your leaves are damaged. Why?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "ba4092e3-d7fc-4ab0-a492-f5bbc0891053",
+    "data": [
+      {
+        "text": "Why are your leaves damaged and ",
+        "userDefined": false
+      },
+      {
+        "text": "brown",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "7416b149-7294-4a6a-abe1-13d30f48f8aa",
+    "data": [
+      {
+        "text": "Why are your leaves damaged?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "8f00d322-b9d0-45b7-99f3-842c907aa83c",
+    "data": [
+      {
+        "text": "Why are your leaves wrinkled?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "d07afbf3-a0a3-4543-af79-261c61f99b40",
+    "data": [
+      {
+        "text": "Why are your leaves wrinkled and ",
+        "userDefined": false
+      },
+      {
+        "text": "brown",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

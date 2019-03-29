@@ -1,0 +1,40 @@
+{
+  "id": "3956b637-7b3b-4ffc-b0d9-a38cbb4d72ec",
+  "name": "Cactus Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": [
+            "Ga weg! Ok, sorry wat wil je weten?",
+            "Geef me ruimte! Hey, wil je wat weten?",
+            "Ga weg! Wat moet je?"
+          ]
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "Go Away. Hey, I\u0027m sorry, what do you want to know?",
+            "Give me more space. Hey, do you want to know something?",
+            "Stay back. Hey, Can you see how sharp I am?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

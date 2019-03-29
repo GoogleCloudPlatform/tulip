@@ -1,0 +1,40 @@
+[
+  {
+    "id": "408e1d06-322e-4dc2-99b8-8b146fa382b5",
+    "data": [
+      {
+        "text": "What lovely colors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "c87af671-6a2c-4b92-8a1f-df9fbca11a11",
+    "data": [
+      {
+        "text": "You are beautiful",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "e1588add-fefe-4d8d-9fe8-bece127a2033",
+    "data": [
+      {
+        "text": "You look lovely ",
+        "userDefined": false
+      },
+      {
+        "text": "today",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
