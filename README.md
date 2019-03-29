@@ -134,6 +134,18 @@ Start the application, it runs on port: 8080
 
 `gcloud app deploy`
 
+
+## Debug info
+
+To help with debugging the deployment you can SSH into your instance through the dashboard:
+https://console.cloud.google.com/appengine/instances
+
+From there you can run `docker ps` to find the ID of your container.
+
+Then run something like `docker exec -i -t 04473eaa2bb4 /bin/bash`. Make sure to replace the ID with the ID of your container.
+
+#
+
 **Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage.**
 
 **Copyright 2019 Google LLC. This software is provided as-is, without warranty or representation for any use or purpose. Your use of it is subject to your agreements with Google.**  
