@@ -2,14 +2,14 @@
 
 It is our pleasure to announce Google Tulip, our machine learning technology to improve the profitability of Dutch agriculture and the well-being of Dutch cash crops. But we also wanted to provide people with the possibility to create conversations with their own flowers.
 
-This tutorial helps you to jump straight to the conversational chatbot using [DialogFlow](https://dialogflow.com/docs) that we used for Google Tulip. We chose DialogFlow because it allows us to use the same Agent and logic to power both our webapp and the published Action On Google / Google Assistant.
+This tutorial helps you jump straight into the conversational chatbot that we created for Google Tulip using [DialogFlow](https://dialogflow.com/docs). We chose DialogFlow because it allows us to use the same Agent and logic to power both our webapp and the published Action On Google / Google Assistant.
 
-If you aren't familiar with DialogFlow, we recommend to take a look at [creating a Dialogflow account](https://dialogflow.com/docs/getting-started/create-account) and then [your first Dialogflow Agent and Intents](https://dialogflow.com/docs/getting-started/first-agent), which lets you define a natural language understanding model.
+If you aren't familiar with DialogFlow, we recommend to take a look at [creating a Dialogflow account](https://dialogflow.com/docs/getting-started/create-account) and then [your first Dialogflow Agent and Intents](https://dialogflow.com/docs/getting-started/first-agent), to get a feeling of how a Agent and Intents work.
 
 
 ## Setup the Dialogflow Agent
 
-1. (optional) In the cloud console, search for Dialogflow API
+1. In the Google Cloud console, search for Dialogflow API, and ensure it is enabled.
 
 2. On the left hand side, select **Dialogflow Agent**
 
@@ -44,7 +44,7 @@ If you aren't familiar with DialogFlow, we recommend to take a look at [creating
 
 5. Click on **Export & Import**
 
-6. On your hard drive navigate to *dialogflow* zip this folder, and then **Import from Zip** in the Dialogflow settings screen. These are some example chatbot dialogs.
+6. On your hard drive navigate to *dialogflow* zip this folder, and then **Import from Zip** in the Dialogflow settings screen. These are some example chatbot dialogs called Intents.
 
 ## Test the DialogFlow agent
 

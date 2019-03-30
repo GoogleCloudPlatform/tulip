@@ -25,9 +25,9 @@ This experiment showcases the power of Google Cloud, and uses the following buil
 
 * The client application (**src/client**) is written in TypeScript, enables the Camera & Microphone throught HTML5 browser APIs (`navigator.getUserMedia`), and talks via WebSockets to the Node.js server .
 * The server application (**src/server**) deploys to AppEngine Flex has the integration with the AutoML and Dialogflow SDKs. It uses
- * AutoML Vision with a Flower Dataset [(see tutorial)](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_automl.md) checks the photo to identify the flower
- * DialogFlow Enterprise to start and run the conversation
- * Cloud Speech-to-Text to generate the flower's speech
+  * AutoML Vision with a Flower Dataset [(see tutorial)](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_automl.md) checks the photo to identify the flower
+  * DialogFlow Enterprise to start and run the conversation
+  * Cloud Speech-to-Text to generate the flower's speech
 
 If you'd like to try it yourself, see the tutorial instructions below to [Set up the DialogFlow Agent](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_dialogflow.md), train the [AutoML model](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_automl.md), and [run the code locally or deploy to AppEngine Flex](#setup-development-machine).
 
