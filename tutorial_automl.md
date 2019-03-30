@@ -8,7 +8,7 @@ If you want to start with a more detailed tutorial, then its best to follow this
 
 ### How to get started with training and deploying your own flower detector. 
 
-To train our own AutoML model you first need to get the data. The data is stored in a bucket on [Google Cloud Storage](https://cloud.google.com/storage/). Download the zip file from the [url](https://storage.googleapis.com/flower-automl/flowers.zip). This wil download the flower.zip file to your local device. 
+To train our own AutoML model you first need to get the data. The data is stored in a bucket on [Google Cloud Storage](https://cloud.google.com/storage/). Download the zip file from the [url](https://storage.googleapis.com/flower-automl/flowers.zip). This will download the flower.zip file to your local device. 
 
 ### Go to AutoML Vision 
 
