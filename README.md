@@ -13,11 +13,13 @@ Always been curious to learn what your plants and flowers would say if they coul
 
 1. Build the code, and deploy it on Google App Engine Flex.
 
-2. Point your camera at a flower, and snap a picture.
+2. Point your Pixel's camera at a flower, and snap a picture.
 
 3. The Google Cloud AutoML Vision model, will detect your flower, and return the results on the screen.
 
 4. Hold the button and ask a question to Start the Conversation!
+
+<img src="doc_images/tulip_splash.png" alt="splash screen" width="200"/> <img src="doc_images/tulip_snap.png" alt="snap picture" width="198"/> <img src="doc_images/tulip_start_convo.png" alt="start the conversation" width="200"/>
 
 ## Powered by Google Cloud
 
@@ -97,7 +99,7 @@ authentication:
    the file, set the ``GOOGLE_APPLICATION_CREDENTIALS`` environment variable to
    the path to the key file, for example:
 
-        export GOOGLE_APPLICATION_CREDENTIALS=~/Documents/keys/project-shunkaen.json
+        export GOOGLE_APPLICATION_CREDENTIALS=~/Documents/keys/project-name.json
 
 * [Application Default Credentials]( https://cloud.google.com/docs/authentication#getting_credentials_for_server-centric_flow)
 * [Additional scopes](https://cloud.google.com/compute/docs/authentication#using)

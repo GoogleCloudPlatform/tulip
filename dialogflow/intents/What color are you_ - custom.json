@@ -1,16 +1,20 @@
 {
-  "id": "820f758f-31f2-4311-9281-aa9415df4172",
-  "name": "Interview 4 (red)",
+  "id": "1e101caf-ef39-4345-b6eb-7998e2c1a32c",
+  "parentId": "86e69bfd-9ca4-4b1a-865e-b3b1e5ff8d53",
+  "rootParentId": "86e69bfd-9ca4-4b1a-865e-b3b1e5ff8d53",
+  "name": "What color are you? - custom",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "Whatcolorareyou-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
+      "action": "Whatcolorareyou.Whatcolorareyou-custom",
       "affectedContexts": [],
       "parameters": [
         {
-          "id": "b9b3f1c9-8c72-46de-aca6-86ef7fd3f823",
-          "required": false,
+          "id": "258ca88a-e67c-45e6-b5ae-f4411ddeb023",
           "dataType": "@sys.color",
           "name": "color",
           "value": "$color",
@@ -21,12 +25,12 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": "I\u0027m actually red. I\u0027m going to enjoy my sunlight now. Goodbye."
+          "speech": "Well, I\u0027m sad I\u0027m not red. But at least I know that now, thanks. What else should we talk about?"
         },
         {
           "type": 0,
           "lang": "nl",
-          "speech": "Ik ben eigenlijk rood maar ik ga nu van mijn zonlicht genieten. Doei!"
+          "speech": []
         }
       ],
       "defaultResponsePlatforms": {},
@@ -36,6 +40,7 @@
   "priority": 500000,
   "webhookUsed": false,
   "webhookForSlotFilling": false,
+  "lastUpdate": 1553978034723,
   "fallbackIntent": false,
   "events": []
 }

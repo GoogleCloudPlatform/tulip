@@ -1,0 +1,38 @@
+{
+  "id": "53b18b5d-44f4-4cca-8b76-c02ae2e51eb1",
+  "parentId": "d074a11a-6dfd-44b0-8a70-d8ef18eeb2c1",
+  "rootParentId": "d074a11a-6dfd-44b0-8a70-d8ef18eeb2c1",
+  "name": "Type of Flower - no",
+  "auto": true,
+  "contexts": [
+    "TypeofFlower-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "TypeofFlower.TypeofFlower-no",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Hmm. Well, sorry we don\u0027t agree, I have a very strong self-image. Maybe we should talk about something else, do you have a different question?"
+        },
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1553962665431,
+  "fallbackIntent": false,
+  "events": []
+}

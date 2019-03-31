@@ -1,0 +1,41 @@
+{
+  "id": "1a8671ba-c1a8-4d2a-8c3a-7eac96930a49",
+  "parentId": "86e69bfd-9ca4-4b1a-865e-b3b1e5ff8d53",
+  "rootParentId": "86e69bfd-9ca4-4b1a-865e-b3b1e5ff8d53",
+  "name": "What color are you? - yes",
+  "auto": true,
+  "contexts": [
+    "Whatcolorareyou-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "Whatcolorareyou.Whatcolorareyou-yes",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "Thank you for that affirmation. I feel much more confident now. Would you like to ask anything else?",
+            "Yay, I guessed right! What else would you like to know?"
+          ]
+        },
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1553977927783,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "1b82ed18-d248-414c-8edf-7b7b81d236cc",
+  "parentId": "86e69bfd-9ca4-4b1a-865e-b3b1e5ff8d53",
+  "rootParentId": "86e69bfd-9ca4-4b1a-865e-b3b1e5ff8d53",
+  "name": "What color are you? - no",
+  "auto": true,
+  "contexts": [
+    "Whatcolorareyou-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "Whatcolorareyou.Whatcolorareyou-no",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "Well that\u0027s just, like, you\u0027re opinion. Goodbye.",
+            "Oh no, my entire life has been a lie! I\u0027m going to go think this over."
+          ]
+        },
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1553978027492,
+  "fallbackIntent": false,
+  "events": []
+}

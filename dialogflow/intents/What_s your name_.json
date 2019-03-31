@@ -1,0 +1,33 @@
+{
+  "id": "51dbee4e-c38d-4a0b-8b60-385d93bd89b0",
+  "name": "What\u0027s your name?",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "People call me Terry Tulip. What else would you like to know?",
+            "Cathy Cactus. But ask me something else please?",
+            "I was called Daan, and then I changed my name to Bram. Now, I go by Luuk. Any other questions?",
+            "Mila. Ask me something else now?",
+            "I used to be called Lotte, except no one could say it right. So, I now go by Anna. Any other questions?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

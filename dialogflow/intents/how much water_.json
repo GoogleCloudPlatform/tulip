@@ -1,0 +1,30 @@
+{
+  "id": "1d6fda20-bb79-4b7a-9ffc-add67b450ff5",
+  "name": "how much water?",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "More. More Please. When you\u0027re done giving me water, can you ask another question?",
+            "More. You promised me more water. Now can you ask me anything else?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

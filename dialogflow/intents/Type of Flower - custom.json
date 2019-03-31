@@ -1,0 +1,38 @@
+{
+  "id": "e73602c2-4b52-4492-b88a-82694ba77b63",
+  "parentId": "d074a11a-6dfd-44b0-8a70-d8ef18eeb2c1",
+  "rootParentId": "d074a11a-6dfd-44b0-8a70-d8ef18eeb2c1",
+  "name": "Type of Flower - custom",
+  "auto": true,
+  "contexts": [
+    "TypeofFlower-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "TypeofFlower.TypeofFlower-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Well at least I know that now. What else would you like to ask me?"
+        },
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1553978557325,
+  "fallbackIntent": false,
+  "events": []
+}

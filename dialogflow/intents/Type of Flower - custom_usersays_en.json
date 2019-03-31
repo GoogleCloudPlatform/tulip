@@ -1,0 +1,46 @@
+[
+  {
+    "id": "96629c84-4e18-4677-83c4-d1eeca543fa6",
+    "data": [
+      {
+        "text": "No, you\u0027re a Narcissus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "1aa6145f-c6f5-4bf5-bffb-9cf6081d7a41",
+    "data": [
+      {
+        "text": "No, you\u0027re a Lily",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "415ecef1-e24c-44ab-b49c-4b2e0cf40889",
+    "data": [
+      {
+        "text": "No, you\u0027re a Daisy",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "db758bd4-95d7-41b0-988d-994b3c91aa1f",
+    "data": [
+      {
+        "text": "No, you\u0027re a dandelion",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

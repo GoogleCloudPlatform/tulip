@@ -44,7 +44,9 @@ If you aren't familiar with DialogFlow, we recommend to take a look at [creating
 
 5. Click on **Export & Import**
 
-6. On your hard drive navigate to *dialogflow* zip this folder, and then **Import from Zip** in the Dialogflow settings screen. These are some example chatbot dialogs called Intents.
+6. On your hard drive navigate to *dialogflow* folder in the root of this project, and zip this folder 
+
+7. Back in DialogFlow UI, click on **Import from Zip** in the Dialogflow settings screen to import the zip file. This contains some the example chatbot dialogs called Intents that we used to build our Tulip Translator
 
 ## Test the DialogFlow agent
 

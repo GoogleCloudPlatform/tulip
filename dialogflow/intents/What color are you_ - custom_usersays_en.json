@@ -1,0 +1,19 @@
+[
+  {
+    "id": "fb714575-5ec3-403d-b318-d5b34a3bdc78",
+    "data": [
+      {
+        "text": "No, you\u0027re ",
+        "userDefined": false
+      },
+      {
+        "text": "green",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

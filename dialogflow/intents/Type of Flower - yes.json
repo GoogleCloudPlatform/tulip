@@ -1,0 +1,38 @@
+{
+  "id": "4cfb94c0-eb08-41ac-8712-657ed46f2cda",
+  "parentId": "d074a11a-6dfd-44b0-8a70-d8ef18eeb2c1",
+  "rootParentId": "d074a11a-6dfd-44b0-8a70-d8ef18eeb2c1",
+  "name": "Type of Flower - yes",
+  "auto": true,
+  "contexts": [
+    "TypeofFlower-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "TypeofFlower.TypeofFlower-yes",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Great, I\u0027m glad we agree. What else would you like to know?"
+        },
+        {
+          "type": 0,
+          "lang": "nl",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1553962658607,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "86e69bfd-9ca4-4b1a-865e-b3b1e5ff8d53",
+  "name": "What color are you?",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "Whatcolorareyou-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "No one has ever shown me a mirror, so I\u0027m not sure.. I think I\u0027m red. Do you agree that I\u0027m red?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

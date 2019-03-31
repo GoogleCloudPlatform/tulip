@@ -1,0 +1,36 @@
+{
+  "id": "d074a11a-6dfd-44b0-8a70-d8ef18eeb2c1",
+  "name": "Type of Flower",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "TypeofFlower-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "I\u0027ve always thought of myself as a Tulip. Do I look like a tulip to you?",
+            "I\u0027ve always thought of myself as a Rose. Do I look like a rose to you?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

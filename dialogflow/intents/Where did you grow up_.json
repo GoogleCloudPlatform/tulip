@@ -1,0 +1,33 @@
+{
+  "id": "16511183-cb2d-4189-9c19-75848a75adc1",
+  "name": "Where did you grow up?",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "In a muddy field in Holland.  What else would you like to know?",
+            "I was an Army flower and moved around quite a bit. Any other questions?",
+            "In a flower pot. It was very constraining. Ask me something else.",
+            "In the wettest place in the world. It was very draining. Any other questions?",
+            "Under a tree. It was very sheltered. Ask me something else."
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

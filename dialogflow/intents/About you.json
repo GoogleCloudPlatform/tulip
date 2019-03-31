@@ -1,0 +1,34 @@
+{
+  "id": "d8e87a2b-f082-4d18-a462-7e414aecd163",
+  "name": "About you",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "I am tall, colorful and the nicest flower. Ask me anything.",
+            "I\u0027m blue, which is a rather rare color for a flower. Ask me something else.",
+            "I\u0027m gray. Just one shade of gray. Ask me something else.",
+            "I played a part in a 1981 Bollywood movie. Ask me something else.",
+            "I love Bollywood movies. Ask me something else.",
+            "I\u0027m red, but please don\u0027t judge me based just on that. Ask me something else."
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

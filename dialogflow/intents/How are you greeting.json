@@ -1,0 +1,40 @@
+{
+  "id": "ea676052-aa29-4439-91cf-76ec61f57ce1",
+  "name": "How are you greeting",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "ae96ddf2-5946-478c-b5e5-ef490848667a",
+          "required": false,
+          "dataType": "@sys.date",
+          "name": "date",
+          "value": "$date",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "It\u0027s a beautiful day, I\u0027m feeling well, thank you! What would you like to know?",
+            "I\u0027m feeling lovely. I AM lovely! What would you like to know?",
+            "I\u0027m wonderful, thanks. But I could use some more water. Hey, what else would you like to know?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

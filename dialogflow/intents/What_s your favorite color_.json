@@ -1,0 +1,31 @@
+{
+  "id": "f6c678d4-117b-4ce3-8e5e-bacdf43084a9",
+  "name": "What\u0027s your favorite color?",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "My favorite color is Yellow, it\u0027s the color of sunshine. What else would you like to know?",
+            "Blue is my favorite color, it\u0027s the color of water. Would you like to ask anything else?",
+            "My favorite color is MY color of course! What else would you like to know?"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}
