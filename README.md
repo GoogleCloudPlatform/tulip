@@ -29,7 +29,7 @@ This experiment showcases the power of Google Cloud, and uses the following buil
 * The server application (**src/server**) is written in Node.js. It deploys to AppEngine Flex and has the integration to different Cloud Platform services used:
   * [AutoML with a Flower Dataset](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_automl.md) checks the photo to identify the flower
   * [DialogFlow Enterprise](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_dialogflow.md) carries the conversational flow
-  * Cloud Speech-to-Text to generate the flower's speech
+  * including the features: *Dialogflow Speech-to-Text* for intent matching via voice and *Dialogflow Text-to-Speech* to generate the flower's speech
 
 If you'd like to try it yourself, see the tutorial instructions below to [Set up the DialogFlow Agent](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_dialogflow.md), train the [AutoML model](https://github.com/GoogleCloudPlatform/tulip/blob/master/tutorial_automl.md), and [run the code locally or deploy to AppEngine Flex](#setup-development-machine).
 
