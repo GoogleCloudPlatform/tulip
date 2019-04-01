@@ -111,7 +111,7 @@ authentication:
 
 This is the DIY version of the Tulip Translator app. 
 
-[![Google Tulip](https://img.youtube.com/vi/nsPQvZm_rgM/0.jpg)](https://www.youtube.com/watch?v=nsPQvZm_rgM
+[![Google Tulip](https://img.youtube.com/vi/nsPQvZm_rgM/0.jpg)](http://www.youtube.com/watch?v=nsPQvZm_rgM "Google Tulip")
 
 For more info see: [Technical Documentation](https://medium.com/google-cloud/google-tulip-the-technical-details-719c317bf2df) - blog post by Lak Lakshmanan.
 
