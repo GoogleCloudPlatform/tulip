@@ -109,6 +109,13 @@ authentication:
 
 #
 
+This is the DIY version of the Tulip Translator app. 
+
+[![Google Tulip](https://img.youtube.com/vi/nsPQvZm_rgM/0.jpg)](https://www.youtube.com/watch?v=nsPQvZm_rgM
+
+For more info see: [Technical Documentation](https://medium.com/google-cloud/google-tulip-the-technical-details-719c317bf2df) - blog post by Lak Lakshmanan.
+
+
 **Disclaimer: This example is made by Lee Boonstra, Customer Engineer @ Google Cloud. Written code can be used as a baseline, it's not meant for production usage, and is not an official Google product.**
 
 **Copyright 2019 Google LLC. This software is provided as-is, without warranty or representation for any use or purpose. Your use of it is subject to your agreements with Google.**  
