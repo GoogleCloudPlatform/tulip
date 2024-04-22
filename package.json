@@ -39,7 +39,7 @@
     "@types/uuid": "^3.4.4",
     "audio-recorder-polyfill": "^0.1.5",
     "browserify": "^16.0.0",
-    "browserify-shim": "^3.8.14",
+    "browserify-shim": "^3.8.16",
     "concurrently": "^3.5.1",
     "lodash": "^4.17.11",
     "mkdirp": "^0.5.1",
