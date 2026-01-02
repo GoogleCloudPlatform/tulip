@@ -72,8 +72,8 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member="serviceAccount:custom-vision@appspot.gserviceaccount.com" \
   --role="roles/serviceusage.serviceUsageAdmin"
 
-gsutil mb -p $PROJECT_ID -c regional -l us-central1 gs://${BUCKET}/
+gcloud storage buckets create gs://${BUCKET}/ --project=$PROJECT_ID --default-storage-class=regional --location=us-central1
 
-gsutil -m cp -R gs://cloud-ml-data/img/flower_photos/ gs://${BUCKET}/img/
-gsutil cat gs://${BUCKET}/img/flower_photos/all_data.csv | sed "s:cloud-ml-data:${BUCKET}:" > all_data.csv
-gsutil cp all_data.csv gs://${BUCKET}/csv/
+gcloud storage cp --recursive gs://cloud-ml-data/img/flower_photos/ gs://${BUCKET}/img/
+gcloud storage cat gs://${BUCKET}/img/flower_photos/all_data.csv | sed "s:cloud-ml-data:${BUCKET}:" > all_data.csv
+gcloud storage cp all_data.csv gs://${BUCKET}/csv/
